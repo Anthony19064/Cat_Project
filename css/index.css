@@ -1,0 +1,9 @@
+body{
+    background-color: gray;
+}
+
+.Test_text{
+    color: black;
+    font-size: 30px;
+    font-family: Impact, sans-serif;
+}
