@@ -9,5 +9,13 @@ body {
 }
 
 .card{
-    margin-top: 10px;
+    margin: 10px;
+}
+
+.card-img-top{
+    height: 200px;
+}
+
+#catList{
+    display: flex;
 }
