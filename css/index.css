@@ -1,9 +1,13 @@
-body{
+body {
     background-color: gray;
+    display: flex;
+    justify-content: center; /* จัดตำแหน่งในแนวนอนให้กลาง */
+    align-items: center; /* จัดตำแหน่งในแนวตั้งให้กลาง */
+    height: 100vh; /* กำหนดความสูงของ body เป็น 100% ของหน้าจอ */
+    margin: 0; /* ลบ margin ที่มีค่าเริ่มต้น */
+    flex-direction: column; /* จัดให้เนื้อหาทั้งหมดในแนวตั้ง */
 }
 
-.Test_text{
-    color: black;
-    font-size: 30px;
-    font-family: Impact, sans-serif;
+.card{
+    margin-top: 10px;
 }

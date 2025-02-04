@@ -1,0 +1,18 @@
+{
+  "dependencies": {
+    "firebase": "^11.2.0",
+    "firebase-admin": "^13.0.2",
+    "jsdom": "^26.0.0"
+  },
+  "name": "cat_project",
+  "type": "module",
+  "version": "1.0.0",
+  "description": "ให้แยกไฟล์ html css js เก็บแต่ละไฟล์  ตั้งชื่อไฟล์ให้เหมือนกันเพื่อไม่ซับซ้อน เช่น index.css index.js index.html",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
