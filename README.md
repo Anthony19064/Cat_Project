@@ -1,5 +1,8 @@
 # Cat_Project
 
-ให้แยกไฟล์ html css js เก็บแต่ละไฟล์ 
-ตั้งชื่อไฟล์ให้เหมือนกันเพื่อไม่ซับซ้อน เช่น index.css index.js index.html
+## แยกโฟลเดอร์ตามนามสกุลไฟล์ .html .css .js
+```
+-- ใช้กับอันไหนก็ตั้งชื่อให้เหมือนกัน เช่น index.html | index.css | index.js
+ --  css ของ index.html คือ index.css
+ -- script ของ index.html คือ index.js
  
