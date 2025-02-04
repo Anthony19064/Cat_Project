@@ -81,6 +81,5 @@ export async function displayCats() {
     catListElement.appendChild(card);
   });
 
-  console.log('hello from js');
 }
 
