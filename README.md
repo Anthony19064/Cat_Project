@@ -6,6 +6,7 @@
 css ของ index.html คือ index.css
 script ของ index.html คือ index.js
 ```
+## แยกBranch ตามหน้าที่ที่ตัวเองรับผิดชอบเลย Fontend Backend DB
 ``` 
 ใครเขียนฝั่งไหนก็เลือก branch ให้ถูกด้วยนะเพื่อน
 fontend เวลาเขียน ให้เขียน Mockup ข้อมูลขึ้นมาเองก่อนเลย เด่ว db ตามมาใส่ข้อมูลให้ทีหลัง
