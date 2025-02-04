@@ -2,7 +2,7 @@
 
 ## แยกโฟลเดอร์ตามนามสกุลไฟล์ .html .css .js
 ```
--- ใช้กับอันไหนก็ตั้งชื่อให้เหมือนกัน เช่น index.html | index.css | index.js
- --  css ของ index.html คือ index.css
- -- script ของ index.html คือ index.js
+ใช้กับอันไหนก็ตั้งชื่อให้เหมือนกัน เช่น index.html | index.css | index.js
+css ของ index.html คือ index.css
+script ของ index.html คือ index.js
  
