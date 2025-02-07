@@ -1,0 +1,45 @@
+h2 {
+    margin-bottom: 30px;
+}
+.table-th th {
+    background-color: #e4cc9d;
+    color: #000000; 
+    text-align: center;
+}
+
+tbody td{
+    text-align: center; 
+}
+
+tbody td .btn {
+    position: relative;
+    margin-left: 15px;
+    right: 5px;
+    font-size: 12px; 
+    padding: 6px 10px; 
+  }
+  
+
+  .btn-success {
+    background-color: #28a745;
+    border-color: #28a745; 
+    transition: background-color 0.3s, transform 0.3s;
+  }
+  
+  .btn-success:hover {
+    background-color: #218838; 
+    transform: scale(1.05); 
+  }
+  
+ 
+  .btn-danger {
+    background-color: #dc3545; 
+    border-color: #dc3545; 
+    transition: background-color 0.3s, transform 0.3s;
+  }
+  
+  .btn-danger:hover {
+    background-color: #c82333; 
+    transform: scale(1.05); 
+  }
+  
