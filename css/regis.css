@@ -1,0 +1,105 @@
+body, html {
+    height: 100%;
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+
+.container-fluid {
+    height: 100vh;
+    display: flex;
+    overflow: hidden;
+    transition: transform 0.5s ease-in-out;
+    position: relative;
+}
+
+.left-side, .right-side {
+    width: 50%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    transition: transform 0.5s ease-in-out;
+}
+
+.left-side {
+    background: url('https://www.utmost-pet.com/wp-content/uploads/2023/09/%E0%B8%A3%E0%B8%B9%E0%B9%89%E0%B8%88%E0%B8%B1%E0%B8%81%E0%B8%81%E0%B8%B2%E0%B8%A3%E0%B8%97%E0%B8%B3%E0%B8%AB%E0%B8%A1%E0%B8%B1%E0%B8%99%E0%B9%81%E0%B8%A1%E0%B8%A7%E0%B8%95%E0%B8%B1%E0%B8%A7%E0%B8%9C%E0%B8%B9%E0%B9%89.png') no-repeat center center;
+    background-size: cover;
+    left: 0;
+}
+
+.right-side {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f8f9fa;
+    right: 0;
+}
+
+.form-container {
+    width: 100%;
+    max-width: 350px;
+    text-align: center;
+}
+
+.avatar {
+    width: 100px;
+    height: 100px;
+    background-color: #d4b36a;
+    border-radius: 50%;
+    margin: 0 auto 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.form-control {
+    border: none;
+    border-bottom: 1px solid #d4b36a;
+    border-radius: 0;
+    margin-bottom: 15px;
+    background-color: transparent;
+    padding-left: 35px;
+}
+
+.form-control:focus {
+    box-shadow: none;
+    border-bottom: 2px solid #d4b36a;
+}
+
+.input-group-text {
+    background-color: transparent;
+    border: none;
+    position: absolute;
+    left: 10px;
+    color: #6c757d;
+}
+
+.btn-register, .btn-login {
+    background-color: #d4b36a;
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 10px;
+}
+
+.btn-cancel {
+    background-color: #ffffff;
+    border: 1px solid #d4b36a;
+    color: rgb(0, 0, 0);
+    padding: 10px 20px;
+    border-radius: 10px;
+}
+
+.toggle-link {
+    margin-top: 10px;
+    font-size: 0.9rem;
+    cursor: pointer;
+}
+
+/* Animation Flip */
+.container-fluid.flipped .right-side {
+    transform: translateX(-100%);
+}
+
+.container-fluid.flipped .left-side {
+    transform: translateX(100%);
+    background: url('https://scontent.fbkk5-1.fna.fbcdn.net/v/t1.15752-9/475983696_628263012926883_4468125571576131673_n.jpg?_nc_cat=109&ccb=1-7&_nc_sid=9f807c&_nc_ohc=Fmeh5FfHcPUQ7kNvgFcPe_V&_nc_oc=Adi5BRVG7vbAtE9VeWaE-fu32WueC2Vq_yKblFqngcYPySfiyLDDI5eE91ZTnBmz5gI&_nc_zt=23&_nc_ht=scontent.fbkk5-1.fna&oh=03_Q7cD1gGxg-ZKG9qd3ukg5Q4qvVSBEeKH1Ejbd9Za_YMUsiQR4Q&oe=67CB1F41') no-repeat center center;
+    background-size: cover;
+}
