@@ -67,7 +67,7 @@ body, html {
     background-color: transparent;
     border: none;
     position: absolute;
-    left: 10px;
+    top: 2px;
     color: #6c757d;
 }
 
@@ -91,6 +91,8 @@ body, html {
     margin-top: 10px;
     font-size: 0.9rem;
     cursor: pointer;
+    text-decoration: underline;
+    font-weight: bold;
 }
 
 /* Animation Flip */

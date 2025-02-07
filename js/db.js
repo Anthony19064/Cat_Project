@@ -1,6 +1,7 @@
 // Import Firebase SDK from CDN
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.17.2/firebase-app.js";
-import { getFirestore, collection, getDocs } from "https://www.gstatic.com/firebasejs/9.17.2/firebase-firestore-lite.js";
+import { getFirestore, collection, getDocs, addDoc, where, query } from "https://www.gstatic.com/firebasejs/9.17.2/firebase-firestore-lite.js";
+
 
 // Firebase configuration
 const firebaseConfig = {
@@ -23,7 +24,46 @@ async function getCatData() {
   return catSnapshot.docs.map(doc => doc.data());
 }
 
-// Render data on the page
+async function getAccountData() {
+  const Account = collection(db, 'Account');
+  const accountSnapshot = await getDocs(Account);
+  return accountSnapshot.docs.map(doc => doc.data());
+}
+
+// search หา account
+export async function login(username, password) {
+  try {
+    const accountRef = collection(db, "Account"); // อ้างอิงไปที่คอลเลกชัน "Account"
+    const q = query(accountRef, where("username", "==", username), where("password", "==", password)); // ค้นหา username ที่ตรงกัน
+    const querySnapshot = await getDocs(q);
+
+    if (!querySnapshot.empty){
+      return true
+    };
+  } catch (error) {
+    console.error("Error searching account:", error);
+    return false;
+  }
+}
+
+
+//
+async function addCatData(catName, catSex, catLocation, catImg, catDetails) {
+  try {
+    const docRef = await addDoc(collection(db, "Cat-details"), {
+      name: catName,
+      sex: catSex,
+      location: catLocation,
+      img: catImg,
+      details: catDetails
+    });
+    console.log("Cat added with ID: ", docRef.id);
+  } catch (e) {
+    console.error("Error adding cat: ", e);
+  }
+}
+
+
 // Render data on the page
 export async function displayCats() {
   const catListElement = document.querySelector('#catList');
@@ -41,7 +81,6 @@ export async function displayCats() {
     // Create card body
     const cardBody = document.createElement('div');
     cardBody.classList.add('card-body');
-    
     // Create card title
     const cardTitle = document.createElement('h5');
     cardTitle.classList.add('card-title');
