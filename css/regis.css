@@ -1,7 +1,7 @@
 body, html {
     height: 100%;
     margin: 0;
-    font-family: Arial, sans-serif;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif
 }
 
 .container-fluid {
@@ -56,11 +56,13 @@ body, html {
     margin-bottom: 15px;
     background-color: transparent;
     padding-left: 35px;
+
 }
 
 .form-control:focus {
     box-shadow: none;
     border-bottom: 2px solid #d4b36a;
+    background-color: transparent;
 }
 
 .input-group-text {
@@ -73,16 +75,28 @@ body, html {
 
 .btn-register, .btn-login {
     background-color: #d4b36a;
-    border: none;
     color: white;
     padding: 10px 20px;
     border-radius: 10px;
 }
 
-.btn-cancel {
-    background-color: #ffffff;
+.btn-register:hover, .btn-login:hover{
     border: 1px solid #d4b36a;
-    color: rgb(0, 0, 0);
+    color: #d4b36a;
+    padding: 10px 20px;
+    border-radius: 10px;
+}
+
+.btn-cancel {
+    border: 1px solid #d4b36a;
+    color: #d4b36a;
+    padding: 10px 20px;
+    border-radius: 10px;
+}
+
+.btn-cancel:hover {
+    background-color: #d4b36a;
+    color: white;
     padding: 10px 20px;
     border-radius: 10px;
 }

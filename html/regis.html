@@ -23,7 +23,7 @@
                     <form id="loginForm">
                         <div class="mb-3 position-relative">
                             <span class="input-group-text"><i class="fas fa-user"></i></span>
-                            <input type="text" class="form-control" id="username" placeholder="Username">
+                            <input type="text" class="form-control" id="username" placeholder="Username or Email">
                         </div>
                         <div class="mb-3 position-relative">
                             <span class="input-group-text"><i class="fas fa-lock"></i></span>
@@ -37,27 +37,64 @@
         </div>
     </div>
     <script type="module">
-        import {login} from "../js/db.js";
-        document.getElementById("loginForm").addEventListener("submit", function(event) {
-    event.preventDefault(); // ป้องกันการรีเฟรชหน้า
-
-    // ดึงค่าจาก input fields
-    let username = document.getElementById("username").value;
-    let password = document.getElementById("password").value;
+        import { login } from "../js/db.js";
     
-    const value = login(username,password);
-        
-    login(username, password).then(value => {
-    if (value === true) {
-        window.location.href = "index.html";
-    } else {
-        console.log("รหัสผิดจ้า");
-        console.log(value);
-    }
+        document.getElementById("loginForm").addEventListener("submit", async function(event) {
+            event.preventDefault(); // ป้องกันการรีเฟรชหน้า
+    
+            // ดึงค่าจาก input fields
+            let username = document.getElementById("username").value;
+            let password = document.getElementById("password").value;
+    
+            try {
+                const isLoggedIn = await login(username, password); // ใช้ await แทน .then()
+    
+                if (isLoggedIn) {
+                    sessionStorage.setItem("user", isLoggedIn);
+                    window.location.href = "index.html";
+                } else {
+                    console.log("รหัสผิดจ้า");
+                }
+            } catch (error) {
+                console.error("เกิดข้อผิดพลาดในการเข้าสู่ระบบ:", error);
+            }
+        });
+    </script>
+    
+    <script type="module">
+        import {register} from "../js/db.js";
+        document.addEventListener("DOMContentLoaded", function () {
+        document.addEventListener("submit", function (event) {
+        if (event.target && event.target.id === "regis-form") {
+            event.preventDefault(); // ป้องกันการรีเฟรชเพจ
+
+            // ดึงค่าจาก input fields
+            const name = document.getElementById("name").value;
+            const phone = document.getElementById("phone").value;
+            const contract = document.getElementById("contract").value;
+            const email = document.getElementById("mail").value;
+            const username = document.getElementById("username").value;
+            const password = document.getElementById("password").value;
+            const retypePassword = document.getElementById("retype_password").value;
+
+            if (password == retypePassword){
+                register(username, phone, password, name, email, contract);
+                document.getElementById("regis-form").reset();
+                toggleForms();
+            }
+            else{
+                alert("Passwords do not match!");
+                return;
+            }
+
+        }
+    });
 });
-});
+
+       
     </script>
     <script src="../js/regis.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
+
 </html>

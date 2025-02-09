@@ -11,37 +11,37 @@ function toggleForms() {
                 <div class="register-form">
                     <div class="avatar"></div>
                     <h3>Register</h3>
-                    <form>
+                    <form id="regis-form">
                     <div class="mb-3 position-relative">
                         <span class="input-group-text"><i class="fas fa-user"></i></span>
-                        <input type="text" class="form-control" placeholder="Name">
+                        <input type="text" class="form-control" placeholder="Name" id="name">
                     </div>
                     <div class="mb-3 position-relative">
                         <span class="input-group-text"><i class="fas fa-phone"></i></span>
-                        <input type="text" class="form-control" placeholder="Phone number">
+                        <input type="text" class="form-control" placeholder="Phone number" id="phone">
                     </div>
                     <div class="mb-3 position-relative">
                         <span class="input-group-text"><i class="fa-solid fa-comment"></i></span>
-                        <input type="text" class="form-control" placeholder="Social media contract">
+                        <input type="text" class="form-control" placeholder="Social media contract" id="contract">
                     </div>
                     <div class="mb-3 position-relative">
                         <span class="input-group-text"><i class="fas fa-envelope"></i></span>
-                        <input type="email" class="form-control" placeholder="Email">
+                        <input type="email" class="form-control" placeholder="Email" id="mail">
                     </div>
                     <div class="mb-3 position-relative">
                         <span class="input-group-text"><i class="fas fa-id-card"></i></span>
-                        <input type="text" class="form-control" placeholder="Username">
+                        <input type="text" class="form-control" placeholder="Username" id="username">
                     </div>
                     <div class="mb-3 position-relative">
                         <span class="input-group-text"><i class="fas fa-lock"></i></span>
-                        <input type="password" class="form-control" placeholder="Password">
+                        <input type="password" class="form-control" placeholder="Password" id="password">
                     </div>
                     <div class="mb-3 position-relative">
                         <span class="input-group-text"><i class="fas fa-lock"></i></span>
-                        <input type="password" class="form-control" placeholder="Retype password">
+                        <input type="password" class="form-control" placeholder="Retype password" id="retype_password">
                     </div>
                     
-                    <button type="submit" class="btn btn-register">Register</button>
+                    <button type="submit" class="btn btn-register" onclick="">Register</button>
                     <button type="button" class="btn btn-cancel" onclick="toggleForms()">Cancel</button>
                 </form>
                    
@@ -55,4 +55,7 @@ function toggleForms() {
 
 
 
-
+function test(){
+    console.log('test');
+    toggleForms();
+}
