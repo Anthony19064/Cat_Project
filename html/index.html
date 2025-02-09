@@ -10,8 +10,15 @@
     <link rel="stylesheet" href="../css/index.css">
 </head>
 <body>
+    <p id="user"></p>
     <center> <h1> Cat Project is coming soon !! </h1></center>
-    <p>EX.readData form DB.</p>
-    <button type="button" class="btn btn-outline-danger" onclick="window.location.href='db.html'"> Ex.Data</button>
+    <button type="button" class="btn btn-outline-danger" onclick="window.location.href='db.html'"> Ex.Data From DB</button>
+    
 </body>
+<script>
+    let user = sessionStorage.getItem("user");
+    let p = document.getElementById("user");
+    p.textContent = `Welcome  ${user}`;
+
+</script>
 </html>

@@ -1,6 +1,7 @@
 // Import Firebase SDK from CDN
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.17.2/firebase-app.js";
-import { getFirestore, collection, getDocs } from "https://www.gstatic.com/firebasejs/9.17.2/firebase-firestore-lite.js";
+import { getFirestore, collection, getDocs, addDoc, where, query, setDoc, or, and } from "https://www.gstatic.com/firebasejs/9.17.2/firebase-firestore-lite.js";
+
 
 // Firebase configuration
 const firebaseConfig = {
@@ -23,7 +24,81 @@ async function getCatData() {
   return catSnapshot.docs.map(doc => doc.data());
 }
 
-// Render data on the page
+async function getAccountData() {
+  const Account = collection(db, 'Account');
+  const accountSnapshot = await getDocs(Account);
+  return accountSnapshot.docs.map(doc => doc.data());
+}
+
+// search หา account
+export async function login(usernameOrEmail, password) {
+  try {
+    const accountRef = collection(db, "Account"); 
+
+    // ลองค้นหาด้วย username ก่อน
+    let q = query(accountRef, where("username", "==", usernameOrEmail), where("password", "==", password));
+    let querySnapshot = await getDocs(q);
+
+    // ถ้าไม่เจอ username ให้ลองค้นหาด้วย email
+    if (querySnapshot.empty) {
+      q = query(accountRef, where("mail", "==", usernameOrEmail), where("password", "==", password));
+      querySnapshot = await getDocs(q);
+    }
+
+    // ถ้าเจอ username หรือ email พร้อม password ที่ถูกต้อง
+    if (!querySnapshot.empty) {
+      const userData = querySnapshot.docs[0].data();
+      return userData.username; 
+    }
+  } catch (error) {
+    console.error("Error searching account:", error);
+  }
+  return false;
+}
+
+
+
+
+export async function register(username, phone, password, name, mail, contract) {
+  try{
+    const docRef = await addDoc(collection(db, "Account"), {
+      name: name,
+      phone: phone,
+      contract: contract,
+      username: username,
+      password: password,
+      mail: mail,
+      
+    });
+    console.log("Account added with ID: ", docRef.id);
+  }catch(e){
+    console.error("Error adding cat: ", e);
+  }
+}
+
+
+async function addCatData(catName, catSex, catLocation, catImg, catDetails) {
+  try {
+    const docRef = await addDoc(collection(db, "Cat-details"), {}); // สร้าง document เปล่าก่อน เพื่อให้ได้ docRef.id
+    
+    await setDoc(docRef, {  // ใช้ setDoc เพื่ออัปเดตข้อมูลพร้อม id
+      id: docRef.id,  // บันทึก document ID ลงไปใน field
+      name: catName,
+      sex: catSex,
+      location: catLocation,
+      img: catImg,
+      details: catDetails
+    });
+
+    console.log("Cat added with ID: ", docRef.id);
+  } catch (e) {
+    console.error("Error adding cat: ", e);
+  }
+}
+
+
+
+
 // Render data on the page
 export async function displayCats() {
   const catListElement = document.querySelector('#catList');
@@ -41,7 +116,6 @@ export async function displayCats() {
     // Create card body
     const cardBody = document.createElement('div');
     cardBody.classList.add('card-body');
-    
     // Create card title
     const cardTitle = document.createElement('h5');
     cardTitle.classList.add('card-title');

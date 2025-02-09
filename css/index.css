@@ -8,3 +8,7 @@ body {
     flex-direction: column; /* จัดให้เนื้อหาทั้งหมดในแนวตั้ง */
     font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
 }
+
+#user{
+    font-size: 100px;
+}
