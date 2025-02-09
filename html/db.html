@@ -11,6 +11,15 @@
 </head>
 <body>
   <h1>Mock up Cat List</h1>
+  
+  <div id="popup" class="popup">
+    <div class="popup-content">
+        <span id="close-popup" class="close">&times;</span>
+        <div id="popup-text"></div> <!-- เปลี่ยนจาก <p> เป็น <div> -->
+    </div>
+</div>
+
+
   <ul id="catList"></ul> <!-- แสดงข้อมูล Firebase ที่นี่ -->
   <button type="button" class="btn btn-outline-danger" onclick="window.location.href='index.html'">Back Homepage</button>
 
@@ -19,8 +28,8 @@
   <!-- เชื่อมโยงไฟล์ JavaScript -->
   <script type="module">
     import { displayCats } from "../js/db.js";
-    displayCats();
-    
+    await displayCats(); // รอให้ฟังก์ชัน displayCats ทำงานเสร็จ
+
   </script>
 </body>
 </html>

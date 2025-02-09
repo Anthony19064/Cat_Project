@@ -45,19 +45,24 @@
             // ดึงค่าจาก input fields
             let username = document.getElementById("username").value;
             let password = document.getElementById("password").value;
+            if(username && password){
+                try {
+                const account = await login(username, password); // ใช้ await แทน .then()
     
-            try {
-                const isLoggedIn = await login(username, password); // ใช้ await แทน .then()
-    
-                if (isLoggedIn) {
-                    sessionStorage.setItem("user", isLoggedIn);
+                if (account) {
+                    sessionStorage.setItem("user", account);
                     window.location.href = "index.html";
                 } else {
-                    console.log("รหัสผิดจ้า");
+                    alert("Username หรือ Password ไม่ถูกต้อง")
                 }
             } catch (error) {
                 console.error("เกิดข้อผิดพลาดในการเข้าสู่ระบบ:", error);
             }
+            }else{
+                alert("กรุณาใส่ข้อมูลให้ครบทุกช่อง");
+            }
+    
+
         });
     </script>
     
@@ -77,15 +82,21 @@
             const password = document.getElementById("password").value;
             const retypePassword = document.getElementById("retype_password").value;
 
-            if (password == retypePassword){
+            if (name && phone && contract && email && username && password && retypePassword) {
+                if (password == retypePassword){
                 register(username, phone, password, name, email, contract);
                 document.getElementById("regis-form").reset();
                 toggleForms();
+                }
+                else{
+                    alert("Passwords do not match!");
+                    return;
+                }
             }
             else{
-                alert("Passwords do not match!");
-                return;
+                alert("กรุณากรอกข้อมูลให้ครบทุกช่อง");
             }
+           
 
         }
     });
