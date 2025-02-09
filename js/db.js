@@ -30,6 +30,12 @@ async function getAccountData() {
   return accountSnapshot.docs.map(doc => doc.data());
 }
 
+async function getCommenttData() {
+  const Comment = collection(db, 'Comment');
+  const commentSnapshot = await getDocs(Comment);
+  return commentSnapshot.docs.map(doc => doc.data());
+}
+
 // search หา account
 export async function login(usernameOrEmail, password) {
   try {
@@ -104,11 +110,14 @@ export async function displayCats() {
   const catListElement = document.querySelector('#catList');
   const cats = await getCatData();
 
+
+
   cats.forEach(cat => {
     // Create a new card element
     const card = document.createElement('div');
     card.classList.add('card');
     card.style.width = '18rem'; // Set card width
+    card.dataset.id = cat.id;
 
     const img = document.createElement('img');
     img.classList.add('card-img-top');
@@ -132,22 +141,36 @@ export async function displayCats() {
     cardText.textContent = cat.details; // Customize this text as needed
 
     // Create card links (optional)
-    const cardLink1 = document.createElement('a');
-    cardLink1.href = '#';
-    cardLink1.classList.add('card-link');
-    cardLink1.textContent = 'Card link'; // Customize link text
+    const cardLink1 = document.createElement('button');
+    cardLink1.classList.add('btn', 'btn-outline-warning');
+    cardLink1.textContent = 'Comment'; // Customize link text
 
-    const cardLink2 = document.createElement('a');
-    cardLink2.href = '#';
-    cardLink2.classList.add('card-link');
-    cardLink2.textContent = 'Another link'; // Customize link text
+    cardLink1.onclick = async function (event) {
+      event.preventDefault(); // ป้องกันการเปลี่ยนหน้า
+      const popupText = document.getElementById('popup-text');
+      popupText.innerHTML = ''; 
+      const comments = await getCommenttData();  // ดึงข้อมูล ฐานข้อมูล comment
+      // loop ฐานข้อมูล comment
+      comments.forEach(commentData => { 
+          if (commentData.id == cat.id) {
+              const commentElement = document.createElement('p'); 
+              commentElement.textContent = commentData.txt; 
+              popupText.appendChild(commentElement);
+          }
+      });
+      document.getElementById('popup').style.display = 'flex'; //แสดง popup
+    };
+    //  ปิด Popup
+    document.getElementById('close-popup').onclick = function () {
+      document.getElementById('popup').style.display = 'none';
+  };
+
 
     // Append all elements to the card body
     cardBody.appendChild(cardTitle);
     cardBody.appendChild(cardSubtitle);
     cardBody.appendChild(cardText);
     cardBody.appendChild(cardLink1);
-    cardBody.appendChild(cardLink2);
 
     // Append the card to the catList element
     card.appendChild(img);
@@ -156,4 +179,9 @@ export async function displayCats() {
   });
 
 }
+
+
+
+
+
 
