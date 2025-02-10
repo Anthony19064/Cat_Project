@@ -36,6 +36,32 @@
             </div>
         </div>
     </div>
+    <script>
+        document.getElementById('contract').addEventListener('change', function() {
+    const iconSpan = document.querySelector('.contract-icon i');
+    const contractType = this.value;
+
+    switch (contractType) {
+        case 'face':
+            iconSpan.classList.remove('fa-comment');
+            iconSpan.classList.add('fa-user'); // Change to Face icon
+            break;
+        case 'line':
+            iconSpan.classList.remove('fa-comment');
+            iconSpan.classList.add('fa-comment-dots'); // Change to Line icon
+            break;
+        case 'ig':
+            iconSpan.classList.remove('fa-comment');
+            iconSpan.classList.add('fa-camera'); // Change to Instagram icon
+            break;
+        default:
+            iconSpan.classList.remove('fa-user', 'fa-comment-dots', 'fa-camera');
+            iconSpan.classList.add('fa-comment'); // Default icon
+            break;
+    }
+});
+
+    </script>
     <script type="module">
         import { login } from "../js/db.js";
     
