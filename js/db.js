@@ -1,7 +1,7 @@
 // Import Firebase SDK from CDN
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.17.2/firebase-app.js";
-import { getFirestore, collection, getDocs, addDoc, where, query, setDoc, or, and } from "https://www.gstatic.com/firebasejs/9.17.2/firebase-firestore-lite.js";
-
+import { getFirestore, collection, getDocs, addDoc, where, query, setDoc } from "https://www.gstatic.com/firebasejs/9.17.2/firebase-firestore-lite.js";
+import { getStorage, ref, uploadBytes, getDownloadURL } from "https://www.gstatic.com/firebasejs/9.17.2/firebase-storage.js";
 
 // Firebase configuration
 const firebaseConfig = {
@@ -16,6 +16,7 @@ const firebaseConfig = {
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
+const storage = getStorage(app);
 
 // Fetch cat data from Firestore
 async function getCatData() {
@@ -54,19 +55,41 @@ export async function login(usernameOrEmail, password) {
     // ถ้าเจอ username หรือ email พร้อม password ที่ถูกต้อง
     if (!querySnapshot.empty) {
       const userData = querySnapshot.docs[0].data();
-      return userData.username; 
+      return userData; 
     }
   } catch (error) {
     console.error("Error searching account:", error);
-  }
+  } 
   return false;
 }
 
-
-
-
-export async function register(username, phone, password, name, mail, contract) {
+export async function search_account(username) {
   try{
+    const accountRef = collection(db, "Account");
+    let q = query(accountRef, where("username", "==", username));
+    let querySnapshot = await getDocs(q);
+    if (querySnapshot){
+      const userData = querySnapshot.docs[0].data();
+      return userData;
+    }
+  }catch(e){
+    console.error("Error searching account:", e);
+  }
+}
+
+// ฟังก์ชันเพื่ออัปโหลดไฟล์รูป
+export async function uploadImage(file) {
+  const storageRef = ref(storage, `profile_images/${file.name}`);
+  await uploadBytes(storageRef, file);
+  const imageUrl = await getDownloadURL(storageRef);
+  return imageUrl;
+}
+
+
+export async function register(username, phone, password, name, mail, contract, imageFile) {
+  try{
+    const imageUrl = await uploadImage(imageFile);
+
     const docRef = await addDoc(collection(db, "Account"), {
       name: name,
       phone: phone,
@@ -74,7 +97,7 @@ export async function register(username, phone, password, name, mail, contract) 
       username: username,
       password: password,
       mail: mail,
-      
+      img: imageUrl,
     });
     console.log("Account added with ID: ", docRef.id);
   }catch(e){
