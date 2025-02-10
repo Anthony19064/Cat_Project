@@ -200,5 +200,39 @@
 
 
 </body>
+<<<<<<< HEAD
+=======
+<script type="module">
+    import {search_account} from "../js/db.js";
+    let user = sessionStorage.getItem("user");
+    let p = document.getElementById("user");
+    let img = document.getElementById('img_account');
+    
+
+    if (user){
+        p.textContent = `Welcome  ${user}`;
+        const account = await search_account(user);
+        if(account.img){
+            img.src = account.img;
+        }
+        else{
+            img.style.display = 'none';
+        }
+        
+    }
+    else{
+        p.textContent = `Welcome`;
+        img.style.display = 'none';
+    }
+
+    
+
+</script>
+<script type="module">
+    import { displayCats } from "../js/db.js";
+    await displayCats(); // รอให้ฟังก์ชัน displayCats ทำงานเสร็จ
+
+  </script>
+>>>>>>> 7a33a80 (backup)
 
 </html>
