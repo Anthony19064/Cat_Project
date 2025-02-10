@@ -151,3 +151,12 @@ body, html {
     align-items: center;
     gap: 0;
 }
+
+#contract-type{
+    width: 20px;
+}
+
+#contract-t{
+    padding-left: 0;
+}
+

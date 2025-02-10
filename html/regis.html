@@ -36,32 +36,6 @@
             </div>
         </div>
     </div>
-    <script>
-        document.getElementById('contract').addEventListener('change', function() {
-    const iconSpan = document.querySelector('.contract-icon i');
-    const contractType = this.value;
-
-    switch (contractType) {
-        case 'face':
-            iconSpan.classList.remove('fa-comment');
-            iconSpan.classList.add('fa-user'); // Change to Face icon
-            break;
-        case 'line':
-            iconSpan.classList.remove('fa-comment');
-            iconSpan.classList.add('fa-comment-dots'); // Change to Line icon
-            break;
-        case 'ig':
-            iconSpan.classList.remove('fa-comment');
-            iconSpan.classList.add('fa-camera'); // Change to Instagram icon
-            break;
-        default:
-            iconSpan.classList.remove('fa-user', 'fa-comment-dots', 'fa-camera');
-            iconSpan.classList.add('fa-comment'); // Default icon
-            break;
-    }
-});
-
-    </script>
     <script type="module">
         import { login } from "../js/db.js";
     
@@ -76,7 +50,7 @@
                 const account = await login(username, password); // ใช้ await แทน .then()
     
                 if (account) {
-                    sessionStorage.setItem("user", account);
+                    sessionStorage.setItem("user", account.username);
                     window.location.href = "index.html";
                 } else {
                     alert("Username หรือ Password ไม่ถูกต้อง")
@@ -93,37 +67,43 @@
     </script>
     
     <script type="module">
-        import {register} from "../js/db.js";
-        document.addEventListener("DOMContentLoaded", function () {
-        document.addEventListener("submit", function (event) {
+        import {register, uploadImage} from "../js/db.js";
+        
+document.addEventListener("DOMContentLoaded", function () {
+    document.addEventListener("submit",async function (event) {
         if (event.target && event.target.id === "regis-form") {
             event.preventDefault(); // ป้องกันการรีเฟรชเพจ
 
             // ดึงค่าจาก input fields
             const name = document.getElementById("name").value;
             const phone = document.getElementById("phone").value;
-            const contract = document.getElementById("contract").value;
+            const contract_type = document.getElementById("contract-type").value;
+            const contract_value = document.getElementById("contract-t").value;
             const email = document.getElementById("mail").value;
             const username = document.getElementById("username").value;
             const password = document.getElementById("password").value;
             const retypePassword = document.getElementById("retype_password").value;
 
-            if (name && phone && contract && email && username && password && retypePassword) {
-                if (password == retypePassword){
-                register(username, phone, password, name, email, contract);
-                document.getElementById("regis-form").reset();
-                toggleForms();
-                }
-                else{
+            // ตรวจสอบว่าไฟล์รูปภาพถูกเลือกหรือไม่
+            const avatarInput = document.getElementById("avatar-input");
+            const avatarFile = avatarInput.files[0]; // รับไฟล์ที่ผู้ใช้เลือก
+
+            if (name && phone && contract_value && email && username && password && retypePassword && contract_type && avatarFile) {
+                const full_contract = contract_type + " : " + contract_value;
+
+                // ตรวจสอบการยืนยันรหัสผ่าน
+                if (password == retypePassword) {
+                        await register(username, phone, password, name, email, full_contract, avatarFile);
+                        // รีเซ็ตฟอร์มและแสดงผล
+                        document.getElementById("regis-form").reset();
+                        toggleForms();
+                } else {
                     alert("Passwords do not match!");
                     return;
                 }
-            }
-            else{
+            } else {
                 alert("กรุณากรอกข้อมูลให้ครบทุกช่อง");
             }
-           
-
         }
     });
 });

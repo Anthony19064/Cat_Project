@@ -24,14 +24,13 @@ function toggleForms() {
                             <input type="text" class="form-control" placeholder="Phone number" id="phone">
                         </div>
                         <div class="mb-3 position-relative d-flex">
-                            <span class="input-group-text" id="contact-icon"><i class="fa-solid fa-comment"></i></span>
+                            <span class="input-group-text" id="contact-icon"><i class="fa-brands fa-facebook"></i></span>
                             <select class="form-select custom-dropdown" id="contract-type" onchange="updateIcon()">
-                                <option value="null">select</option>
-                                <option value="facebook">Facebook</option>
-                                <option value="line">Line</option>
+                                <option value="facebook" selected>Facebook</option>
+                                <option value="line" >Line</option>
                                 <option value="instagram">Instagram</option>
                             </select>
-                            <input type="text" class="form-control" placeholder="Social media" id="contract">
+                            <input type="text" class="form-control" placeholder="Social media" id="contract-t">
                         </div>
                         <div class="mb-3 position-relative">
                             <span class="input-group-text"><i class="fas fa-envelope"></i></span>

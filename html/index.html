@@ -10,15 +10,38 @@
     <link rel="stylesheet" href="../css/index.css">
 </head>
 <body>
+    
     <p id="user"></p>
+    <img id="img_account">
     <center> <h1> Cat Project is coming soon !! </h1></center>
-    <button type="button" class="btn btn-outline-danger" onclick="window.location.href='db.html'"> Ex.Data From DB</button>
+    <h1>Mock up Cat List</h1>
+  
+  <div id="popup" class="popup">
+    <div class="popup-content">
+        <span id="close-popup" class="close">&times;</span>
+        <div id="popup-text"></div> <!-- เปลี่ยนจาก <p> เป็น <div> -->
+    </div>
+</div>
+
+
+  <ul id="catList"></ul> <!-- แสดงข้อมูล Firebase ที่นี่ -->
     
 </body>
-<script>
+<script type="module">
+    import {search_account} from "../js/db.js";
     let user = sessionStorage.getItem("user");
     let p = document.getElementById("user");
+    let img = document.getElementById('img_account');
     p.textContent = `Welcome  ${user}`;
 
+    const account = await search_account(user);
+    img.src = account.img;
+
 </script>
+<script type="module">
+    import { displayCats } from "../js/db.js";
+    await displayCats(); // รอให้ฟังก์ชัน displayCats ทำงานเสร็จ
+
+  </script>
+
 </html>
