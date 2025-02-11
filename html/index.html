@@ -13,6 +13,7 @@
 </head>
 
 <body>
+    
     <nav class="navbar p-3 bg-warning">
         <div class="container d-flex justify-content-between align-items-center">
             <span class="text-white fw-bold fs-4">Cat Gang <i class="fa-solid fa-cat"></i></span>
@@ -29,11 +30,33 @@
                     <img id="user-img" class="rounded-circle me-2" width="40" height="40" alt="Profile">
                     <span id="user-name" class="text-user"></span>
                 </button>
-                
+
             </div>
 
 
     </nav>
+    <div id="catCarousel" class="carousel slide container mt-4" data-bs-ride="carousel">
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img src="https://scontent.fbkk5-5.fna.fbcdn.net/v/t1.15752-9/386439669_309237041887863_2300047840329493341_n.png?_nc_cat=104&ccb=1-7&_nc_sid=9f807c&_nc_ohc=cv2evVjPj18Q7kNvgGvHN28&_nc_oc=AdhhqChaB5E1J6w63eaOeg15EdB3vF0DJoyjg-m56hLburcjfk_3x_PmWUFHtWb3-uA&_nc_zt=23&_nc_ht=scontent.fbkk5-5.fna&oh=03_Q7cD1gEOgqAKoKDWr8Ry0829zQd6Xs_o5QdYODEYmHsFmf7F6w&oe=67D2CC97" class="d-block w-100 carousel-img rounded" alt="Cat 1">
+            </div>
+            <div class="carousel-item">
+                <img src="https://scontent.fbkk5-7.fna.fbcdn.net/v/t1.15752-9/448628539_1164178698133618_6659818831453670383_n.png?_nc_cat=107&ccb=1-7&_nc_sid=9f807c&_nc_ohc=t7l_JeBIwzMQ7kNvgHSE3dW&_nc_oc=Adi-Cb5Y68rEqPo5BtasdN7duPZb9Z1R0ZlbnUUMup-7t1-iVfvL3eGZLC_5K5vRwag&_nc_zt=23&_nc_ht=scontent.fbkk5-7.fna&oh=03_Q7cD1gFKaLesNfdMZiTxDZWnCFjfkzFakDU_8eaerNiu45LFcw&oe=67D2CC86" class="d-block w-100 carousel-img rounded" alt="Cat 2">
+            </div>
+            <div class="carousel-item">
+                <img src="https://scontent.fbkk5-5.fna.fbcdn.net/v/t1.15752-9/370212349_170266332831380_8085525198911567545_n.png?_nc_cat=104&ccb=1-7&_nc_sid=9f807c&_nc_ohc=_gi7Hcn2wNIQ7kNvgFg46dK&_nc_oc=AdhGPB17cTBdk2jIukJm0WsjkOvSdGYpf8P5FavC7krsZffUjJCsdh0NZraAWiVTq7E&_nc_zt=23&_nc_ht=scontent.fbkk5-5.fna&oh=03_Q7cD1gFw5ZZv-M7z7u1WmqICSWlF5H1AZdtjKB9Eldd6AsRQCQ&oe=67D2E162" class="d-block w-100 carousel-img rounded" alt="Cat 3">
+            </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#catCarousel" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#catCarousel" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+    </div>
+    
     <div id="sidebar" class="sidebar">
         <button class="close-btn" onclick="toggleSidebar()"></button>
         <div class="sidebar-content">
@@ -42,7 +65,7 @@
                 <li><a href="#">Your profile</a></li>
                 <li><a href="#">Your bookmark</a></li>
                 <li><a href="#">Contact support</a></li>
-                <li><a href="../html/regis.html">Sign out</a></li>
+                <li><a href="" id="logout-btn">Sign out</a></li>
             </ul>
             <h5>Your notification</h5>
             <div class="notification">
@@ -157,6 +180,21 @@
             event.preventDefault();
             toggleSidebar();
         });
+        document.getElementById("logout-btn").addEventListener("click", function (event) {
+            event.preventDefault(); // ป้องกันการเปลี่ยนหน้าโดยไม่ตั้งใจ
+
+            // ลบข้อมูลผู้ใช้จาก sessionStorage
+            sessionStorage.removeItem("user");
+
+            // ซ่อน user-info และแสดงปุ่ม Login กลับมา
+            document.getElementById("user-info").classList.add("d-none");
+            document.getElementById("loginButton").classList.remove("d-none"); // ทำให้ปุ่ม Login กลับมาแสดง
+
+            // รีเฟรชหน้าเว็บเพื่อเคลียร์ข้อมูล (ถ้าต้องการ)
+            location.reload();
+        });
+
+
 
     </script>
 
