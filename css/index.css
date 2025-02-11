@@ -94,24 +94,14 @@ body {
     padding: 5px;
 }
 
-.notification {
-    background: #fff;
-    padding: 10px;
-    border-radius: 10px;
-    color: black;
-}
-.btn-if {
-    background-color: #d9a85b;;
-    color: white;
-    border-radius: 20px;
-    border: none;
-}
-.text-user{
-    color: white;
+.popup-content li {
+    padding: 5px 0;
+    border-bottom: 1px solid #ddd;
 }
 .btn-if:hover {
     background-color: #c98621; /* สีเข้มขึ้นเมื่อโฮเวอร์ */
     transform: scale(1.05); /* ขยายขึ้นเล็กน้อย */
+
 }
 .carousel-img {
     width: 800px;
@@ -231,5 +221,5 @@ textarea.form-control:focus {
 
 /* กำหนดสไตล์ของปุ่มปิด */
 .modal-header .btn-close {
-    filter: invert(1); /* ทำให้ปุ่มปิดเป็นสีขาว */
+    filter: invert(1); /* ทำให้ปุ่มปิดเป็นสีขาว 
 }
