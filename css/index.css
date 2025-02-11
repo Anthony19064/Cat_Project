@@ -1,69 +1,115 @@
+.navbar {
+    background: linear-gradient(to right, #cfa457, #d9a85b);
+}
+
 body {
-    background-color:antiquewhite;
-    display: flex;
-    justify-content: center; /* จัดตำแหน่งในแนวนอนให้กลาง */
-    align-items: center; /* จัดตำแหน่งในแนวตั้งให้กลาง */
-    height: 100vh; /* กำหนดความสูงของ body เป็น 100% ของหน้าจอ */
-    margin: 0; /* ลบ margin ที่มีค่าเริ่มต้น */
-    flex-direction: column; /* จัดให้เนื้อหาทั้งหมดในแนวตั้ง */
-    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    background-color: #f4f4f4;
 }
 
-#user{
-    font-size: 100px;
-    margin-top: 10%;
+.navbar {
+    background: linear-gradient(to right, #cfa457, #d9a85b);
 }
 
-#img_account{
+.search-container {
+    max-width: 600px;
+    margin: auto;
+}
+
+.search-bar {
+    border-radius: 25px;
+    padding: 10px 15px;
+}
+
+.cat-card {
+    background: linear-gradient(to right, #d9a85b, #cfa457);
+    border-radius: 15px;
+    padding: 15px;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+    max-width: 550px;
+    margin: auto;
+}
+
+.cat-img {
+    width: 60px;
+    height: 60px;
     border-radius: 50%;
-    margin-bottom: 15px;
-    border: 8px solid white;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-
+    object-fit: cover;
 }
 
-
-
-.card{
-    margin: 10px;
+.adopt-btn {
+    background-color: white;
+    color: #d9a85b;
+    border-radius: 20px;
 }
 
-.card-img-top{
-    height: 200px;
+.stats {
+    font-size: 0.9rem;
+    color: #fff;
+    cursor: pointer;
 }
 
-#catList{
-    display: flex;
-}
-
-.popup {
-    display: none;
+/* sidebar */
+.sidebar {
     position: fixed;
-    left: 0;
     top: 0;
-    width: 100%;
+    right: -300px;
+    width: 300px;
     height: 100%;
-    background: rgba(0, 0, 0, 0.5);
-    justify-content: center;
-    align-items: center;
-    z-index: 9999;
-}
-
-.popup-content {
-    background: white;
+    background: #c69c6d;
+    box-shadow: -2px 0 10px rgba(0, 0, 0, 0.2);
+    transition: right 0.3s ease-in-out;
     padding: 20px;
-    border-radius: 10px;
-    text-align: left;
-    position: relative;
-    z-index: 10000;
+    color: white;
+    overflow-y: auto;
 }
 
-.popup-content ul {
+.sidebar.active {
+    right: 0;
+}
+
+.sidebar .close-btn {
+    background: none;
+    border: none;
+    font-size: 20px;
+    color: white;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+}
+
+.sidebar ul {
+    list-style: none;
     padding: 0;
-    list-style-type: none;
 }
 
-.popup-content li {
-    padding: 5px 0;
-    border-bottom: 1px solid #ddd;
+.sidebar ul li {
+    margin: 10px 0;
+}
+
+.sidebar ul li a {
+    color: white;
+    text-decoration: none;
+    display: block;
+    padding: 5px;
+}
+
+.notification {
+    background: #fff;
+    padding: 10px;
+    border-radius: 10px;
+    color: black;
+}
+.btn-if {
+    background-color: #d9a85b;;
+    color: white;
+    border-radius: 20px;
+    border: none;
+}
+.text-user{
+    color: white;
+}
+.btn-if:hover {
+    background-color: #c98621; /* สีเข้มขึ้นเมื่อโฮเวอร์ */
+    transform: scale(1.05); /* ขยายขึ้นเล็กน้อย */
 }
