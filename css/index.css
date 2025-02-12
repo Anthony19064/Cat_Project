@@ -116,6 +116,7 @@ body {
 }
 
 
+/* สีพื้นหลัง popup*/
 .modal-content {
     background-color: #d9a85b; /* สีส้มโทนอุ่น */
     border-radius: 10px; /* ทำให้ขอบโค้งมน */
@@ -230,7 +231,7 @@ textarea.form-control:focus {
 .modal-header .btn-close {
     filter: invert(1); /* ทำให้ปุ่มปิดเป็นสีขาว */
 }
-=======
+
 .location{
     font-size: 40px;
     font-weight: bold;
@@ -369,3 +370,65 @@ textarea.form-control:focus {
     transform: scale(1.2);
 }
 
+
+
+
+/* ปุ่ม popup ข้าง search*/
+#se-btn {
+    width: 40px; /* ปรับขนาดตามต้องการ */
+    height: 40px;
+    position: relative;
+    top: 3px;
+    border-radius: 50%;
+    background-color: #d4af71; /* สีทอง (สามารถเปลี่ยนได้) */
+    color: black; /* สีไอคอน */
+    margin-left: 10px; /* จัดให้อยู่ด้านขวาสุด */
+}
+
+#se-btn:hover {
+    background-color: #b99750; /* เปลี่ยนเป็นสีทองเข้มขึ้น */
+    transform: scale(1.1); /* ขยายเล็กน้อยเมื่อ hover */
+}
+
+.image-icon {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background-color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    top: 10px; /* ลอยขึ้นไปด้านบน */
+    left: 50%;
+    transform: translateX(-50%);
+    border: 3px solid white;
+}
+
+.image-icon i {
+    font-size: 40px;
+    color: #c79a55;
+}
+
+.modal-content {
+    width: 100%; /* ให้ขยายเต็ม Modal */
+    max-width: 500px; /* กำหนดขนาดสูงสุดของ Modal */
+    margin: auto; /* จัดให้อยู่ตรงกลาง */
+}
+
+.modal-body input,
+.modal-body select,
+.modal-body textarea {
+    width: 100%;
+    max-width: 300px; 
+    margin: auto;
+    display: block;
+}
+
+.modal-body label.text-white {
+    font-size: 18px; 
+    display: block; 
+    margin-top: 30px; 
+    margin-bottom: 10px;
+    margin-left: 70px;
+}
