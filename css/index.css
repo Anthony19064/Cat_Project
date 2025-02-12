@@ -343,7 +343,7 @@ body {
 /* search-popup */
 
 .custom-search-modal {
-    background: linear-gradient(to bottom, #d7a24f, #c98b2b);
+    background: #E09030;
     border-radius: 15px;
     padding: 20px;
     color: white;
@@ -415,42 +415,26 @@ body {
     background: #f4f4f4;
     color: #d7a24f;
 }
-
-.animated-btn {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
-    position: relative;
-    overflow: hidden;
-    cursor: pointer;
+/* กำหนดการเคลื่อนไหวเมื่อคลิกปุ่ม */
+#filter-btn:active {
+  transform: scale(0.9); /* ขยายปุ่มเล็กน้อยเมื่อคลิก */
+  transition: transform 0.2s ease;
 }
 
-.animated-btn:active {
-    transform: scale(0.9);
+/* เอฟเฟกต์การหมุน */
+#filter-btn.clicked {
+  animation: rotateAnimation 0.5s ease forwards;
 }
 
-/* Ripple effect */
-.animated-btn::after {
-    content: "";
-    position: absolute;
-    width: 100px;
-    height: 100px;
-    background: rgba(0, 0, 0, 0.1);
-    border-radius: 50%;
-    transform: scale(0);
-    opacity: 0;
-    transition: transform 0.4s, opacity 0.4s;
+@keyframes rotateAnimation {
+  0% {
+      transform: rotate(0deg);
+  }
+  100% {
+      transform: rotate(180deg);
+  }
 }
 
-.animated-btn:active::after {
-    transform: scale(2);
-    opacity: 1;
-}
-
-.bounce-effect {
-    animation: bounce 0.3s ease;
-}
 
 @keyframes bounce {
 
@@ -464,6 +448,136 @@ body {
     }
 }
 
+/* add-posT */
+#se-btn {
+  width: 40px; /* ปรับขนาดตามต้องการ */
+  height: 40px;
+  position: relative;
+  top: 3px;
+  border-radius: 50%;
+  background-color: #E09030 ;/* สีทอง (สามารถเปลี่ยนได้) */
+  color: black; /* สีไอคอน */
+  margin-left: 10px; /* จัดให้อยู่ด้านขวาสุด */
+}
+
+#se-btn:hover {
+  background-color: #E09030; /* เปลี่ยนเป็นสีทองเข้มขึ้น */
+  transform: scale(1.1); /* ขยายเล็กน้อยเมื่อ hover */
+}
+/* สีพื้นหลัง popup*/
+.modal-content {
+  background-color: #E09030; /* สีส้มโทนอุ่น */
+  border-radius: 10px; /* ทำให้ขอบโค้งมน */
+  padding: 20px;
+}
+
+/* สไตล์ของหัวข้อ modal */
+.modal-title {
+  color: white;
+  font-weight: bold;
+  text-align: center;
+  font-size: 18px;
+}
+/* Style for the "More details" label */
+label.text-white {
+  font-weight: bold;
+  font-size: 16px;
+  margin-top: 20px; 
+}
+
+
+textarea.form-control {
+  border-radius: 8px;
+  padding: 12px; 
+  font-size: 14px;
+  margin-top: 15px; 
+  background-color: #f8f9fa; 
+  border: 2px solid #ced4da; 
+  transition: border 0.3s ease; 
+}
+
+/* Focus state for textarea */
+textarea.form-control:focus {
+  border-color: #E09030; /* Highlight the border color when focused */
+  box-shadow: 0 0 5px rgba(244, 162, 97, 0.5); /* Add shadow for focus effect */
+}
+
+
+/* ปรับแต่งปุ่มส่ง */
+.modal-footer {
+  display: flex;
+  justify-content: center; /* Centers the button horizontally */
+}
+
+.modal-footer .btn {
+  background-color: white;
+  color: #E09030;
+  font-weight: bold;
+  width: 120px; /* Set the desired width */
+  padding: 10px 20px;
+  font-size: 16px;
+  border-radius: 8px;
+  transition: 0.3s;
+}
+
+
+.modal-footer .btn:hover {
+  background-color: #e76f51;
+  color: white;
+}
+
+.btn-close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+
+/* กำหนดสไตล์ของปุ่มปิด */
+.modal-header .btn-close {
+  filter: invert(1); /* ทำให้ปุ่มปิดเป็นสีขาว */
+}
+.image-icon {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background-color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  top: 10px; /* ลอยขึ้นไปด้านบน */
+  left: 50%;
+  transform: translateX(-50%);
+  border: 3px solid white;
+}
+
+.image-icon i {
+  font-size: 40px;
+  color: #E09030;
+}
+
+.modal-content {
+  width: 100%; /* ให้ขยายเต็ม Modal */
+  max-width: 500px; /* กำหนดขนาดสูงสุดของ Modal */
+  margin: auto; /* จัดให้อยู่ตรงกลาง */
+}
+
+.modal-body input,
+.modal-body select,
+.modal-body textarea {
+  width: 100%;
+  max-width: 300px; 
+  margin: auto;
+  display: block;
+}
+
+.modal-body label.text-white {
+  font-size: 18px; 
+  display: block; 
+  margin-top: 30px; 
+  margin-bottom: 10px;
+  margin-left: 70px;
+}
 
 .bg-popup {
     width: 200px;
@@ -471,9 +585,9 @@ body {
     background-color: red;
 }
 
-
+/* swiper-slide */
 :root {
-  --primary: #ec994b;
+  --primary: #E09030;
   --white: #ffffff;
   --bg: #f5f5f5;
 }
