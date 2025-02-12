@@ -171,20 +171,9 @@
             // รีเฟรชหน้าเว็บเพื่อเคลียร์ข้อมูล (ถ้าต้องการ)
             location.reload();
         });
-        
-        // กดปุ่ม Adopt เด้ง popup
-        document.addEventListener("DOMContentLoaded", function () {
-            document.querySelectorAll(".adopt-btn").forEach(button => {
-                button.addEventListener("click", function () {
-                    let catNameElem = this.closest(".cat-card").querySelector("strong.text-white");
-                    let catName = catNameElem ? catNameElem.textContent : "Unknown Cat";
-                    document.getElementById("adoptFormLabel").textContent = `Adopt From \n${catName}`;
-                    let modal = new bootstrap.Modal(document.getElementById("adoptFormModal"));
-                    modal.show();
-                });
-            });
-        });
-       
+
+
+
     </script>
 
 
