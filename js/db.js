@@ -450,9 +450,7 @@ export async function displayPosts() {
     const adoptButton = document.createElement('button');
     adoptButton.classList.add('btn', 'adopt-btn');
     adoptButton.textContent = 'ADOPT';
-    adoptButton.addEventListener("click", function () {
-      console.log("Adopt button clicked!");
-  });
+    adoptButton.addEventListener("click", adopt_popup)
     
     bottomSection.appendChild(catInfo);
     bottomSection.appendChild(statsContainer);
@@ -465,6 +463,21 @@ export async function displayPosts() {
     // Append the card to the list container
     catListElement.appendChild(card);
 });
+}
+
+async function adopt_popup() {
+  const adopt = document.getElementById('adopt-popup');
+
+  const card = document.createElement('div');
+  card.classList.add('bg-popup');
+
+  const head_card = document.createElement('p');
+  head_card.textContent = "Adopt popup";
+  
+  card.appendChild(head_card);
+  adopt.appendChild(card);
+
+  console.log('adopt');
 }
 
  
