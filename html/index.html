@@ -9,7 +9,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-
+    <link rel="stylesheet" href="https://unpkg.com/swiper@8/swiper-bundle.min.css" />
     <link rel="stylesheet" href="../css/index.css">
 
 </head>
@@ -19,19 +19,20 @@
     <nav class="navbar">
         <div class="nav-c">
             <!-- Logo อยู่ทางซ้ายสุด -->
-            <a href="../html/index.html" style="text-decoration: none;" class="logo">Cat Gang <i class="fa-solid fa-cat"></i></ๅ>
-    
-            <!-- ส่วนที่เหลืออยู่ขวาสุด -->
-            <div class="right-section"> 
-                <!-- ปุ่ม Login -->
-                <a id="rigth-btn"  class="btn ">
-                </a>
-    
-                <!-- ข้อมูลผู้ใช้ (ซ่อนเมื่อไม่ได้ล็อกอิน) -->
-                <!-- ปุ่ม Dropdown สำหรับข้อมูลผู้ใช้ -->
+            <a href="../html/index.html" style="text-decoration: none;" class="logo">Cat Gang <i
+                    class="fa-solid fa-cat"></i></ๅ>
+
+                <!-- ส่วนที่เหลืออยู่ขวาสุด -->
+                <div class="right-section">
+                    <!-- ปุ่ม Login -->
+                    <a id="rigth-btn" class="btn ">
+                    </a>
+
+                    <!-- ข้อมูลผู้ใช้ (ซ่อนเมื่อไม่ได้ล็อกอิน) -->
+                    <!-- ปุ่ม Dropdown สำหรับข้อมูลผู้ใช้ -->
 
 
-                <!-- <div id="user-info">
+                    <!-- <div id="user-info">
                     <button class="btn-if" type="button" id="user-sidebar" data-bs-toggle="dropdown" aria-expanded="false">
                         <img id="user-img" class="rounded-circle me-2" width="40" height="40" alt="Profile">
                         <span id="user-name" class="text-user"></span>
@@ -39,41 +40,12 @@
                 </div> -->
 
 
-            </div>
+                </div>
         </div>
     </nav>
-    
-
-    <!-- catCarousel -->
-    <div id="catCarousel" class="carousel slide container mt-4" data-bs-ride="carousel">
-        <div class="carousel-inner">
-            <div class="carousel-item active" id="img-c">
-                <img src="https://scontent.fbkk5-5.fna.fbcdn.net/v/t1.15752-9/386439669_309237041887863_2300047840329493341_n.png?_nc_cat=104&ccb=1-7&_nc_sid=9f807c&_nc_ohc=cv2evVjPj18Q7kNvgGvHN28&_nc_oc=AdhhqChaB5E1J6w63eaOeg15EdB3vF0DJoyjg-m56hLburcjfk_3x_PmWUFHtWb3-uA&_nc_zt=23&_nc_ht=scontent.fbkk5-5.fna&oh=03_Q7cD1gEOgqAKoKDWr8Ry0829zQd6Xs_o5QdYODEYmHsFmf7F6w&oe=67D2CC97"
-                    class="d-block w-100 carousel-img rounded" alt="Cat 1">
-            </div>
-            <div class="carousel-item" id="img-c">
-                <img src="https://scontent.fbkk5-7.fna.fbcdn.net/v/t1.15752-9/448628539_1164178698133618_6659818831453670383_n.png?_nc_cat=107&ccb=1-7&_nc_sid=9f807c&_nc_ohc=t7l_JeBIwzMQ7kNvgHSE3dW&_nc_oc=Adi-Cb5Y68rEqPo5BtasdN7duPZb9Z1R0ZlbnUUMup-7t1-iVfvL3eGZLC_5K5vRwag&_nc_zt=23&_nc_ht=scontent.fbkk5-7.fna&oh=03_Q7cD1gFKaLesNfdMZiTxDZWnCFjfkzFakDU_8eaerNiu45LFcw&oe=67D2CC86"
-                    class="d-block w-100 carousel-img rounded" alt="Cat 2">
-            </div>
-            <div class="carousel-item" id="img-c">
-                <img src="https://scontent.fbkk5-5.fna.fbcdn.net/v/t1.15752-9/370212349_170266332831380_8085525198911567545_n.png?_nc_cat=104&ccb=1-7&_nc_sid=9f807c&_nc_ohc=_gi7Hcn2wNIQ7kNvgFg46dK&_nc_oc=AdhGPB17cTBdk2jIukJm0WsjkOvSdGYpf8P5FavC7krsZffUjJCsdh0NZraAWiVTq7E&_nc_zt=23&_nc_ht=scontent.fbkk5-5.fna&oh=03_Q7cD1gFw5ZZv-M7z7u1WmqICSWlF5H1AZdtjKB9Eldd6AsRQCQ&oe=67D2E162"
-                    class="d-block w-100 carousel-img rounded" alt="Cat 3">
-            </div>
-        </div>
-        <button class="carousel-control-prev" type="button" data-bs-target="#catCarousel" data-bs-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Previous</span>
-        </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#catCarousel" data-bs-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Next</span>
-        </button>
-    </div>
-
-
-    <!-- sidebar -->
-    <div id="sidebar" class="sidebar">
-        <button class="close-btn" onclick="toggleSidebar()"></button>
+     <!-- sidebar -->
+     <div id="sidebar" class="sidebar">
+        <button class="close-btn" onclick="toggleSidebar()" id="close-btn">x</button>
         <div class="sidebar-content">
             <p id="user-side"> </p>
             <ul>
@@ -91,6 +63,87 @@
             </div>
         </div>
     </div>
+
+<!-- swiper-slide -->
+    <section id="tranding">
+        
+        <div class="container">
+            <div class="swiper tranding-slider">
+                <div class="swiper-wrapper">
+                    <!-- Slide-start -->
+                    <div class="swiper-slide tranding-slide">
+                        <div class="tranding-slide-img">
+                            <img src="https://scontent.fbkk5-7.fna.fbcdn.net/v/t1.15752-9/448628539_1164178698133618_6659818831453670383_n.png?_nc_cat=107&ccb=1-7&_nc_sid=9f807c&_nc_ohc=t7l_JeBIwzMQ7kNvgHSE3dW&_nc_oc=Adi-Cb5Y68rEqPo5BtasdN7duPZb9Z1R0ZlbnUUMup-7t1-iVfvL3eGZLC_5K5vRwag&_nc_zt=23&_nc_ht=scontent.fbkk5-7.fna&oh=03_Q7cD1gGpunc8ryFFkoDN-J-PPPJKxq-jHB-C3aczJtDkLyj6_A&oe=67D45646" alt="Tranding">
+                        </div>
+                        
+                    </div>
+                    <!-- Slide-end -->
+                    <!-- Slide-start -->
+                    <div class="swiper-slide tranding-slide">
+                        <div class="tranding-slide-img">
+                            <img src="https://scontent.fbkk5-7.fna.fbcdn.net/v/t1.15752-9/448628539_1164178698133618_6659818831453670383_n.png?_nc_cat=107&ccb=1-7&_nc_sid=9f807c&_nc_ohc=t7l_JeBIwzMQ7kNvgHSE3dW&_nc_oc=Adi-Cb5Y68rEqPo5BtasdN7duPZb9Z1R0ZlbnUUMup-7t1-iVfvL3eGZLC_5K5vRwag&_nc_zt=23&_nc_ht=scontent.fbkk5-7.fna&oh=03_Q7cD1gGpunc8ryFFkoDN-J-PPPJKxq-jHB-C3aczJtDkLyj6_A&oe=67D45646" alt="Tranding">
+                        </div>
+                        
+                    </div>
+                    <!-- Slide-end -->
+                    <!-- Slide-start -->
+                    <div class="swiper-slide tranding-slide">
+                        <div class="tranding-slide-img">
+                            <img src="https://scontent.fbkk5-7.fna.fbcdn.net/v/t1.15752-9/448628539_1164178698133618_6659818831453670383_n.png?_nc_cat=107&ccb=1-7&_nc_sid=9f807c&_nc_ohc=t7l_JeBIwzMQ7kNvgHSE3dW&_nc_oc=Adi-Cb5Y68rEqPo5BtasdN7duPZb9Z1R0ZlbnUUMup-7t1-iVfvL3eGZLC_5K5vRwag&_nc_zt=23&_nc_ht=scontent.fbkk5-7.fna&oh=03_Q7cD1gGpunc8ryFFkoDN-J-PPPJKxq-jHB-C3aczJtDkLyj6_A&oe=67D45646" alt="Tranding">
+                        </div>
+                        
+                    </div>
+                    <!-- Slide-end -->
+                    <!-- Slide-start -->
+                    <div class="swiper-slide tranding-slide">
+                        <div class="tranding-slide-img">
+                            <img src="https://scontent.fbkk5-7.fna.fbcdn.net/v/t1.15752-9/448628539_1164178698133618_6659818831453670383_n.png?_nc_cat=107&ccb=1-7&_nc_sid=9f807c&_nc_ohc=t7l_JeBIwzMQ7kNvgHSE3dW&_nc_oc=Adi-Cb5Y68rEqPo5BtasdN7duPZb9Z1R0ZlbnUUMup-7t1-iVfvL3eGZLC_5K5vRwag&_nc_zt=23&_nc_ht=scontent.fbkk5-7.fna&oh=03_Q7cD1gGpunc8ryFFkoDN-J-PPPJKxq-jHB-C3aczJtDkLyj6_A&oe=67D45646" alt="Tranding">
+                        </div>
+                        
+                    </div>
+                    <!-- Slide-end -->
+                    <!-- Slide-start -->
+                    <div class="swiper-slide tranding-slide">
+                        <div class="tranding-slide-img">
+                            <img src="https://scontent.fbkk5-7.fna.fbcdn.net/v/t1.15752-9/448628539_1164178698133618_6659818831453670383_n.png?_nc_cat=107&ccb=1-7&_nc_sid=9f807c&_nc_ohc=t7l_JeBIwzMQ7kNvgHSE3dW&_nc_oc=Adi-Cb5Y68rEqPo5BtasdN7duPZb9Z1R0ZlbnUUMup-7t1-iVfvL3eGZLC_5K5vRwag&_nc_zt=23&_nc_ht=scontent.fbkk5-7.fna&oh=03_Q7cD1gGpunc8ryFFkoDN-J-PPPJKxq-jHB-C3aczJtDkLyj6_A&oe=67D45646" alt="Tranding">
+                        </div>
+                       
+                    </div>
+                    <!-- Slide-end -->
+                    <!-- Slide-start -->
+                    <div class="swiper-slide tranding-slide">
+                        <div class="tranding-slide-img">
+                            <img src="https://scontent.fbkk5-7.fna.fbcdn.net/v/t1.15752-9/448628539_1164178698133618_6659818831453670383_n.png?_nc_cat=107&ccb=1-7&_nc_sid=9f807c&_nc_ohc=t7l_JeBIwzMQ7kNvgHSE3dW&_nc_oc=Adi-Cb5Y68rEqPo5BtasdN7duPZb9Z1R0ZlbnUUMup-7t1-iVfvL3eGZLC_5K5vRwag&_nc_zt=23&_nc_ht=scontent.fbkk5-7.fna&oh=03_Q7cD1gGpunc8ryFFkoDN-J-PPPJKxq-jHB-C3aczJtDkLyj6_A&oe=67D45646" alt="Tranding">
+                        </div>
+                        
+                    </div>
+                    <!-- Slide-end -->
+                    <!-- Slide-start -->
+                    <div class="swiper-slide tranding-slide">
+                        <div class="tranding-slide-img">
+                            <img src="https://scontent.fbkk5-7.fna.fbcdn.net/v/t1.15752-9/448628539_1164178698133618_6659818831453670383_n.png?_nc_cat=107&ccb=1-7&_nc_sid=9f807c&_nc_ohc=t7l_JeBIwzMQ7kNvgHSE3dW&_nc_oc=Adi-Cb5Y68rEqPo5BtasdN7duPZb9Z1R0ZlbnUUMup-7t1-iVfvL3eGZLC_5K5vRwag&_nc_zt=23&_nc_ht=scontent.fbkk5-7.fna&oh=03_Q7cD1gGpunc8ryFFkoDN-J-PPPJKxq-jHB-C3aczJtDkLyj6_A&oe=67D45646" alt="Tranding">
+                        </div>
+                       
+                    </div>
+                    <!-- Slide-end -->
+                </div>
+
+                <div class="tranding-slider-control">
+                    <div class="swiper-button-prev slider-arrow">
+                        <ion-icon name="arrow-back-outline"></ion-icon>
+                    </div>
+                    <div class="swiper-button-next slider-arrow">
+                        <ion-icon name="arrow-forward-outline"></ion-icon>
+                    </div>
+                    <div class="swiper-pagination"></div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+
+   
 
 
     <!-- search-bar -->
@@ -113,7 +166,8 @@
             <div class="modal-content custom-search-modal">
                 <div class="search-modal-header">
                     <h2 class="search-modal-title" id="filterModalLabel">search for cat</h2>
-                    <button type="button" class="search-close-btn" data-bs-dismiss="modal" aria-label="Close">&times;</button>
+                    <button type="button" class="search-close-btn" data-bs-dismiss="modal"
+                        aria-label="Close">&times;</button>
                 </div>
                 <div class="modal-body">
                     <div class="serach-filter-section ">
@@ -156,7 +210,9 @@
         <div class="card cat-card mb-3">
             <!-- ส่วนของรูปแมวและรายละเอียด -->
             <div class="d-flex align-items-center">
-                <img class="cat-img me-3" src="https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExNzhkaDNqeTJjZDhiZzcwdXJjOHB0ZW05MnVxZG03Zmxyd3JpNTJtNSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/CjmvTCZf2U3p09Cn0h/giphy.gif" alt="Cat Image">
+                <img class="cat-img me-3"
+                    src="https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExNzhkaDNqeTJjZDhiZzcwdXJjOHB0ZW05MnVxZG03Zmxyd3JpNTJtNSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/CjmvTCZf2U3p09Cn0h/giphy.gif"
+                    alt="Cat Image">
                 <div class="top-right">
                     <p class="location">Bangkok</p>
                     <p class="timepost mb-1">2h ago</p>
@@ -201,73 +257,112 @@
     <script type="module">
         import { search_account } from "../js/db.js";
 
-        let right_sec = document.getElementsByClassName('right-section');
-        let user = sessionStorage.getItem("user");
-        let right_button = document.getElementById('rigth-btn');
-        let user_side = document.getElementById('user-side');
+        document.addEventListener("DOMContentLoaded", async function () {
+            let right_sec = document.getElementsByClassName('right-section');
+            let user = sessionStorage.getItem("user");
+            let right_button = document.getElementById('rigth-btn');
+            let user_side = document.getElementById('user-side');
 
-        if (user) {
-            right_button.classList.add('account-btn');
-            right_button.id ='user-sidebar';
-            let account = await search_account(user);
+            if (user && right_button) {
+                right_button.classList.add('account-btn');
+                right_button.id = 'user-sidebar';
 
-            user_side.textContent = account.username;
+                try {
+                    let account = await search_account(user);
+                    user_side.textContent = account.username;
 
-            let content = document.createElement('img');
-            content.classList.add('img-user');
-            content.src = account.img;
-            right_button.appendChild(content);
-        } 
-        else {
-            right_button.href = "../html/regis.html"
-            right_button.classList.add('login-btn');
-            let content = document.createElement('i');
-            content.classList.add('fa-solid', 'fa-user', 'me-1');
-            right_button.appendChild(content);  // เพิ่ม icon ก่อน
-            right_button.appendChild(document.createTextNode(' Login'));  // เพิ่มข้อความหลังจาก icon
-        }
-       
-        //------------------------------------------------------------------------------------
+                    let content = document.createElement('img');
+                    content.classList.add('img-user');
+                    content.src = account.img;
+                    right_button.appendChild(content);
+                } catch (error) {
+                    console.error("เกิดข้อผิดพลาดในการดึงข้อมูลผู้ใช้:", error);
+                }
+            }
+            else if (right_button) {
+                right_button.href = "../html/regis.html";
+                right_button.classList.add('login-btn');
 
-        document.addEventListener("DOMContentLoaded", function () {
-            let dropdownElementList = [].slice.call(document.querySelectorAll('.dropdown-toggle'));
-            dropdownElementList.map(function (dropdownToggleEl) {
-                new bootstrap.Dropdown(dropdownToggleEl);
-            });
+                let content = document.createElement('i');
+                content.classList.add('fa-solid', 'fa-user', 'me-1');
+                right_button.appendChild(content);
+                right_button.appendChild(document.createTextNode(' Login'));
+            }
+
+            // ฟังก์ชันเปิด/ปิด Sidebar
+            function toggleSidebar() {
+                document.getElementById("sidebar").classList.toggle("active");
+            }
+
+            // ตรวจสอบว่ามีปุ่มเปิด sidebar หรือไม่
+            let userSidebarBtn = document.getElementById("user-sidebar");
+            if (userSidebarBtn) {
+                userSidebarBtn.addEventListener("click", function (event) {
+                    event.preventDefault();
+                    toggleSidebar();
+                });
+            }
+
+            // ปุ่มปิด sidebar
+            let closeBtn = document.getElementById("close-btn");
+            if (closeBtn) {
+                closeBtn.addEventListener("click", function () {
+                    document.getElementById("sidebar").classList.remove("active");
+                });
+            }
+
+
+            // ปุ่ม logout
+            let logoutBtn = document.getElementById("logout-btn");
+            if (logoutBtn) {
+                logoutBtn.addEventListener("click", function (event) {
+                    event.preventDefault();
+                    sessionStorage.removeItem("user");
+                    window.location.href = 'index.html';
+                    location.reload();
+                });
+            }
+
+            // ปุ่มที่มีเอฟเฟกต์ bounce
+            let animatedBtn = document.querySelector(".animated-btn");
+            if (animatedBtn) {
+                animatedBtn.addEventListener("click", function () {
+                    this.classList.add("bounce-effect");
+                    setTimeout(() => {
+                        this.classList.remove("bounce-effect");
+                    }, 300);
+                });
+            }
         });
 
-        function toggleSidebar() {
-            document.getElementById("sidebar").classList.toggle("active");
-        }
 
-        document.getElementById("user-sidebar").addEventListener("click", function (event) {
-            event.preventDefault();
-            toggleSidebar();
+
+    </script>
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+    <script src="https://unpkg.com/swiper@8/swiper-bundle.min.js"></script>
+    <script>
+        var TrandingSlider = new Swiper('.tranding-slider', {
+            effect: 'coverflow',
+            grabCursor: true,
+            centeredSlides: true,
+            loop: true,
+            slidesPerView: 'auto',
+            coverflowEffect: {
+                rotate: 0,
+                stretch: 0,
+                depth: 100,
+                modifier: 2.5,
+            },
+            pagination: {
+                el: '.swiper-pagination',
+                clickable: true,
+            },
+            navigation: {
+                nextEl: '.swiper-button-next',
+                prevEl: '.swiper-button-prev',
+            }
         });
-
-        //------------------------------------------------------------------------------------
-
-        document.getElementById("logout-btn").addEventListener("click", function (event) {
-            event.preventDefault(); // ป้องกันการเปลี่ยนหน้าโดยไม่ตั้งใจ
-
-            // ลบข้อมูลผู้ใช้จาก sessionStorage
-            sessionStorage.removeItem("user");
-            window.location.href = 'index.html';
-
-            // ซ่อน user-info และแสดงปุ่ม Login กลับมา
-            document.getElementById("loginButton").classList.remove("d-none"); // ทำให้ปุ่ม Login กลับมาแสดง
-
-            // รีเฟรชหน้าเว็บเพื่อเคลียร์ข้อมูล (ถ้าต้องการ)
-            location.reload();
-        });
-        document.querySelector(".animated-btn").addEventListener("click", function () {
-            this.classList.add("bounce-effect");
-            setTimeout(() => {
-                this.classList.remove("bounce-effect");
-            }, 300);
-        });
-
-
     </script>
 
 
