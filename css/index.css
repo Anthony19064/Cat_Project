@@ -230,7 +230,6 @@ textarea.form-control:focus {
 .modal-header .btn-close {
     filter: invert(1); /* ทำให้ปุ่มปิดเป็นสีขาว */
 }
-=======
 .location{
     font-size: 40px;
     font-weight: bold;
