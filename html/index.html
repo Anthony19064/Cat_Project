@@ -184,6 +184,39 @@
 
     </div>
 
+<!-- Adopt Form Popup -->
+<div class="modal fade" id="adoptFormModal" tabindex="-1" aria-labelledby="adoptFormLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content p-3">
+            <div class="modal-header">
+                <h5 class="modal-title text-white fw-bold" id="adoptFormLabel">Adopt form</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <label class="text-white fw-bold">Upload your image</label>
+                <p class="text-white-50 small">PNG, JPG files are allowed</p>
+                
+                <!-- Drag and Drop Upload -->
+                <div class="drop-zone" id="dropZone">
+                    <i class="fa-solid fa-cloud-arrow-up "></i>
+                    <p class="text-secondary">Drag and drop or browse to choose a file</p>
+                    <input type="file" id="fileInput" accept="image/png, image/jpeg" multiple hidden>
+                </div>
+                
+                <!-- File List -->
+                <ul id="fileList" class="list-unstyled mt-2"></ul>
+                
+                <!-- More Details -->
+                <label class="text-white">More details</label>
+                <textarea class="form-control" id="details" rows="3" placeholder="Enter more details..."></textarea>
+            </div>
+            <div class="modal-footer border-0">
+                <button type="button" class="btn btn-light" id="sendButton">Send</button>
+            </div>
+        </div>
+    </div>
+</div>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script type="module">
         import { search_account } from "../js/db.js";
@@ -265,7 +298,6 @@
                 });
             });
         });
-
     </script>
 
     <script type="module">
