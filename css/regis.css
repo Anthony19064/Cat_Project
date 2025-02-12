@@ -43,7 +43,7 @@ body, html {
 .avatar {
     width: 100px;
     height: 100px;
-    background-color: #d4b36a;
+    background-color: #E09030;
     border-radius: 50%;
     margin: 0 auto 20px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -56,7 +56,7 @@ body, html {
     padding-right: 35px;
     font-size: 16px;
     border: none;
-    border-bottom: 1px solid #d4b36a;
+    border-bottom: 1px solid #E09030;
     border-radius: 0;
     background-color: transparent;
     position: relative;
@@ -64,7 +64,7 @@ body, html {
 
 .form-control:focus, .custom-dropdown:focus {
     box-shadow: none;
-    border-bottom: 2px solid #d4b36a;
+    border-bottom: 2px solid #E09030;
     background-color: transparent;
 }
 
@@ -101,28 +101,28 @@ body, html {
 }
 
 .btn-register, .btn-login {
-    background-color: #d4b36a;
+    background-color: #E09030;
     color: white;
     padding: 10px 20px;
     border-radius: 10px;
 }
 
 .btn-register:hover, .btn-login:hover {
-    border: 1px solid #d4b36a;
-    color: #d4b36a;
+    border: 1px solid #E09030;
+    color: #E09030;
     padding: 10px 20px;
     border-radius: 10px;
 }
 
 .btn-cancel {
-    border: 1px solid #d4b36a;
-    color: #d4b36a;
+    border: 1px solid #E09030;
+    color: #E09030;
     padding: 10px 20px;
     border-radius: 10px;
 }
 
 .btn-cancel:hover {
-    background-color: #d4b36a;
+    background-color: #E09030;
     color: white;
     padding: 10px 20px;
     border-radius: 10px;
