@@ -450,6 +450,9 @@ export async function displayPosts() {
     const adoptButton = document.createElement('button');
     adoptButton.classList.add('btn', 'adopt-btn');
     adoptButton.textContent = 'ADOPT';
+    adoptButton.addEventListener("click", function () {
+      console.log("Adopt button clicked!");
+  });
     
     bottomSection.appendChild(catInfo);
     bottomSection.appendChild(statsContainer);

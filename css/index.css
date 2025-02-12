@@ -115,6 +115,7 @@ body {
     object-fit: cover; /* ให้รูปไม่เบี้ยว */
 }
 
+
 .location{
     font-size: 40px;
     font-weight: bold;
@@ -252,3 +253,120 @@ body {
     height: 50px;
     transform: scale(1.2);
 }
+
+/* search-popup */
+
+.custom-search-modal {
+    background: linear-gradient(to bottom, #d7a24f, #c98b2b);
+    border-radius: 15px;
+    padding: 20px;
+    color: white;
+    font-family: 'Poppins', sans-serif;
+    border: 3px solid white;
+}
+
+.search-modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: none;
+}
+
+.search-modal-title {
+    font-size: 22px;
+    font-weight: bold;
+    text-transform: lowercase;
+    text-decoration: underline;
+}
+
+.search-close-btn {
+    background: none;
+    border: none;
+    font-size: 28px;
+    color: white;
+    cursor: pointer;
+}
+
+.serach-filter-section {
+    margin-bottom: 15px;
+}
+
+.serach-filter-section  h3 {
+    font-size: 16px;
+    text-transform: lowercase;
+    margin-bottom: 5px;
+}
+
+.serach-filter-section  label {
+    display: inline-block;
+    margin-right: 10px;
+    font-size: 14px;
+}
+
+.search-modal-footer {
+    display: flex;
+    justify-content: center;
+    border-top: none;
+}
+
+.search-btn, .reset-btn {
+    padding: 8px 20px;
+    font-size: 16px;
+    border-radius: 8px;
+    text-transform: lowercase;
+    cursor: pointer;
+    border: none;
+}
+
+.search-btn {
+    background: white;
+    color: #d7a24f;
+    margin-right: 10px;
+}
+
+.reset-btn {
+    background: #f4f4f4;
+    color: #d7a24f;
+}
+
+.animated-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.animated-btn:active {
+    transform: scale(0.9);
+}
+
+/* Ripple effect */
+.animated-btn::after {
+    content: "";
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    background: rgba(0, 0, 0, 0.1);
+    border-radius: 50%;
+    transform: scale(0);
+    opacity: 0;
+    transition: transform 0.4s, opacity 0.4s;
+}
+
+.animated-btn:active::after {
+    transform: scale(2);
+    opacity: 1;
+}
+.bounce-effect {
+    animation: bounce 0.3s ease;
+}
+
+@keyframes bounce {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+}
+
+
