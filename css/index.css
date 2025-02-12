@@ -1,13 +1,71 @@
 .navbar {
-    background: linear-gradient(to right, #cfa457, #d9a85b);
+    background-color: transparent;
+    padding: 0;
+    margin-top: 6px;
 }
+.nav-c{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-left: 20px;
+    padding-right: 20px;
+    margin: 0;
+    width: 100%;
+}
+
+.logo{
+    color: #E09030;
+    font-size: 30px;
+    font-weight: bold;
+}
+
+
+
+.login-btn {
+    font-weight: bold;
+    width: 100px;
+    background-color: white;
+    color: #E09030;
+    border-radius: 15px;
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.4);
+}
+
+.login-btn:hover{
+    color: white;
+    background-color: #E09030;
+    border: 2px solid white;
+}
+
+.account-btn{
+    background-color: transparent;
+}
+
+.account-btn:hover{
+    background-color: transparent;
+}
+
+.account-btn:hover .img-user {
+    border-color: white;  /* เปลี่ยนขอบรูปภาพเป็นสีขาวเมื่อเมาส์จ่อที่ปุ่ม */
+    transform: scale(1.1);
+}
+
+.img-user{
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    border: 3px solid #E09030;;
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.4);
+}
+
+#img-c{
+    border: 5px solid #E09030;
+    border-radius: 10px;
+}
+
+
 
 body {
     background-color: #f4f4f4;
-}
-
-.navbar {
-    background: linear-gradient(to right, #cfa457, #d9a85b);
 }
 
 .search-container {
@@ -21,7 +79,7 @@ body {
 }
 
 .cat-card {
-    background: linear-gradient(to bottom, #D6B877, #E2A82D);
+    background-color: #E09030;
     border-radius: 15px;
     padding: 15px;
     box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.4);
@@ -51,7 +109,7 @@ body {
     right: -300px;
     width: 300px;
     height: 100%;
-    background: #c69c6d;
+    background: #E09030;
     box-shadow: -2px 0 10px rgba(0, 0, 0, 0.2);
     transition: right 0.3s ease-in-out;
     padding: 20px;
@@ -97,17 +155,19 @@ body {
     color: black;
 }
 .btn-if {
-    background-color: #d9a85b;;
-    color: white;
+    background-color: transparent;
+    color: #E09030;
     border-radius: 20px;
     border: none;
 }
 .text-user{
-    color: white;
+    color: #E09030;
+    font-size: 30px;
+    font-weight: bold;
 }
 .btn-if:hover {
-    background-color: #c98621; /* สีเข้มขึ้นเมื่อโฮเวอร์ */
-    transform: scale(1.05); /* ขยายขึ้นเล็กน้อย */
+    background-color: #f1ad5a; /* สีเข้มขึ้นเมื่อโฮเวอร์ */
+    border: 2px solid white;
 }
 .carousel-img {
     width: 800px;
@@ -164,8 +224,8 @@ body {
 .bt-like{
     position: relative;
     border-radius: 15px;
-    width: 80px;
-    height: 40px;
+    max-width: 80px;
+    max-height: 40px;
     border: none;
     color: red;
     text-shadow: 0px 5px 10px rgba(255, 0, 0, 0.7); 
@@ -203,14 +263,14 @@ body {
     font-weight: bold;
     width: 100px;
     background-color: white;
-    color: #d9a85b;
+    color: #E09030;
     border-radius: 15px;
     box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.4);
 }
 
 .adopt-btn:hover{
     color: white;
-    background-color: #d9a85b;
+    background-color: #E09030;
     border: 2px solid white;
 }
 
@@ -370,3 +430,8 @@ body {
 }
 
 
+.bg-popup{
+    width: 200px;
+    height: 200px;
+    background-color: red;
+}
