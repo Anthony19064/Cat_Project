@@ -1,4 +1,5 @@
-body, html {
+body,
+html {
     height: 100%;
     margin: 0;
     font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
@@ -12,7 +13,8 @@ body, html {
     position: relative;
 }
 
-.left-side, .right-side {
+.left-side,
+.right-side {
     width: 50%;
     height: 100%;
     position: absolute;
@@ -49,7 +51,8 @@ body, html {
     border: 6px solid #E09030;
 }
 
-.form-control, .custom-dropdown {
+.form-control,
+.custom-dropdown {
     margin-top: 10px;
     height: 40px;
     padding-left: 35px;
@@ -62,7 +65,8 @@ body, html {
     position: relative;
 }
 
-.form-control:focus, .custom-dropdown:focus {
+.form-control:focus,
+.custom-dropdown:focus {
     box-shadow: none;
     border-bottom: 2px solid #E09030;
     background-color: transparent;
@@ -100,14 +104,16 @@ body, html {
     pointer-events: none;
 }
 
-.btn-register, .btn-login {
+.btn-register,
+.btn-login {
     background-color: #E09030;
     color: white;
     padding: 10px 20px;
     border-radius: 10px;
 }
 
-.btn-register:hover, .btn-login:hover {
+.btn-register:hover,
+.btn-login:hover {
     border: 1px solid #E09030;
     color: #E09030;
     padding: 10px 20px;
@@ -152,11 +158,10 @@ body, html {
     gap: 0;
 }
 
-#contract-type{
+#contract-type {
     width: 20px;
 }
 
-#contract-t{
+#contract-t {
     padding-left: 0;
 }
-
