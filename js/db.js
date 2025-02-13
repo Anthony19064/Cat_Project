@@ -224,30 +224,23 @@ async function addPostData(catName, catSex, catLocation, catImg, catDetails, own
 }
 
 
-//แปลงเวลา
 function timeAgo(timeString) {
-  const [hours, minutes] = timeString.split(":").map(Number); 
   const currentTime = new Date();
-  const targetTime = new Date();
-  
-  targetTime.setHours(hours);
-  targetTime.setMinutes(minutes);
-  targetTime.setSeconds(0);
 
-  const diffInMs = currentTime - targetTime;
-  const diffInMinutes = Math.floor(diffInMs / (1000 * 60)); 
-  
+  const diffInMs = currentTime - timeString;
+  const diffInMinutes = Math.floor(diffInMs / (1000 * 60));
+
   if (diffInMinutes < 1) {
     return "Just now";
   } else if (diffInMinutes < 60) {
-    return `${diffInMinutes}m ago`; 
+    return `${diffInMinutes}m ago`;
   } else {
     const diffInHours = Math.floor(diffInMinutes / 60);
     if (diffInHours < 24) {
-      return `${diffInHours}h ago`; 
+      return `${diffInHours}h ago`;
     } else {
       const diffInDays = Math.floor(diffInHours / 24);
-      return `${diffInDays}d ago`; 
+      return `${diffInDays}d ago`;
     }
   }
 }
@@ -265,8 +258,8 @@ export async function displayPosts() {
   posts.forEach(async post => {
 
     
-    const timeData = post.time.toDate().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hour12: false }); // Firebase Timestamp
-    const timepost = timeAgo(timeData);
+    const timepost = timeAgo(post.time.toDate());
+
     let cat_sex = '';
     if (post.sex == 'Male'){
       cat_sex = '♂';
@@ -451,7 +444,7 @@ export async function displayPosts() {
     adoptButton.classList.add('btn', 'adopt-btn');
     adoptButton.textContent = 'ADOPT';
     adoptButton.addEventListener("click", () =>{
-      adopt_popup(post.catname);
+      crate_popup(post.catname);
     });
     
     bottomSection.appendChild(catInfo);
@@ -467,43 +460,177 @@ export async function displayPosts() {
 });
 }
 
-async function adopt_popup(catName) {
-  const adopt = document.getElementById('adopt-popup');
+
+async function crate_popup(catName) {
+    // Create header-section
+    const container = document.getElementById('adopt-popup');
+    container.style.display = 'block';
+    if (container.innerHTML.trim() === '') {
+    const closeBtn = document.createElement('i');
+    closeBtn.classList.add('close-btn', 'fa-solid', 'fa-xmark');
+    closeBtn.onclick = () =>{
+      container.style.display = 'none';
+      container.innerHTML = '';
+    };
+
+    const headerSection = document.createElement('div');
+    headerSection.classList.add('header-section');
+    headerSection.innerHTML = `
+        <h1>Do you want to adopt a ${catName} ?</h1>
+        <p>Upload your picture and details about you :) </p>
+    `;
   
-  // ตรวจสอบว่า popup ถูกสร้างแล้วหรือยัง
-  if (adopt.childElementCount === 0) {
-    const card = document.createElement('div');
-    card.classList.add('bg-popup');
+    // Create drop-section
+    const dropSection = document.createElement('div');
+    dropSection.classList.add('drop-section');
+  
+    // First col in drop-section
+    const col1 = document.createElement('div');
+    col1.classList.add('col');
+    col1.innerHTML = `
+        <div class="cloud-icon">
+            <i class="fa-solid fa-cloud-arrow-up" style="font-size:48px;color: #E09030;"></i>
+        </div>
+        <span style="font-weight: bold;">Drag and Drop your Picture</span>
+        <span style="font-weight: bold;">OR</span>
+        <button class="file-selector">Browse Files</button>
+        <input type="file" class="file-selector-input" multiple>
+    `;
+  
+    // Second col in drop-section
+    const col2 = document.createElement('div');
+    col2.classList.add('col');
+    col2.innerHTML = `<div class="drop-here">Drop here</div>`;
+  
+    // Append col1 and col2 to drop-section
+    dropSection.appendChild(col1);
+    dropSection.appendChild(col2);
+  
+    // Create list-section
+    const listSection = document.createElement('div');
+    listSection.classList.add('list-section');
+  
+    // Create list-title and list
+    const listTitle = document.createElement('div');
+    listTitle.classList.add('list-title');
+    listTitle.innerHTML = 'Uploaded Files';
+  
+    const list = document.createElement('div');
+    list.classList.add('list');
 
-    const head_card = document.createElement('p');
-    head_card.classList.add('head_adopt');
-    head_card.textContent = "Adopt Form";
-
-    const catname = document.createElement('p');
-    catname.classList.add('catAdopt');
-    catname.textContent = catName;
-
-    const close_icon = document.createElement('i');
-    close_icon.classList.add('fas', 'fa-times', 'close_btn');
-    close_icon.addEventListener('click', () =>{
-      adopt.style.display = 'none';
-    } )
-
-    const file = document.createElement('div');
-    file.classList.add('file_area');
+    //button send
+    const button = document.createElement('button');
+    button.classList.add('adopt-button');
+    button.textContent = "Send";
+  
+    // Append list-title and list to list-section
+    listSection.appendChild(listTitle);
+    listSection.appendChild(list);
+  
+    // Append headerSection, dropSection, and listSection to container
+    container.appendChild(headerSection);
+    container.appendChild(dropSection);
+    container.appendChild(listSection);
+    container.appendChild(button);
+    container.appendChild(closeBtn);
+  
+    // Append the entire container to the body
+    document.body.appendChild(container);
+  
     
-
-
-    card.appendChild(head_card);
-    card.appendChild(catname);
-    card.appendChild(close_icon);
-    card.appendChild(file);
-    adopt.appendChild(card);
+  const dropArea = document.querySelector('.drop-section');
+  const list_Section = document.querySelector('.list-section');
+  const listContainer = document.querySelector('.list');
+  const fileSelector = document.querySelector('.file-selector');
+  const fileSelectorInput = document.querySelector('.file-selector-input');
+  
+  // upload files with browse button
+  fileSelector.onclick = () => fileSelectorInput.click();
+  fileSelectorInput.onchange = () => {
+      [...fileSelectorInput.files].forEach((file) => {
+          if (typeValidation(file.type)) {
+              showFile(file);
+          }
+      });
+  };
+  
+  // when file is over the drag area
+  dropArea.ondragover = (e) => {
+      e.preventDefault();
+      [...e.dataTransfer.items].forEach((item) => {
+          if (typeValidation(item.type)) {
+              dropArea.classList.add('drag-over-effect');
+          }
+      });
+  };
+  
+  // when file leave the drag area
+  dropArea.ondragleave = () => {
+      dropArea.classList.remove('drag-over-effect');
+  };
+  
+  // when file drop on the drag area
+  dropArea.ondrop = (e) => {
+      e.preventDefault();
+      dropArea.classList.remove('drag-over-effect');
+      if (e.dataTransfer.items) {
+          [...e.dataTransfer.items].forEach((item) => {
+              if (item.kind === 'file') {
+                  const file = item.getAsFile();
+                  if (typeValidation(file.type)) {
+                      showFile(file);
+                  }
+              }
+          });
+      } else {
+          [...e.dataTransfer.files].forEach((file) => {
+              if (typeValidation(file.type)) {
+                  showFile(file);
+              }
+          });
+      }
+  };
+  
+  // check the file type
+  function typeValidation(type) {
+      var splitType = type.split('/')[0];
+      if (type == 'application/pdf' || splitType == 'image' || splitType == 'video') {
+          return true;
+      }
+      return false;
   }
-
-  adopt.style.display = 'flex';  // แสดง popup
+  
+  // show file function - show the file name, size, and icon in the list
+  function showFile(file) {
+      list_Section.style.display = 'block';
+      var li = document.createElement('li');
+      li.classList.add('in-prog');
+  
+      // สร้าง Object URL สำหรับแสดงภาพ
+      const objectURL = URL.createObjectURL(file);
+  
+      li.innerHTML = `
+          <div class="col">
+              <img src="${objectURL}" style="width: 50px; height: 50px; object-fit: cover;"  alt="${file.name}">
+          </div>
+          <div class="col">
+              <div class="file-name">
+                  <div class="name">${file.name}</div>
+                  <div class="file-size">${(file.size / (1024 * 1024)).toFixed(2)}MB</div>
+              </div>
+          </div>
+          <div class="col">
+              <i class="fa-solid fa-xmark cross"></i>
+          </div>
+      `;
+      listContainer.prepend(li);
+  
+      // ฟังก์ชันการยกเลิกการแสดงไฟล์
+      li.querySelector('.cross').onclick = () => li.remove();
+  }
+  } 
+ 
 }
-
  
 
 
