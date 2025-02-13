@@ -450,9 +450,9 @@ export async function displayPosts() {
     const adoptButton = document.createElement('button');
     adoptButton.classList.add('btn', 'adopt-btn');
     adoptButton.textContent = 'ADOPT';
-    adoptButton.addEventListener("click", function () {
-      console.log("Adopt button clicked!");
-  });
+    adoptButton.addEventListener("click", () =>{
+      adopt_popup(post.catname);
+    });
     
     bottomSection.appendChild(catInfo);
     bottomSection.appendChild(statsContainer);
@@ -465,6 +465,43 @@ export async function displayPosts() {
     // Append the card to the list container
     catListElement.appendChild(card);
 });
+}
+
+async function adopt_popup(catName) {
+  const adopt = document.getElementById('adopt-popup');
+  
+  // ตรวจสอบว่า popup ถูกสร้างแล้วหรือยัง
+  if (adopt.childElementCount === 0) {
+    const card = document.createElement('div');
+    card.classList.add('bg-popup');
+
+    const head_card = document.createElement('p');
+    head_card.classList.add('head_adopt');
+    head_card.textContent = "Adopt Form";
+
+    const catname = document.createElement('p');
+    catname.classList.add('catAdopt');
+    catname.textContent = catName;
+
+    const close_icon = document.createElement('i');
+    close_icon.classList.add('fas', 'fa-times', 'close_btn');
+    close_icon.addEventListener('click', () =>{
+      adopt.style.display = 'none';
+    } )
+
+    const file = document.createElement('div');
+    file.classList.add('file_area');
+    
+
+
+    card.appendChild(head_card);
+    card.appendChild(catname);
+    card.appendChild(close_icon);
+    card.appendChild(file);
+    adopt.appendChild(card);
+  }
+
+  adopt.style.display = 'flex';  // แสดง popup
 }
 
  

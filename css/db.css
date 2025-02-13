@@ -3,7 +3,6 @@ body {
     display: flex;
     justify-content: center; /* จัดตำแหน่งในแนวนอนให้กลาง */
     align-items: center; /* จัดตำแหน่งในแนวตั้งให้กลาง */
-    height: 100vh; /* กำหนดความสูงของ body เป็น 100% ของหน้าจอ */
     margin: 0; /* ลบ margin ที่มีค่าเริ่มต้น */
     flex-direction: column; /* จัดให้เนื้อหาทั้งหมดในแนวตั้ง */
     font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
@@ -11,7 +10,6 @@ body {
 
 #user{
     font-size: 100px;
-    margin-top: 10%;
 }
 
 #img_account{
@@ -26,6 +24,8 @@ body {
 
 .card{
     margin: 10px;
+    border: 2px solid white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 .card-img-top{
