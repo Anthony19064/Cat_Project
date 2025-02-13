@@ -1,29 +1,29 @@
 .container {
-    max-width: 124rem;
-    padding: 0 1rem;
-    margin: 0 auto;
-  }
-  
+  max-width: 124rem;
+  padding: 0 1rem;
+  margin: 0 auto;
+}
+
 .navbar {
-    background-color: transparent;
-    padding: 0;
-    margin-top: 6px;
+  background-color: transparent;
+  padding: 0;
+  margin-top: 6px;
 }
 
 .nav-c {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding-left: 20px;
-    padding-right: 20px;
-    margin: 0;
-    width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-left: 20px;
+  padding-right: 20px;
+  margin: 0;
+  width: 100%;
 }
 
 .logo {
-    color: #E09030;
-    font-size: 30px;
-    font-weight: bold;
+  color: #E09030;
+  font-size: 30px;
+  font-weight: bold;
 }
 
 
@@ -31,80 +31,62 @@
 
 
 .login-btn {
-    font-weight: bold;
-    width: 100px;
-    background-color: white;
-    color: #E09030;
-    border-radius: 15px;
-    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.4);
+  font-weight: bold;
+  width: 100px;
+  background-color: white;
+  color: #E09030;
+  border-radius: 15px;
+  box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.4);
 }
 
 .login-btn:hover {
-    color: white;
-    background-color: #E09030;
-    border: 2px solid white;
+  color: white;
+  background-color: #E09030;
+  border: 2px solid white;
 }
 
 .account-btn {
-    background-color: transparent;
+  background-color: transparent;
 }
 
 .account-btn:hover {
-    background-color: transparent;
+  background-color: transparent;
 }
 
 .account-btn:hover .img-user {
-    border-color: white;  /* เปลี่ยนขอบรูปภาพเป็นสีขาวเมื่อเมาส์จ่อที่ปุ่ม */
-    transform: scale(1.3) rotate(10deg);
-    transition: transform 0.3s ease-in-out;
+  border-color: white;
+  /* เปลี่ยนขอบรูปภาพเป็นสีขาวเมื่อเมาส์จ่อที่ปุ่ม */
+  transform: scale(1.3) rotate(10deg);
+  transition: transform 0.3s ease-in-out;
 }
 
 .img-user {
-    width: 60px;
-    height: 60px;
-    border-radius: 50%;
-    border: 3px solid #E09030;
-    ;
-    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.4);
-    transition: transform 0.3s ease-in-out, border-color 0.3s ease-in-out;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  border: 3px solid #E09030;
+  box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.4);
+  transition: transform 0.3s ease-in-out, border-color 0.3s ease-in-out;
 }
 
 
 
 
 body {
-    background-color: #f4f4f4;
+  background-color: #f4f4f4;
 }
 
 .search-container {
-    max-width: 600px;
-    margin: auto;
+  max-width: 600px;
+  margin: auto;
 }
 
 .search-bar {
-    border-radius: 25px;
-    padding: 10px 15px;
+  border-radius: 25px;
+  padding: 10px 15px;
 }
 
-.cat-card {
-    background-color: #E09030;
-    border-radius: 15px;
-    padding: 15px;
-    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.4);
-    max-width: 650px;
-    height: 250px;
-    margin: auto;
-    border: 3px solid white;
-}
 
-.cat-img {
-    width: 140px;
-    height: 140px;
-    border-radius: 50%;
-    object-fit: cover;
-    border: 4px solid white;
-    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.4);
-}
 
 /* ปรับ Sidebar */
 .sidebar {
@@ -125,6 +107,13 @@ body {
 
 .sidebar.active {
   right: 0;
+}
+
+@keyframes fadeInUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 /* ปุ่มปิด (X) */
@@ -243,268 +232,88 @@ body {
 }
 
 
-.btn-if {
-    background-color: transparent;
-    color: #E09030;
-    border-radius: 20px;
-    border: none;
-}
-
-.text-user {
-    color: #E09030;
-    font-size: 30px;
-    font-weight: bold;
-}
-
-.btn-if:hover {
-    background-color: #f1ad5a;
-    /* สีเข้มขึ้นเมื่อโฮเวอร์ */
-    border: 2px solid white;
-}
-
-.carousel-img {
-    width: 800px;
-    height: 500px;
-    object-fit: cover;
-    /* ให้รูปไม่เบี้ยว */
-}
-
-
-.location {
-    font-size: 40px;
-    font-weight: bold;
-    position: relative;
-    top: -10px;
-    color: white;
-    text-decoration: underline;
-    text-decoration-thickness: 2px;
-    text-underline-offset: 5px;
-}
-
-.timepost {
-    color: white;
-    position: relative;
-    top: -30px;
-    right: -10px;
-    font-size: 15px;
-    opacity: 80%;
-}
-
-.catname {
-    font-size: 30px;
-    font-weight: bold;
-    margin-left: 30px;
-    color: white;
-    text-shadow: 0px 10px 10px rgba(0, 0, 0, 0.4);
-}
-
-.top-right {
-    margin-left: 35px;
-}
-
-.detail {
-    color: white;
-    position: relative;
-    top: -20px;
-    left: 10px
-}
-
-.bottom-section {
-    margin: 0;
-    position: relative;
-    top: 10px
-}
-
-.bt-like {
-    position: relative;
-    border-radius: 15px;
-    max-width: 80px;
-    max-height: 40px;
-    border: none;
-    color: red;
-    text-shadow: 0px 5px 10px rgba(255, 0, 0, 0.7);
-    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.4);
-    left: -13px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.bt-comment {
-    position: relative;
-    border-radius: 15px;
-    width: 70px;
-    height: 40px;
-    border: none;
-    color: #ECB476;
-    text-shadow: 0px 5px 10px rgba(236, 180, 118, 0.7);
-    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.4);
-    left: -8px;
-}
-
-.bt-bookmark {
-    position: relative;
-    border-radius: 15px;
-    width: 70px;
-    height: 40px;
-    border: none;
-    color: #5686E1;
-    text-shadow: 0px 5px 10px rgba(86, 134, 225, 0.7);
-    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.4);
-    left: -5px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.adopt-btn {
-    font-weight: bold;
-    width: 100px;
-    height: 40px;
-    background-color: white;
-    color: #E09030;
-    border-radius: 15px;
-    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.4);
-    transition: transform 0.3s ease-in-out, 
-                border-color 0.4s ease-in-out, 
-                background-color 0.4s ease-in-out, 
-                color 0.3s ease-in-out; 
-}
-
-.adopt-btn:hover {
-    color: white;
-    background-color: #E09030;
-    border: 2px solid white;
-    transform: scale(1.1) rotate(2deg);
-}
-
-
-.cl{
-    position: relative;
-    left: -20px;
-    margin-bottom: 0;
-}
-
-.hicon {
-    position: relative;
-    left: -4px;
-    width: 70px;
-    height: 70px;
-    transform: scale(1);
-    transition: transform 0.3s ease-in-out;
-}
-
-.hicon:hover {
-    position: relative;
-    left: -4px;
-    width: 70px;
-    height: 70px;
-    transform: scale(1.3) rotate(-10deg);
-    transition: transform 0.3s ease-in-out;
-}
-
-.social-button {
-    display: flex;
-    /* ใช้ Flexbox เพื่อจัดตำแหน่ง */
-    justify-content: space-between;
-    /* กระจายลูกให้ห่างกัน */
-    align-items: center;
-    /* จัดแนวกลางในแนวตั้ง (ถ้าจำเป็น) */
-}
-
-.bicon {
-    width: 50px;
-    height: 50px;
-    transform: scale(1);
-    transition: transform 0.3s ease-in-out;
-}
-
-.bicon:hover {
-    width: 50px;
-    height: 50px;
-    transform: scale(1.3) rotate(-10deg);
-    transition: transform 0.3s ease-in-out;
-
-}
 
 /* search-popup */
 
 .custom-search-modal {
-    background: #E09030;
-    border-radius: 15px;
-    padding: 20px;
-    color: white;
-    font-family: 'Poppins', sans-serif;
-    border: 3px solid white;
+  background: #E09030;
+  border-radius: 15px;
+  padding: 20px;
+  color: white;
+  font-family: 'Poppins', sans-serif;
+  border: 3px solid white;
 }
 
 .search-modal-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    border-bottom: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: none;
 }
 
 .search-modal-title {
-    font-size: 22px;
-    font-weight: bold;
-    text-transform: lowercase;
-    text-decoration: underline;
+  font-size: 22px;
+  font-weight: bold;
+  text-transform: lowercase;
+  text-decoration: underline;
 }
 
 .search-close-btn {
-    background: none;
-    border: none;
-    font-size: 28px;
-    color: white;
-    cursor: pointer;
+  background: none;
+  border: none;
+  font-size: 28px;
+  color: white;
+  cursor: pointer;
 }
 
 .serach-filter-section {
-    margin-bottom: 15px;
+  margin-bottom: 15px;
 }
 
 .serach-filter-section h3 {
-    font-size: 16px;
-    text-transform: lowercase;
-    margin-bottom: 5px;
+  font-size: 16px;
+  text-transform: lowercase;
+  margin-bottom: 5px;
 }
 
 .serach-filter-section label {
-    display: inline-block;
-    margin-right: 10px;
-    font-size: 14px;
+  display: inline-block;
+  margin-right: 10px;
+  font-size: 14px;
 }
 
 .search-modal-footer {
-    display: flex;
-    justify-content: center;
-    border-top: none;
+  display: flex;
+  justify-content: center;
+  border-top: none;
 }
 
 .search-btn,
 .reset-btn {
-    padding: 8px 20px;
-    font-size: 16px;
-    border-radius: 8px;
-    text-transform: lowercase;
-    cursor: pointer;
-    border: none;
+  padding: 8px 20px;
+  font-size: 16px;
+  border-radius: 8px;
+  text-transform: lowercase;
+  cursor: pointer;
+  border: none;
 }
 
 .search-btn {
-    background: white;
-    color: #d7a24f;
-    margin-right: 10px;
+  background: white;
+  color: #d7a24f;
+  margin-right: 10px;
 }
 
 .reset-btn {
-    background: #f4f4f4;
-    color: #d7a24f;
+  background: #f4f4f4;
+  color: #d7a24f;
 }
+
+
 /* กำหนดการเคลื่อนไหวเมื่อคลิกปุ่ม */
 #filter-btn:active {
-  transform: scale(0.9); /* ขยายปุ่มเล็กน้อยเมื่อคลิก */
+  transform: scale(0.9);
+  /* ขยายปุ่มเล็กน้อยเมื่อคลิก */
   transition: transform 0.2s ease;
 }
 
@@ -515,36 +324,30 @@ body {
 
 @keyframes rotateAnimation {
   0% {
-      transform: rotate(0deg);
+    transform: rotate(0deg);
   }
+
   100% {
-      transform: rotate(180deg);
+    transform: rotate(180deg);
   }
 }
 
 
-@keyframes bounce {
-
-    0%,
-    100% {
-        transform: scale(1);
-    }
-
-    50% {
-        transform: scale(1.1);
-    }
-}
 
 /* add-posT */
 #se-btn {
-  width: 45px; /* ปรับขนาดตามต้องการ */
+  width: 45px;
+  /* ปรับขนาดตามต้องการ */
   height: 45px;
   top: 3px;
   font-size: auto;
   border-radius: 50%;
-  background-color: white ;/* สีทอง (สามารถเปลี่ยนได้) */
-  color: #E09030; /* สีไอคอน */
-  margin-left: 20px; /* จัดให้อยู่ด้านขวาสุด */
+  background-color: white;
+  /* สีทอง (สามารถเปลี่ยนได้) */
+  color: #E09030;
+  /* สีไอคอน */
+  margin-left: 20px;
+  /* จัดให้อยู่ด้านขวาสุด */
   border: 3px solid #E09030;
   box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.6);
   transition: transform 0.3s ease-in-out, border-color 0.3s ease-in-out;
@@ -562,8 +365,10 @@ body {
 
 /* สีพื้นหลัง popup*/
 .modal-content {
-  background-color: #E09030; /* สีส้มโทนอุ่น */
-  border-radius: 10px; /* ทำให้ขอบโค้งมน */
+  background-color: #E09030;
+  /* สีส้มโทนอุ่น */
+  border-radius: 10px;
+  /* ทำให้ขอบโค้งมน */
   padding: 20px;
 }
 
@@ -574,42 +379,47 @@ body {
   text-align: center;
   font-size: 18px;
 }
+
 /* Style for the "More details" label */
 label.text-white {
   font-weight: bold;
   font-size: 16px;
-  margin-top: 20px; 
+  margin-top: 20px;
 }
 
 
 textarea.form-control {
   border-radius: 8px;
-  padding: 12px; 
+  padding: 12px;
   font-size: 14px;
-  margin-top: 15px; 
-  background-color: #f8f9fa; 
-  border: 2px solid #ced4da; 
-  transition: border 0.3s ease; 
+  margin-top: 15px;
+  background-color: #f8f9fa;
+  border: 2px solid #ced4da;
+  transition: border 0.3s ease;
 }
 
 /* Focus state for textarea */
 textarea.form-control:focus {
-  border-color: #E09030; /* Highlight the border color when focused */
-  box-shadow: 0 0 5px rgba(244, 162, 97, 0.5); /* Add shadow for focus effect */
+  border-color: #E09030;
+  /* Highlight the border color when focused */
+  box-shadow: 0 0 5px rgba(244, 162, 97, 0.5);
+  /* Add shadow for focus effect */
 }
 
 
 /* ปรับแต่งปุ่มส่ง */
 .modal-footer {
   display: flex;
-  justify-content: center; /* Centers the button horizontally */
+  justify-content: center;
+  /* Centers the button horizontally */
 }
 
 .modal-footer .btn {
   background-color: white;
   color: #E09030;
   font-weight: bold;
-  width: 120px; /* Set the desired width */
+  width: 120px;
+  /* Set the desired width */
   padding: 10px 20px;
   font-size: 16px;
   border-radius: 8px;
@@ -630,8 +440,10 @@ textarea.form-control:focus {
 
 /* กำหนดสไตล์ของปุ่มปิด */
 .modal-header .btn-close {
-  filter: invert(1); /* ทำให้ปุ่มปิดเป็นสีขาว */
+  filter: invert(1);
+  /* ทำให้ปุ่มปิดเป็นสีขาว */
 }
+
 .image-icon {
   width: 80px;
   height: 80px;
@@ -641,7 +453,8 @@ textarea.form-control:focus {
   align-items: center;
   justify-content: center;
   position: relative;
-  top: 10px; /* ลอยขึ้นไปด้านบน */
+  top: 10px;
+  /* ลอยขึ้นไปด้านบน */
   left: 50%;
   transform: translateX(-50%);
   border: 3px solid white;
@@ -653,482 +466,27 @@ textarea.form-control:focus {
 }
 
 .modal-content {
-  width: 100%; /* ให้ขยายเต็ม Modal */
-  max-width: 500px; /* กำหนดขนาดสูงสุดของ Modal */
-  margin: auto; /* จัดให้อยู่ตรงกลาง */
+  width: 100%;
+  /* ให้ขยายเต็ม Modal */
+  max-width: 500px;
+  /* กำหนดขนาดสูงสุดของ Modal */
+  margin: auto;
+  /* จัดให้อยู่ตรงกลาง */
 }
 
 .modal-body input,
 .modal-body select,
 .modal-body textarea {
   width: 100%;
-  max-width: 300px; 
+  max-width: 300px;
   margin: auto;
   display: block;
 }
 
 .modal-body label.text-white {
-  font-size: 18px; 
-  display: block; 
-  margin-top: 30px; 
+  font-size: 18px;
+  display: block;
+  margin-top: 30px;
   margin-bottom: 10px;
   margin-left: 70px;
-}
-
-
-/* adopt popup----------------------------------------------*/
-
-#adopt-popup {
-  display: none;
-  text-align: center;
-  width: 100%;
-  max-width: 600px;
-  min-height: 435px;
-  margin: auto;
-  background-color: white;
-  border-radius: 16px;
-  box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.6);
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  z-index: 99999;
-}
-
-.close-btn {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  font-size: 30px;
-  color: #E09030;
-  cursor: pointer;
-}
-
-.close-btn:hover{
-  transform: scale(1.1);
-}
-
-.adopt-button{
-  background-color: #E09030;
-  color: white;
-  border: 0;
-  border-radius: 5px;
-  width: 90px;
-  height: 40px;
-  margin-bottom: 15px;
-  transition: transform 0.3s ease-in-out;
-  box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.4);
-}
-
-.adopt-button:hover{
-  border: 2px solid #E09030;
-  color: #E09030;
-  background-color: white;
-  transform: scale(1.1) rotate(3deg);
-  transition: transform 0.3s ease-in-out;
-
-}
-
-.header-section{
-  padding: 25px 0px;
-}
-.header-section h1{
-  font-weight: 500;
-  font-size: 1.7rem;
-  text-transform: uppercase;
-  color: #E09030;
-  margin: 0;
-  margin-bottom: 8px;
-}
-.header-section p{
-  margin: 5px;
-  font-size: 0.95rem;
-  color: #E09030;
-}
-
-.drop-section{
-  min-height: 250px;
-  border: 1px dashed #E09030;
-  background-image: linear-gradient(180deg, whitem #E09030);
-  margin: 5px 35px 35px 35px;
-  border-radius: 12px;
-  position: relative;
-}
-
-.drop-section div.col:first-child{
-  opacity: 1;
-  visibility: visible;
-  transition-duration: 0.2s;
-  transform: scale(1);
-  width: 200px;
-  margin: auto;
-}
-
-.drop-section div.col:last-child{
-  font-size: 40px;
-  font-weight: 700;
-  color:  #E09030;
-  position: absolute;
-  top: 0px;
-  bottom: 0px;
-  left: 0px;
-  right: 0px;
-  margin: auto;
-  width: 200px;
-  height: 55px;
-  pointer-events: none;
-  opacity: 0;
-  visibility: hidden;
-  transform: scale(0.6);
-  transition-duration: 0.2s;
-}
-.drag-over-effect div.col:first-child{
-  opacity: 0;
-  visibility: hidden;
-  pointer-events: none;
-  transform: scale(1.1);
-}
-.drag-over-effect div.col:last-child{
-  opacity: 1;
-  visibility: visible;
-  transform: scale(1);
-}
-
-.drop-section .cloud-icon{
-  margin-top: 25px;
-  margin-bottom: 20px;
-}
-.drop-section span,
-.drop-section button{
-  display: block;
-  margin: auto;
-  color: #E09030;
-  margin-bottom: 10px;
-}
-.drop-section button{
-  color: white;
-  background-color: #E09030;
-  border: none;
-  outline: none;
-  padding: 7px 20px;
-  border-radius: 8px;
-  margin-top: 20px;
-  cursor: pointer;
-  box-shadow: rgba(50,50,93,0.25);
-  transition: transform 0.3s ease-in-out;
-}
-
-.drop-section button:hover{
-  color: #E09030;
-  background-color: white;
-  border: 2px solid #E09030;
-  transform: scale(1.1);
-  transition: transform 0.3s ease-in-out;
-  
-}
-.drop-section input{
-  display: none;
-}
-
-.list-section{
-  display: none;
-  text-align: left;
-  margin: 0px 35px;
-  padding-bottom: 20px;
-}
-.list-section .list-title{
-  font-size: 0.95rem;
-  color: #E09030
-}
-.list-section li{
-  display: flex;
-  margin: 15px 0px;
-  padding-top: 4px;
-  padding-bottom: 2px;
-  border-radius: 8px;
-  transition-duration: 0.2s;
-}
-.list-section li:hover{
-  box-shadow: #E3EAF9 0px 0px 4px 0px, #E3EAF9 0px 12px 16px 0px;
-}
-.list-section li .col{
-  flex: .1;
-}
-
-.list-section li .col:nth-child(1){
-  flex: .15;
-  text-align: center;
-}
-.list-section li .col:nth-child(2){
-  flex: .75;
-  text-align: left;
-  font-size: 0.9rem;
-  color: #3e4046;
-  padding: 8px 10px;
-}
-
-.list-section li .col:last-child,
-.list-section li .col:first-child {
-  display: flex;
-  justify-content: center; /* จัดกึ่งกลางแนวนอน */
-  align-items: center; /* จัดกึ่งกลางแนวตั้ง */
-}
-.list-section li .col:nth-child(2) div.name{
-  overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis;
-  min-width: 250px;
-  display: inline-block;
-}
-.list-section li .col .file-name span{
-  color: #707EA0;
-  float: right;
-}
-.list-section li .file-progress{
-  width: 100%;
-  height: 5px;
-  margin-top: 8px;
-  border-radius: 8px;
-  background-color: #dee6fd;
-}
-.list-section li .file-progress span{
-  display: block;
-  width: 50%;
-  height: 100%;
-  border-radius: 8px;
-  background-image: linear-gradient(120deg, #6b99fd, #9385ff);
-  transition-duration: 0.4s;
-}
-.list-section li .col .file-size{
-  font-size: 0.75rem;
-  margin-top: 3px;
-  color: black;
-}
-.list-section li .col a.cross,
-.list-section li .col a.trick{
-  fill: #8694d2;
-  background-color: #dee6fd;
-  position: relative;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  border-radius: 50%;
-}
-
-.list-section li.complete span,
-.list-section li.complete .file-progress,
-.list-section li.complete a.cross{
-  display: none;
-}
-
-.list-section li.in-prog .file-size,
-.list-section li.in-prog a.trick{
-  display: block;
-}
-.cross {
-  font-size: 20px; 
-  color: #E09030;
-  cursor: pointer;
-}
-
-/* adopt popup----------------------------------------------*/
-
-
-/* swiper-slide */
-:root {
-  --primary: #E09030;
-  --white: #ffffff;
-  --bg: #f5f5f5;
-}
-
-
-
-/* ปิด Scrollbar Background */
-::-webkit-scrollbar {
-  width: 8px;
-  background: none;
-}
-
-/* ทำให้มีแต่แท่งสีดำ */
-::-webkit-scrollbar-thumb {
-  background: #E09030;
-  border-radius: 4px;
-  border: none;
-}
-
-/* ซ่อน Track ของ Scrollbar */
-::-webkit-scrollbar-track {
-  background: none;
-  border: none;
-}
-
-
-
-.text-center {
-  text-align: center;
-}
-
-.section-heading {
-  font-size: 3rem;
-  color: var(--primary);
-  padding: 2rem 0;
-}
-
-#tranding {
-  padding: 2rem 0;
-}
-
-@media (max-width:1440px) {
-  #tranding {
-    padding: 2rem 0;
-  }
-}
-
-#tranding .tranding-slider {
-  height: 52rem;
-  padding: 2rem 0;
-  position: relative;
-}
-
-@media (max-width:500px) {
-  #tranding .tranding-slider {
-    height: 45rem;
-  }
-}
-
-.tranding-slide {
-  width: 37rem;
-  height: 42rem;
-  position: relative;
-}
-
-@media (max-width:500px) {
-  .tranding-slide {
-    width: 28rem !important;
-    height: 36rem !important;
-  }
-  .tranding-slide .tranding-slide-img img {
-    width: 28rem !important;
-    height: 36rem !important;
-  }
-}
-
-.tranding-slide .tranding-slide-img img {
-  width: 37rem;
-  height: 42rem;
-  border-radius: 2rem;
-  object-fit: cover;
-  box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.6);
-  border: 5px solid #E09030;
-}
-
-.tranding-slide .tranding-slide-content {
-  position: absolute;
-  left: 0;
-  top: 0;
-  right: 0;
-  bottom: 0;
-}
-
-.tranding-slide-content .food-price {
-  position: absolute;
-  top: 2rem;
-  right: 2rem;
-  color: var(--white);
-}
-
-.tranding-slide-content .tranding-slide-content-bottom {
-  position: absolute;
-  bottom: 2rem;
-  left: 2rem;
-  color: var(--white);
-}
-
-.food-rating {
-  padding-top: 1rem;
-  display: flex;
-  gap: 1rem;
-}
-
-.rating ion-icon {
-  color: var(--primary);
-}
-
-.swiper-slide-shadow-left,
-.swiper-slide-shadow-right {
-  display: none;
-}
-
-.tranding-slider-control {
-  position: relative;
-  bottom: 2rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.tranding-slider-control .swiper-button-next {
-  left: 58% !important;
-  transform: translateX(-58%) !important;
-}
-
-@media (max-width:990px) {
-  .tranding-slider-control .swiper-button-next {
-    left: 70% !important;
-    transform: translateX(-70%) !important;
-  }
-}
-
-@media (max-width:450px) {
-  .tranding-slider-control .swiper-button-next {
-    left: 80% !important;
-    transform: translateX(-80%) !important;
-  }
-}
-
-@media (max-width:990px) {
-  .tranding-slider-control .swiper-button-prev {
-    left: 30% !important;
-    transform: translateX(-30%) !important;
-  }
-}
-
-@media (max-width:450px) {
-  .tranding-slider-control .swiper-button-prev {
-    left: 20% !important;
-    transform: translateX(-20%) !important;
-  }
-}
-
-.tranding-slider-control .slider-arrow {
-  background: var(--white);
-  width: 3.5rem;
-  height: 3.5rem;
-  border-radius: 50%;
-  left: 42%;
-  transform: translateX(-42%);
-  filter: drop-shadow(0px 8px 24px rgba(18, 28, 53, 0.1));
-}
-
-.tranding-slider-control .slider-arrow ion-icon {
-  font-size: 2rem;
-  color: #222224;
-}
-
-.tranding-slider-control .slider-arrow::after {
-  content: '';
-}
-
-.tranding-slider-control .swiper-pagination {
-  position: relative;
-  width: 15rem;
-  bottom: 1rem;
-}
-
-.tranding-slider-control .swiper-pagination .swiper-pagination-bullet {
-  filter: drop-shadow(0px 8px 24px rgba(18, 28, 53, 0.1));
-}
-
-.tranding-slider-control .swiper-pagination .swiper-pagination-bullet-active {
-  background: var(--primary);
 }
