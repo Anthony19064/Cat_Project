@@ -106,63 +106,142 @@ body {
     box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.4);
 }
 
-
-
-
-
-/* sidebar */
+/* ปรับ Sidebar */
 .sidebar {
-    position: fixed;
-    top: 0;
-    right: -300px;
-    width: 300px;
-    height: 100%;
-    background: #E09030;
-    box-shadow: -2px 0 10px rgba(0, 0, 0, 0.2);
-    transition: right 0.3s ease-in-out;
-    padding: 20px;
-    color: white;
-    overflow-y: auto;
-    z-index: 1000; /* ทำให้ sidebar อยู่ด้านบน */
+  position: fixed;
+  top: 0;
+  right: -320px;
+  width: 320px;
+  height: 100%;
+  background: #E09030;
+  box-shadow: -2px 0 10px rgba(0, 0, 0, 0.2);
+  transition: right 0.3s ease-in-out;
+  padding: 20px;
+  color: white;
+  overflow-y: auto;
+  border-radius: 10px 0 0 10px;
+  z-index: 1000;
 }
 
 .sidebar.active {
-    right: 0;
+  right: 0;
 }
 
+/* ปุ่มปิด (X) */
 .sidebar .close-btn {
-    background: none;
-    border: none;
-    font-size: 20px;
-    color: white;
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    cursor: pointer;
+  background: none;
+  border: none;
+  font-size: 22px;
+  font-weight: bold;
+  color: white;
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  cursor: pointer;
 }
 
+.sidebar .close-btn i {
+  transition: transform 0.2s;
+}
+
+.sidebar .close-btn:hover i {
+  transform: scale(1.2);
+}
+
+/* Username Section */
+.username-side {
+  font-size: 22px;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 15px;
+  padding: 10px;
+  border-bottom: 2px solid rgba(255, 255, 255, 0.5);
+}
+
+.sidebar h4 {
+  position: relative;
+  padding-top: 15px;
+  margin-top: 15px;
+  font-size: 18px;
+  font-weight: bold;
+  text-align: center;
+}
+
+/* เส้นบน */
+.sidebar h4::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: rgba(255, 255, 255, 0.5);
+}
+
+
+.username-side i {
+  margin-right: 10px;
+}
+
+/* เมนูใน Sidebar */
 .sidebar ul {
-    list-style: none;
-    padding: 0;
+  list-style: none;
+  padding: 0;
 }
 
 .sidebar ul li {
-    margin: 10px 0;
+  margin: 15px 0;
 }
 
 .sidebar ul li a {
-    color: white;
-    text-decoration: none;
-    display: block;
-    padding: 5px;
+  color: white;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  font-size: 16px;
+  font-weight: bold;
+  border-radius: 5px;
+  gap: 10px;
 }
 
-.notification {
-    background: #fff;
-    padding: 10px;
-    border-radius: 10px;
-    color: black;
+.sidebar ul li a i {
+  font-size: 18px;
 }
+
+.sidebar ul li a:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+/* ส่วนแจ้งเตือน */
+.notification {
+  margin-top: 15px;
+  padding: 10px;
+  background: rgba(255, 255, 255, 0.185);
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  overflow-y: auto;
+  max-height: 300px;
+  border: 1px solid white;
+}
+
+.notification p {
+  background: #da923a;
+  color: white;
+  padding: 8px;
+  border-radius: 5px;
+  margin: 5px 0;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.notification p i {
+  font-size: 18px;
+  color: #ffffff;
+}
+
 
 .btn-if {
     background-color: transparent;
