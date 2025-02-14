@@ -1,0 +1,422 @@
+body {
+  background-color: #f4f4f4;
+}
+
+.navbar {
+  background: linear-gradient(to right, #cfa457, #d9a85b);
+}
+
+.search-container {
+  max-width: 600px;
+  margin: auto;
+}
+
+.search-bar {
+  border-radius: 25px;
+  padding: 10px 15px;
+}
+
+.cat-card {
+  
+  background: linear-gradient(to bottom, #d6b877, #e2a82d);
+  border-radius: 15px;
+  padding: 15px;
+  box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.4);
+  max-width: 650px;
+  height: 250px;
+  margin: auto;
+  border: 3px solid white;
+}
+
+.cat-img {
+  width: 140px;
+  height: 140px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 4px solid white;
+  box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.4);
+}
+
+/* sidebar */
+.sidebar {
+  position: fixed;
+  top: 0;
+  right: -300px;
+  width: 300px;
+  height: 100%;
+  background: #c69c6d;
+  box-shadow: -2px 0 10px rgba(0, 0, 0, 0.2);
+  transition: right 0.3s ease-in-out;
+  padding: 20px;
+  color: white;
+  overflow-y: auto;
+}
+
+.sidebar.active {
+  right: 0;
+}
+
+.sidebar .close-btn {
+  background: none;
+  border: none;
+  font-size: 20px;
+  color: white;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  cursor: pointer;
+}
+
+.sidebar ul {
+  list-style: none;
+  padding: 0;
+}
+
+.sidebar ul li {
+  margin: 10px 0;
+}
+
+.sidebar ul li a {
+  color: white;
+  text-decoration: none;
+  display: block;
+  padding: 5px;
+}
+
+.notification {
+  background: #fff;
+  padding: 10px;
+  border-radius: 10px;
+  color: black;
+}
+.btn-if {
+  background-color: #d9a85b;
+  color: white;
+  border-radius: 20px;
+  border: none;
+}
+.text-user {
+  color: white;
+}
+.btn-if:hover {
+  background-color: #c98621; /* สีเข้มขึ้นเมื่อโฮเวอร์ */
+  transform: scale(1.05); /* ขยายขึ้นเล็กน้อย */
+}
+.carousel-img {
+  width: 800px;
+  height: 500px;
+  object-fit: cover; /* ให้รูปไม่เบี้ยว */
+}
+
+.location {
+  font-size: 40px;
+  font-weight: bold;
+  position: relative;
+  top: -10px;
+  color: white;
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 5px;
+}
+
+.timepost {
+  color: white;
+  position: relative;
+  top: -30px;
+  right: -10px;
+  font-size: 15px;
+  opacity: 80%;
+}
+
+.catname {
+  font-size: 30px;
+  font-weight: bold;
+  margin-left: 30px;
+  color: white;
+  text-shadow: 0px 10px 10px rgba(0, 0, 0, 0.4);
+}
+
+.top-right {
+  margin-left: 35px;
+}
+
+.detail {
+  color: white;
+  position: relative;
+  top: -20px;
+  left: 10px;
+}
+
+.bottom-section {
+  margin: 0;
+  position: relative;
+  top: 10px;
+}
+
+.bt-like {
+  position: relative;
+  border-radius: 15px;
+  width: 80px;
+  height: 40px;
+  border: none;
+  color: red;
+  text-shadow: 0px 5px 10px rgba(255, 0, 0, 0.7);
+  box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.4);
+  left: -13px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.bt-comment {
+  position: relative;
+  border-radius: 15px;
+  width: 70px;
+  height: 40px;
+  border: none;
+  color: #ecb476;
+  text-shadow: 0px 5px 10px rgba(236, 180, 118, 0.7);
+  box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.4);
+  left: -8px;
+}
+
+.bt-bookmark {
+  position: relative;
+  border-radius: 15px;
+  width: 70px;
+  height: 40px;
+  border: none;
+  color: #5686e1;
+  text-shadow: 0px 5px 10px rgba(86, 134, 225, 0.7);
+  box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.4);
+  left: -5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.adopt-btn {
+  font-weight: bold;
+  width: 100px;
+  background-color: white;
+  color: #d9a85b;
+  border-radius: 15px;
+  box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.4);
+}
+
+.adopt-btn:hover {
+  color: white;
+  background-color: #d9a85b;
+  border: 2px solid white;
+}
+
+.cl {
+  position: relative;
+  left: -20px;
+  margin-bottom: 0;
+}
+
+.hicon {
+  position: relative;
+  left: -4px;
+  width: 70px;
+  height: 70px;
+  transform: scale(1);
+}
+
+.hicon:hover {
+  position: relative;
+  left: -4px;
+  width: 70px;
+  height: 70px;
+  transform: scale(1.2);
+}
+
+.social-button {
+  display: flex; /* ใช้ Flexbox เพื่อจัดตำแหน่ง */
+  justify-content: space-between; /* กระจายลูกให้ห่างกัน */
+  align-items: center; /* จัดแนวกลางในแนวตั้ง (ถ้าจำเป็น) */
+}
+
+.bicon {
+  width: 50px;
+  height: 50px;
+  transform: scale(1);
+}
+
+.bicon:hover {
+  width: 50px;
+  height: 50px;
+  transform: scale(1.2);
+}
+.container.mt-4 {
+    margin-top: 20px;  /* Adjust the gap above the profile section */
+    margin-bottom: 30px; /* Add space below the profile box */
+  }
+.user-profile {
+    
+  background: linear-gradient(to bottom, #d6b877, #e2a82d);
+  border-radius: 15px;
+  padding: 15px;
+  gap: 15px;
+  box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.4);
+  max-width: 550px;
+  height: 100px;
+  margin-top: 75px !important;
+  position: relative;
+  border: 3px solid white;
+}
+
+/* Profile picture and name */
+.profile-info {
+  position: absolute;
+  top: -50px;
+  left: 20px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.profile-info img {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  border: 4px solid #fff;
+}
+
+.profile-info h2 {
+  font-size: 18px;
+  color: #333;
+  margin: 0;
+}
+
+.user-profile {
+  display: flex; /* จัดเรียงแนวนอน */
+  justify-content: flex-end; /* ชิดขวา */
+  align-items: center; /* จัดตำแหน่งตรงกลางในแนวตั้ง (ถ้าจำเป็น) */
+  gap: 60px; /* ไม่มีช่องว่างระหว่างปุ่ม */
+  border-radius: 15px; /* มุมโค้งมน */
+  overflow: visible; /* ตัดส่วนเกินออก */
+  max-width: 600px; /* จำกัดความกว้าง */
+  margin: 0 auto; /* จัดให้อยู่กลางหน้าในแนวแกน X */
+  box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2); /* เงา */
+  padding-right: 60px; /* ระยะห่างจากขอบขวา */
+}
+
+/* ลิงก์ใน user-actions */
+.user-profile a {
+  color: white;
+  text-decoration: none;
+  padding: 1px 1px; /* ลด padding ให้เล็กลง */
+  flex: 1;
+  text-align: center;
+  font-weight: bold;
+  position: relative;
+  transition: background 0.3s ease, transform 0.2s ease;
+  max-width: 140px; /* จำกัดความกว้างสูงสุด */
+  font-size: 15px; /* ลดขนาดตัวอักษร */
+}
+
+/* เส้นขาวแนวตั้งระหว่างลิงก์ */
+/* ✅ เส้นคั่นเฉพาะปุ่มที่ไม่ใช่ปุ่มสุดท้าย */
+.user-profile a + a::before {
+  content: "";
+  position: absolute;
+  left: -30px; /* ตำแหน่งเส้นชิดซ้ายของปุ่ม */
+  top: 20%;
+  height: 60%;
+  width: 2px;
+  background-color: white;
+  opacity: 0.8;
+  z-index: 0; /* เส้นอยู่ข้างหลังปุ่ม */
+}
+
+/* ✅ แสดงเส้นเฉพาะปุ่มที่ไม่ใช่ปุ่มสุดท้าย */
+.user-profile a:not(:last-child)::after {
+  display: block; /* แสดงเส้นเฉพาะปุ่มก่อนสุดท้าย */
+}
+
+/* มุมโค้งสำหรับลิงก์แรกและลิงก์สุดท้าย */
+.user-profile a:first-child {
+  border-top-left-radius: 15px;
+  border-bottom-left-radius: 15px;
+}
+
+.user-profile a:last-child {
+  border-top-right-radius: 15px;
+  border-bottom-right-radius: 15px;
+}
+
+/* เอฟเฟกต์เมื่อโฮเวอร์ */
+.user-profile a:hover {
+  background: #c98621; /* สีเข้มขึ้นเมื่อโฮเวอร์ */
+}
+
+/* Edit button */
+.edit-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: transparent;
+  border: none;
+  font-size: 18px;
+  cursor: pointer;
+}
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal-content {
+  background: white;
+  margin: 10% auto;
+  padding: 20px;
+  width: 50%;
+  border-radius: 8px;
+  text-align: center;
+}
+
+.modal-content input,
+.modal-content textarea {
+  width: 100%;
+  padding: 8px;
+  margin: 5px 0;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+.modal-content button {
+  width: 50%;
+  margin-top: 15px;
+}
+
+.close-btn {
+  float: right;
+  font-size: 24px;
+  cursor: pointer;
+}
+.user-name {
+    margin-top: -10px;
+    font-size: 25px;  /* Larger font size */
+    font-weight: bold; /* Bold text */
+    background: linear-gradient(45deg, #ff758c, #ff7eb3); /* Gradient color */
+    -webkit-background-clip: text; /* Clip background to text */
+    -webkit-text-fill-color: transparent; /* Make text gradient */
+    padding: 5px 10px; /* Add padding */
+    border-radius: 5px; /* Soft corners */
+    text-transform: uppercase; /* Make text uppercase */
+    letter-spacing: 1px; /* Add space between letters */
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3); /* Soft text shadow */
+    transition: transform 0.3s ease-in-out, color 0.3s ease-in-out; /* Smooth effect */
+  }
+  
+  .user-name:hover {
+    transform: scale(1.1); /* Slightly enlarge on hover */
+    color: #ffcc00; /* Change color on hover */
+  }
