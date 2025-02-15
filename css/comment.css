@@ -86,30 +86,35 @@
 .commentpop-item {
     display: flex;
     align-items: center;
-    padding: 10px;
-    background: white;
-    margin: 6px 0;
-    border-radius: 13px;
-    font-size: 18px; /* ขยายจาก 16px */
+    padding: 12px 16px;
+    background: #f6f6f6;
+    margin: 10px 0;
+    border-radius: 20px;
+    font-size: 18px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    position: relative; /* ใช้เพื่อให้ img ยึดตามกรอบนี้ */
+    margin-bottom: 30px;
     border: 3px solid #E09030;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.5); /* เงาอ่อน ๆ ข้างใต้ */
-    margin-bottom: 20px;
 }
 
 
 .commentpop-item img {
-    width: 50px; /* ขยายจาก 40px */
-    height: 50px;
+    width: 60px;
+    height: 60px;
     border-radius: 50%;
-    margin-right: 12px;
+    position: absolute;
+    top: -30px;  /* ดันขึ้นให้ทับขอบ */
+    right: 400px; 
     border: 3px solid #E09030;
 }
-
 .commentpop-item p {
     flex: 1;
-    text-align: left;
+    margin-left: -50px; /* ขยับข้อความให้ไม่ชนกับภาพ */
+    font-weight: bold;
+    font-size:25px;
+    margin-top: 5px;
+    
 }
-
 /* กล่องพิมพ์ความคิดเห็น */
 .commentpop-input {
     display: flex;
