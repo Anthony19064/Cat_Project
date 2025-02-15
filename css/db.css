@@ -1,69 +1,413 @@
-body {
-    background-color:antiquewhite;
-    display: flex;
-    justify-content: center; /* จัดตำแหน่งในแนวนอนให้กลาง */
-    align-items: center; /* จัดตำแหน่งในแนวตั้งให้กลาง */
-    margin: 0; /* ลบ margin ที่มีค่าเริ่มต้น */
-    flex-direction: column; /* จัดให้เนื้อหาทั้งหมดในแนวตั้ง */
-    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
-}
-
-#user{
-    font-size: 100px;
-}
-
-#img_account{
-    border-radius: 50%;
-    margin-bottom: 15px;
-    border: 8px solid white;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-
-}
-
-
-
-.card{
-    margin: 10px;
-    border: 2px solid white;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-}
-
-.card-img-top{
-    height: 200px;
-}
-
-#catList{
-    display: flex;
-}
-
-.popup {
-    display: none;
-    position: fixed;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.5);
-    justify-content: center;
-    align-items: center;
-    z-index: 9999;
-}
-
-.popup-content {
-    background: white;
-    padding: 20px;
-    border-radius: 10px;
-    text-align: left;
-    position: relative;
-    z-index: 10000;
-}
-
-.popup-content ul {
+.container {
+    max-width: 124rem;
+    padding: 0 1rem;
+    margin: 0 auto;
+  }
+  
+  .navbar {
+    background-color: transparent;
     padding: 0;
-    list-style-type: none;
-}
-
-.popup-content li {
-    padding: 5px 0;
-    border-bottom: 1px solid #ddd;
-}
+    margin-top: 6px;
+  }
+  
+  .nav-c {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-left: 20px;
+    padding-right: 20px;
+    margin: 0;
+    width: 100%;
+  }
+  
+  .logo {
+    color: #E09030;
+    font-size: 30px;
+    font-weight: bold;
+  }
+  
+  
+  
+  
+  
+  .login-btn {
+    font-weight: bold;
+    width: 100px;
+    background-color: white;
+    color: #E09030;
+    border-radius: 15px;
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.4);
+  }
+  
+  .login-btn:hover {
+    color: white;
+    background-color: #E09030;
+    border: 2px solid white;
+  }
+  
+  .account-btn {
+    background-color: transparent;
+  }
+  
+  .account-btn:hover {
+    background-color: transparent;
+  }
+  
+  .account-btn:hover .img-user {
+    border-color: white;
+    /* เปลี่ยนขอบรูปภาพเป็นสีขาวเมื่อเมาส์จ่อที่ปุ่ม */
+    transform: scale(1.3) rotate(10deg);
+    transition: transform 0.3s ease-in-out;
+  }
+  
+  .img-user {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    border: 3px solid #E09030;
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.4);
+    transition: transform 0.3s ease-in-out, border-color 0.3s ease-in-out;
+  }
+  
+  
+  
+  
+  body {
+    background-color: #f4f4f4;
+  }
+  
+  .search-container {
+    max-width: 600px;
+    margin: auto;
+  }
+  
+  .search-bar {
+    border-radius: 25px;
+    padding: 10px 15px;
+  }
+  
+  
+  
+  
+  @keyframes fadeInUp {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  
+  
+  /* sidebar */
+  .sidebar {
+    position: fixed;
+    top: 0;
+    right: -300px;
+    width: 300px;
+    height: 100%;
+    background: #E09030;
+    box-shadow: -2px 0 10px rgba(0, 0, 0, 0.2);
+    transition: right 0.3s ease-in-out;
+    padding: 20px;
+    color: white;
+    overflow-y: auto;
+    z-index: 1000;
+    /* ทำให้ sidebar อยู่ด้านบน */
+  }
+  
+  .sidebar.active {
+    right: 0;
+  }
+  
+  .sidebar .close-btn {
+    background: none;
+    border: none;
+    font-size: 20px;
+    color: white;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+  }
+  
+  .sidebar ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .sidebar ul li {
+    margin: 10px 0;
+  }
+  
+  .sidebar ul li a {
+    color: white;
+    text-decoration: none;
+    display: block;
+    padding: 5px;
+  }
+  
+  .notification {
+    background: #fff;
+    padding: 10px;
+    border-radius: 10px;
+    color: black;
+  }
+  
+  
+  /* search-popup */
+  
+  .custom-search-modal {
+    background: #E09030;
+    border-radius: 15px;
+    padding: 20px;
+    color: white;
+    font-family: 'Poppins', sans-serif;
+    border: 3px solid white;
+  }
+  
+  .search-modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: none;
+  }
+  
+  .search-modal-title {
+    font-size: 22px;
+    font-weight: bold;
+    text-transform: lowercase;
+    text-decoration: underline;
+  }
+  
+  .search-close-btn {
+    background: none;
+    border: none;
+    font-size: 28px;
+    color: white;
+    cursor: pointer;
+  }
+  
+  .serach-filter-section {
+    margin-bottom: 15px;
+  }
+  
+  .serach-filter-section h3 {
+    font-size: 16px;
+    text-transform: lowercase;
+    margin-bottom: 5px;
+  }
+  
+  .serach-filter-section label {
+    display: inline-block;
+    margin-right: 10px;
+    font-size: 14px;
+  }
+  
+  .search-modal-footer {
+    display: flex;
+    justify-content: center;
+    border-top: none;
+  }
+  
+  .search-btn,
+  .reset-btn {
+    padding: 8px 20px;
+    font-size: 16px;
+    border-radius: 8px;
+    text-transform: lowercase;
+    cursor: pointer;
+    border: none;
+  }
+  
+  .search-btn {
+    background: white;
+    color: #d7a24f;
+    margin-right: 10px;
+  }
+  
+  .reset-btn {
+    background: #f4f4f4;
+    color: #d7a24f;
+  }
+  
+  
+  /* กำหนดการเคลื่อนไหวเมื่อคลิกปุ่ม */
+  #filter-btn:active {
+    transform: scale(0.9);
+    /* ขยายปุ่มเล็กน้อยเมื่อคลิก */
+    transition: transform 0.2s ease;
+  }
+  
+  /* เอฟเฟกต์การหมุน */
+  #filter-btn.clicked {
+    animation: rotateAnimation 0.5s ease forwards;
+  }
+  
+  @keyframes rotateAnimation {
+    0% {
+      transform: rotate(0deg);
+    }
+  
+    100% {
+      transform: rotate(180deg);
+    }
+  }
+  
+  
+  
+  /* add-posT */
+  #se-btn {
+    width: 45px;
+    /* ปรับขนาดตามต้องการ */
+    height: 45px;
+    top: 3px;
+    font-size: auto;
+    border-radius: 50%;
+    background-color: white;
+    /* สีทอง (สามารถเปลี่ยนได้) */
+    color: #E09030;
+    /* สีไอคอน */
+    margin-left: 20px;
+    /* จัดให้อยู่ด้านขวาสุด */
+    border: 3px solid #E09030;
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.6);
+    transition: transform 0.3s ease-in-out, border-color 0.3s ease-in-out;
+  }
+  
+  #se-btn:hover {
+    color: white;
+    border: 3px solid white;
+    background-color: #E09030;
+    transform: scale(1.2) rotate(10deg);
+    transition: transform 0.3s ease-in-out, border-color 0.3s ease-in-out;
+  
+  }
+  
+  
+  /* สีพื้นหลัง popup*/
+  .modal-content {
+    background-color: #E09030;
+    /* สีส้มโทนอุ่น */
+    border-radius: 10px;
+    /* ทำให้ขอบโค้งมน */
+    padding: 20px;
+  }
+  
+  /* สไตล์ของหัวข้อ modal */
+  .modal-title {
+    color: white;
+    font-weight: bold;
+    text-align: center;
+    font-size: 18px;
+  }
+  
+  /* Style for the "More details" label */
+  label.text-white {
+    font-weight: bold;
+    font-size: 16px;
+    margin-top: 20px;
+  }
+  
+  
+  textarea.form-control {
+    border-radius: 8px;
+    padding: 12px;
+    font-size: 14px;
+    margin-top: 15px;
+    background-color: #f8f9fa;
+    border: 2px solid #ced4da;
+    transition: border 0.3s ease;
+  }
+  
+  /* Focus state for textarea */
+  textarea.form-control:focus {
+    border-color: #E09030;
+    /* Highlight the border color when focused */
+    box-shadow: 0 0 5px rgba(244, 162, 97, 0.5);
+    /* Add shadow for focus effect */
+  }
+  
+  
+  /* ปรับแต่งปุ่มส่ง */
+  .modal-footer {
+    display: flex;
+    justify-content: center;
+    /* Centers the button horizontally */
+  }
+  
+  .modal-footer .btn {
+    background-color: white;
+    color: #E09030;
+    font-weight: bold;
+    width: 120px;
+    /* Set the desired width */
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 8px;
+    transition: 0.3s;
+  }
+  
+  
+  .modal-footer .btn:hover {
+    background-color: #e76f51;
+    color: white;
+  }
+  
+  .btn-close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+  }
+  
+  /* กำหนดสไตล์ของปุ่มปิด */
+  .modal-header .btn-close {
+    filter: invert(1);
+    /* ทำให้ปุ่มปิดเป็นสีขาว */
+  }
+  
+  .image-icon {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background-color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    top: 10px;
+    /* ลอยขึ้นไปด้านบน */
+    left: 50%;
+    transform: translateX(-50%);
+    border: 3px solid white;
+  }
+  
+  .image-icon i {
+    font-size: 40px;
+    color: #E09030;
+  }
+  
+  .modal-content {
+    width: 100%;
+    /* ให้ขยายเต็ม Modal */
+    max-width: 500px;
+    /* กำหนดขนาดสูงสุดของ Modal */
+    margin: auto;
+    /* จัดให้อยู่ตรงกลาง */
+  }
+  
+  .modal-body input,
+  .modal-body select,
+  .modal-body textarea {
+    width: 100%;
+    max-width: 300px;
+    margin: auto;
+    display: block;
+  }
+  
+  .modal-body label.text-white {
+    font-size: 18px;
+    display: block;
+    margin-top: 30px;
+    margin-bottom: 10px;
+    margin-left: 70px;
+  }

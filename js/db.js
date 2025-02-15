@@ -1,6 +1,6 @@
 // Import Firebase SDK from CDN
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.17.2/firebase-app.js";
-import { getFirestore, collection, getDocs, addDoc, where, query, setDoc, serverTimestamp, deleteDoc, doc } from "https://www.gstatic.com/firebasejs/9.17.2/firebase-firestore-lite.js";
+import { getFirestore, collection, getDocs, addDoc, where, query, setDoc, serverTimestamp, deleteDoc, doc, updateDoc, increment } from "https://www.gstatic.com/firebasejs/9.17.2/firebase-firestore-lite.js";
 import { getStorage, ref, uploadBytes, getDownloadURL } from "https://www.gstatic.com/firebasejs/9.17.2/firebase-storage.js";
 import { DotLottie } from "https://cdn.jsdelivr.net/npm/@lottiefiles/dotlottie-web/+esm";
 
@@ -66,6 +66,11 @@ async function search_statelike(username, postId) {
 }
 
 async function addStateLike(username, postID) {
+  const postRef = doc(db, "Post", postID);
+  await updateDoc(postRef, {
+    countLike: increment(1)
+  })
+
   const docRef = await addDoc(collection(db, "state-like"), {
     user: username,
     post_id: postID,
@@ -74,6 +79,11 @@ async function addStateLike(username, postID) {
 }
 
 async function deleteStateLike(username, postID) {
+  const postRef = doc(db, "Post", postID);
+  await updateDoc(postRef, {
+    countLike: increment(-1)
+  })
+
   const stateRef = collection(db, 'state-like');
   let q = query(stateRef, where("user", "==", username), where("post_id", "==", postID));
   let querySnapshot = await getDocs(q);
@@ -173,13 +183,31 @@ export async function search_account(username) {
   }
 }
 
+export async function search_post(postId) {
+  if (postId) {
+    try {
+      const postRef = collection(db, "Post");
+      let q = query(postRef, where("id", "==", postId));
+      let querySnapshot = await getDocs(q);
+      if (querySnapshot) {
+        const postData = querySnapshot.docs[0].data();
+        return postData;
+      }
+    } catch (e) {
+      console.error("Error searching account:", e);
+    }
+  }
+}
+
 // ฟังก์ชันเพื่ออัปโหลดไฟล์รูป
 export async function uploadImage(file) {
-  const storageRef = ref(storage, `profile_images/${file.name}`);
+  const timestamp = Date.now();  // ใช้เวลาปัจจุบันในรูปแบบ millisecond
+  const storageRef = ref(storage, `profile_images/${timestamp}_${file.name}`);
   await uploadBytes(storageRef, file);
   const imageUrl = await getDownloadURL(storageRef);
   return imageUrl;
 }
+
 
 
 export async function register(username, phone, password, name, mail, contract, imageFile) {
@@ -257,228 +285,260 @@ export async function displayPosts() {
 
   posts.forEach(async post => {
 
+    if (post.status == true) {
+      const timepost = timeAgo(post.time.toDate());
 
-    const timepost = timeAgo(post.time.toDate());
-
-    let cat_sex = '';
-    if (post.sex == 'Male') {
-      cat_sex = '♂';
-    }
-    else {
-      cat_sex = '♀';
-    }
-    // Create the card container
-    const card = document.createElement('div');
-    card.classList.add('card', 'cat-card', 'mb-3');
-
-    // Create a flex container for image and details
-    const cardContent = document.createElement('div');
-    cardContent.classList.add('d-flex', 'align-items-center');
-
-    // Create the image
-    const img = document.createElement('img');
-    img.classList.add('cat-img', 'me-3');
-    img.src = post.img;
-    img.alt = post.catname;
-
-    // Create the text container
-    const textContainer = document.createElement('div');
-    textContainer.classList.add('top-right')
-    const ownerName = document.createElement('p');
-    ownerName.classList.add('location');
-    ownerName.textContent = post.location; // Update as needed
-
-    const time = document.createElement('p');
-    time.classList.add('timepost', 'mb-1');
-    time.textContent = timepost;
-
-    const details = document.createElement('p');
-    details.classList.add('detail', 'mb-0');
-    details.textContent = post.details;
-
-    textContainer.appendChild(ownerName);
-    textContainer.appendChild(time);
-    textContainer.appendChild(details);
-
-    cardContent.appendChild(img);
-    cardContent.appendChild(textContainer);
-
-    // Create the bottom section
-    const bottomSection = document.createElement('div');
-    bottomSection.classList.add('bottom-section', 'd-flex', 'justify-content-between', 'align-items-center', 'mt-3');
-
-    const catInfo = document.createElement('p');
-    catInfo.classList.add('catname');
-    catInfo.textContent = `${post.catname} ${cat_sex}`;
-
-    const statsContainer = document.createElement('div');
-    statsContainer.classList.add('social-button');
-
-    const heartSpan = document.createElement('button');
-    heartSpan.classList.add('bt-like', 'me-2');
-
-    // สร้าง Canvas element เพื่อแสดงแอนิเมชัน
-    const canvas_like = document.createElement('canvas');
-    canvas_like.classList.add('hicon');
-
-    const countLike = document.createElement('p');
-    countLike.classList.add('cl');
-    countLike.textContent = '2.8k';
-
-    // เพิ่ม canvas และข้อความลงใน heartSpan
-    heartSpan.appendChild(canvas_like);
-    heartSpan.appendChild(countLike);
-
-    // ใช้ DotLottie เพื่อโหลดและเล่นแอนิเมชัน
-
-
-    const lottie_heart = new DotLottie({
-      autoplay: false,
-      loop: false,
-      canvas: canvas_like,
-      src: "https://lottie.host/14f6d19a-b5e8-46eb-b748-7ac4d1bcb8a1/4j7NhgL0U9.lottie",
-    });
-
-    statsContainer.appendChild(heartSpan);
-
-
-
-    //----------------------------------------------------------------------------   
-    const commentSpan = document.createElement('button');
-    commentSpan.classList.add('bt-comment', 'me-2');
-    commentSpan.innerHTML = '<i class="fa-solid fa-comment"></i> 200';
-    statsContainer.appendChild(commentSpan);
-
-    //----------------------------------------------------------------------------
-
-    const bookSpan = document.createElement('button');
-    bookSpan.classList.add('bt-bookmark', 'me-2');
-
-    // สร้าง Canvas element เพื่อแสดงแอนิเมชัน
-    const canvas_book = document.createElement('canvas');
-    canvas_book.classList.add('canBook');
-    canvas_book.classList.add('bicon');
-
-    // เพิ่ม canvas และข้อความลงใน heartSpan
-    bookSpan.appendChild(canvas_book);
-
-    // ใช้ DotLottie เพื่อโหลดและเล่นแอนิเมชัน
-    const lottie_book = new DotLottie({
-      autoplay: false,
-      loop: false,
-      canvas: canvas_book,
-      src: "https://lottie.host/1f94b5ed-8b25-426e-bbb9-05903fd9c233/8DHFiqpwUI.lottie",
-    });
-
-    statsContainer.appendChild(bookSpan);
-
-    //----------------------------------------------------------------//
-
-    Promise.all([
-      new Promise(resolve => lottie_heart.addEventListener("load", resolve)),
-      new Promise(resolve => lottie_book.addEventListener("load", resolve))
-
-
-    ]).then(async () => {
-      // เช็คว่ามีการ Login ไหม ถ้ามีค่อยเรียกฟังก์ชั่น ไม่งั้นค่าเป็น null แล้วฟังก์ชั่นแจ้ง error
-      let user = sessionStorage.getItem("user");
-      if (user) {
-        const account = await search_account(user);
-        let bs_check = await search_statelike(account.username, post.id); // ตรวจสอบสถานะ like ก่อน
-        if (bs_check) {
-          lottie_heart.setFrame(lottie_heart.totalFrames - 1);
-        } else {
-          lottie_heart.setFrame(0);
-        }
-
-        lottie_heart.addEventListener("load", async () => {
-          // การทำงานเพิ่มเติมหลังจากที่แอนิเมชัน heart โหลดเสร็จ
-        });
-
-        let bh_state = bs_check;  // เก็บสถานะของการ like เพื่อใช้งานในการคลิก
-        heartSpan.addEventListener("click", async () => {
-          if (!bh_state) {
-            lottie_heart.setMode("forward");
-            lottie_heart.play();
-            await addStateLike(account.username, post.id);
-            bh_state = true;
-          } else {
-            lottie_heart.setFrame(lottie_heart.totalFrames - 30);
-            lottie_heart.setMode("reverse");
-            lottie_heart.play();
-            await deleteStateLike(account.username, post.id);
-            bh_state = false;
-          }
-        });
-
-        let bs_check_book = await search_stateBook(account.username, post.id); // ตรวจสอบสถานะ bookmark ก่อน
-        if (bs_check_book) {
-          lottie_book.setFrame(lottie_book.totalFrames - 1);
-        } else {
-          lottie_book.setFrame(0);
-        }
-
-        let bb_state = bs_check_book;  // เก็บสถานะของการ bookmark เพื่อใช้งานในการคลิก
-        bookSpan.addEventListener("click", async () => {
-          if (!bb_state) {
-            lottie_book.setMode("forward");
-            lottie_book.play();
-            await addStateBook(account.username, post.id);
-            bb_state = true;
-          } else {
-            lottie_book.setFrame(lottie_book.totalFrames - 30);
-            lottie_book.setMode("reverse");
-            lottie_book.play();
-            await deleteStateBook(account.username, post.id);
-            bb_state = false;
-          }
-        });
+      let cat_sex = '';
+      if (post.sex == 'Male') {
+        cat_sex = '♂';
       }
+      else {
+        cat_sex = '♀';
+      }
+      // Create the card container
+      const card = document.createElement('div');
+      card.classList.add('card', 'cat-card', 'mb-3');
+
+      // Create a flex container for image and details
+      const cardContent = document.createElement('div');
+      cardContent.classList.add('top-section', 'd-flex', 'align-items-center');
+
+      // Create the image
+      const img = document.createElement('img');
+      img.classList.add('cat-img', 'me-3');
+      img.src = post.img;
+      img.alt = post.catname;
+
+      // Create the text container
+      const textContainer = document.createElement('div');
+      textContainer.classList.add('top-right')
+      const ownerName = document.createElement('p');
+      ownerName.classList.add('location');
+      ownerName.textContent = post.location; // Update as needed
+
+      const time = document.createElement('p');
+      time.classList.add('timepost', 'mb-1');
+      time.textContent = timepost;
+
+      const details = document.createElement('p');
+      details.classList.add('detail', 'mb-0');
+      details.textContent = post.details;
+
+      textContainer.appendChild(ownerName);
+      textContainer.appendChild(time);
+      textContainer.appendChild(details);
+
+      cardContent.appendChild(img);
+      cardContent.appendChild(textContainer);
+
+      // Create the bottom section
+      const bottomSection = document.createElement('div');
+      bottomSection.classList.add('bottom-section', 'd-flex', 'justify-content-between', 'align-items-center');
+
+      const catInfo = document.createElement('p');
+      catInfo.classList.add('catname');
+      catInfo.textContent = `${post.catname} ${cat_sex}`;
+
+      const statsContainer = document.createElement('div');
+      statsContainer.classList.add('social-button');
+
+      const heartSpan = document.createElement('button');
+      heartSpan.classList.add('bt-like', 'me-2');
+
+      // สร้าง Canvas element เพื่อแสดงแอนิเมชัน
+      const canvas_like = document.createElement('canvas');
+      canvas_like.classList.add('hicon');
+
+      const countLike = document.createElement('p');
+      countLike.classList.add('cl');
+      countLike.textContent = post.countLike;
+
+      // เพิ่ม canvas และข้อความลงใน heartSpan
+      heartSpan.appendChild(canvas_like);
+      heartSpan.appendChild(countLike);
+
+      // ใช้ DotLottie เพื่อโหลดและเล่นแอนิเมชัน
 
 
-    });
+      const lottie_heart = new DotLottie({
+        autoplay: false,
+        loop: false,
+        canvas: canvas_like,
+        src: "https://lottie.host/14f6d19a-b5e8-46eb-b748-7ac4d1bcb8a1/4j7NhgL0U9.lottie",
+      });
+
+      statsContainer.appendChild(heartSpan);
 
 
 
-    const adoptButton = document.createElement('button');
-    adoptButton.classList.add('btn', 'adopt-btn');
-    adoptButton.textContent = 'ADOPT';
-    adoptButton.addEventListener("click", () => {
-      crate_popup(post.catname);
-    });
+      //----------------------------------------------------------------------------   
+      const commentSpan = document.createElement('button');
+      commentSpan.classList.add('bt-comment', 'me-2');
 
-    bottomSection.appendChild(catInfo);
-    bottomSection.appendChild(statsContainer);
-    bottomSection.appendChild(adoptButton);
+      // สร้าง Canvas element เพื่อแสดงแอนิเมชัน
+      const canvas_comment = document.createElement('canvas');
+      canvas_comment.classList.add('cicon');
 
-    // Append everything to the card
-    card.appendChild(cardContent);
-    card.appendChild(bottomSection);
+      const countCom = document.createElement('p');
+      countCom.classList.add('cc');
+      countCom.textContent = post.countComment;
 
-    // Append the card to the list container
-    catListElement.appendChild(card);
+      // เพิ่ม canvas และข้อความลงใน heartSpan
+      commentSpan.appendChild(canvas_comment);
+      commentSpan.appendChild(countCom);
+
+      // ใช้ DotLottie เพื่อโหลดและเล่นแอนิเมชัน
+      const lottie_com = new DotLottie({
+        autoplay: false,
+        loop: false,
+        canvas: canvas_comment,
+        src: "https://lottie.host/44b4237f-ec34-4a60-a60c-7995c8a7d88d/hANFsu1A5H.lottie",
+      });
+
+
+      statsContainer.appendChild(commentSpan);
+
+      //----------------------------------------------------------------------------
+
+      const bookSpan = document.createElement('button');
+      bookSpan.classList.add('bt-bookmark', 'me-2');
+
+      // สร้าง Canvas element เพื่อแสดงแอนิเมชัน
+      const canvas_book = document.createElement('canvas');
+      canvas_book.classList.add('bicon');
+
+      // เพิ่ม canvas และข้อความลงใน bookSpan
+      bookSpan.appendChild(canvas_book);
+
+      // ใช้ DotLottie เพื่อโหลดและเล่นแอนิเมชัน
+      const lottie_book = new DotLottie({
+        autoplay: false,
+        loop: false,
+        canvas: canvas_book,
+        src: "https://lottie.host/1f94b5ed-8b25-426e-bbb9-05903fd9c233/8DHFiqpwUI.lottie",
+      });
+
+      statsContainer.appendChild(bookSpan);
+
+      //----------------------------------------------------------------//
+
+      Promise.all([
+        new Promise(resolve => lottie_heart.addEventListener("load", resolve)),
+        new Promise(resolve => lottie_book.addEventListener("load", resolve)),
+        new Promise(resolve => lottie_com.addEventListener("load", resolve)),
+
+
+      ]).then(async () => {
+        // เช็คว่ามีการ Login ไหม ถ้ามีค่อยเรียกฟังก์ชั่น ไม่งั้นค่าเป็น null แล้วฟังก์ชั่นแจ้ง error
+        let user = sessionStorage.getItem("user");
+        if (user) {
+          const account = await search_account(user);
+          let bs_check = await search_statelike(account.username, post.id); // ตรวจสอบสถานะ like ก่อน
+          if (bs_check) {
+            lottie_heart.setFrame(lottie_heart.totalFrames - 1);
+          } else {
+            lottie_heart.setFrame(0);
+          }
+
+          lottie_heart.addEventListener("load", async () => {
+            // การทำงานเพิ่มเติมหลังจากที่แอนิเมชัน heart โหลดเสร็จ
+          });
+
+          let bh_state = bs_check;  // เก็บสถานะของการ like เพื่อใช้งานในการคลิก
+          heartSpan.addEventListener("click", async () => {
+            if (!bh_state) {
+              lottie_heart.setMode("forward");
+              lottie_heart.play();
+              await addStateLike(account.username, post.id);
+              const post_now = await search_post(post.id);
+              countLike.textContent = post_now.countLike;
+              bh_state = true;
+            } else {
+              lottie_heart.setFrame(lottie_heart.totalFrames - 30);
+              lottie_heart.setMode("reverse");
+              lottie_heart.play();
+              await deleteStateLike(account.username, post.id);
+              const post_now = await search_post(post.id);
+              countLike.textContent = post_now.countLike;
+              bh_state = false;
+            }
+          });
+
+
+          let bs_check_book = await search_stateBook(account.username, post.id); // ตรวจสอบสถานะ bookmark ก่อน
+          if (bs_check_book) {
+            lottie_book.setFrame(lottie_book.totalFrames - 1);
+          } else {
+            lottie_book.setFrame(0);
+          }
+
+          let bb_state = bs_check_book;  // เก็บสถานะของการ bookmark เพื่อใช้งานในการคลิก
+          bookSpan.addEventListener("click", async () => {
+            if (!bb_state) {
+              lottie_book.setMode("forward");
+              lottie_book.play();
+              await addStateBook(account.username, post.id);
+              bb_state = true;
+            } else {
+              lottie_book.setFrame(lottie_book.totalFrames - 30);
+              lottie_book.setMode("reverse");
+              lottie_book.play();
+              await deleteStateBook(account.username, post.id);
+              bb_state = false;
+            }
+          });
+        }
+
+
+      });
+
+
+
+      const adoptButton = document.createElement('button');
+      adoptButton.classList.add('btn', 'adopt-btn');
+      adoptButton.textContent = 'ADOPT';
+      adoptButton.addEventListener("click", () => {
+        crate_popup(post.catname);
+      });
+
+      bottomSection.appendChild(catInfo);
+      bottomSection.appendChild(statsContainer);
+      bottomSection.appendChild(adoptButton);
+
+      // Append everything to the card
+      card.appendChild(cardContent);
+      card.appendChild(bottomSection);
+
+      // Append the card to the list container
+      catListElement.appendChild(card);
+    }
+
   });
 }
 
+let fileLst = [];
 
 async function crate_popup(catName) {
-  // Create header-section
-  let fileLst = [];
-  const container = document.getElementById('adopt-popup');
-  container.style.display = 'block';
-  if (container.innerHTML.trim() === '') {
+  const popup = document.getElementById('adoptPopup');
+  popup.style.display = 'flex';
+
+
+
+  if (popup.innerHTML.trim() === '') {
     const closeBtn = document.createElement('i');
     closeBtn.classList.add('close-btn', 'fa-solid', 'fa-xmark');
     closeBtn.onclick = () => {
-      container.style.display = 'none';
-      container.innerHTML = '';
+      popup.style.display = 'none';
+      listContainer.innerHTML = '';  // เคลียร์รายการไฟล์
+      list_Section.style.display = 'none';  // ซ่อน list section เมื่อไม่มีไฟล์
+      fileLst = [];
     };
 
     const headerSection = document.createElement('div');
     headerSection.classList.add('header-section');
     headerSection.innerHTML = `
-        <h1>Do you want to adopt a ${catName} ?</h1>
-        <p>Upload your picture and details about you :) </p>
+        <h1>คุณต้องการรับเลี้ยง ${catName} ?</h1>
+        <p>อัปโหลดรูปภาพและรายละเอียดของคุณมาได้เลย :) </p>
     `;
 
     // Create drop-section
@@ -492,9 +552,9 @@ async function crate_popup(catName) {
         <div class="cloud-icon">
             <i class="fa-solid fa-cloud-arrow-up" style="font-size:48px;color: #E09030;"></i>
         </div>
-        <span style="font-weight: bold;">Drag and Drop your Picture</span>
-        <span style="font-weight: bold;">OR</span>
-        <button class="file-selector">Browse Files</button>
+        <span style="font-weight: bold;">ลากและวางรูปภาพของคุณ</span>
+        <span style="font-weight: bold;">หรือ</span>
+        <button class="file-selector">เลือกไฟล์</button>
         <input type="file" class="file-selector-input" accept="image/*" multiple>
     `;
 
@@ -514,7 +574,7 @@ async function crate_popup(catName) {
     // Create list-title and list
     const listTitle = document.createElement('div');
     listTitle.classList.add('list-title');
-    listTitle.innerHTML = 'Uploaded Files';
+    listTitle.innerHTML = 'ไฟล์ที่อัปโหลด';
 
     const list = document.createElement('div');
     list.classList.add('list');
@@ -524,128 +584,159 @@ async function crate_popup(catName) {
     button.classList.add('adopt-button');
     button.textContent = "Send";
     button.onclick = async () => {
-      for (let file of fileLst) {
-        try {
-          const imageUrl = await uploadImage(file);  // อัปโหลดรูปและรับ URL
-          console.log(`Uploaded: ${file.name}, URL: ${imageUrl}`);
-          container.style.display = 'none';
-          container.innerHTML = '';
-        } catch (error) {
-          console.error(`Error uploading ${file.name}:`, error);
+      // ถ้ามีไฟล์ใน fileLst ให้ทำการอัปโหลด
+      if (fileLst.length > 0) {
+        for (let file of fileLst) {
+          try {
+            const imageUrl = await uploadImage(file);  // อัปโหลดรูปและรับ URL
+            console.log(`Uploaded: ${file.name}, URL: ${imageUrl}`);
+            // ลบไฟล์จากรายการหลังอัปโหลดเสร็จ
+            listContainer.innerHTML = '';  // เคลียร์รายการไฟล์
+            list_Section.style.display = 'none';  // ซ่อน list section เมื่อไม่มีไฟล์
+          } catch (error) {
+            console.error(`Error uploading ${file.name}:`, error);
+          }
         }
+        fileLst = [];
+        popup.style.display = 'none';
+      } else {
+        console.log("No files to upload");
       }
-    }
+
+    };
+
+    const detail = document.createElement('div');
+    detail.classList.add('detailSection');
+
+    const lable = document.createElement('lable');
+    lable.classList.add('lablearea');
+    lable.textContent = 'รายละเอียดอื่นๆ';
+
+    const textarea = document.createElement('textarea');
+    textarea.classList.add('txtarea');
+    textarea.placeholder = 'กรอกรายละเอียดที่ต้องการแจ้งให้เจ้าของแมว';
+
+    detail.appendChild(lable);
+    detail.appendChild(textarea);
 
     // Append list-title and list to list-section
     listSection.appendChild(listTitle);
     listSection.appendChild(list);
 
     // Append headerSection, dropSection, and listSection to container
-    container.appendChild(headerSection);
-    container.appendChild(dropSection);
-    container.appendChild(listSection);
-    container.appendChild(button);
-    container.appendChild(closeBtn);
+    popup.appendChild(headerSection);
+    popup.appendChild(dropSection);
+    popup.appendChild(listSection);
+    popup.appendChild(detail);
 
-    // Append the entire container to the body
-    document.body.appendChild(container);
+    popup.appendChild(button);
+    popup.appendChild(closeBtn);
 
+  }
 
-    const dropArea = document.querySelector('.drop-section');
-    const list_Section = document.querySelector('.list-section');
-    const listContainer = document.querySelector('.list');
-    const fileSelector = document.querySelector('.file-selector');
-    const fileSelectorInput = document.querySelector('.file-selector-input');
+  // ส่วนที่เหลือยังเหมือนเดิม
+  const dropArea = document.querySelector('.drop-section');
+  const list_Section = document.querySelector('.list-section');
+  const listContainer = document.querySelector('.list');
+  const fileSelector = document.querySelector('.file-selector');
+  const fileSelectorInput = document.querySelector('.file-selector-input');
 
-    // upload files with browse button
-    fileSelector.onclick = () => fileSelectorInput.click();
-    fileSelectorInput.onchange = () => {
-      [...fileSelectorInput.files].forEach((file) => {
+  // upload files with browse button
+  fileSelector.onclick = () => fileSelectorInput.click();
+  fileSelectorInput.onchange = () => {
+    [...fileSelectorInput.files].forEach((file) => {
+      if (typeValidation(file.type)) {
+        showFile(file);
+      }
+    });
+  };
+
+  // when file is over the drag area
+  dropArea.ondragover = (e) => {
+    e.preventDefault();
+    [...e.dataTransfer.items].forEach((item) => {
+      if (typeValidation(item.type)) {
+        dropArea.classList.add('drag-over-effect');
+      }
+    });
+  };
+
+  // when file leave the drag area
+  dropArea.ondragleave = () => {
+    dropArea.classList.remove('drag-over-effect');
+  };
+
+  // when file drop on the drag area
+  dropArea.ondrop = (e) => {
+    e.preventDefault();
+    dropArea.classList.remove('drag-over-effect');
+    if (e.dataTransfer.items) {
+      [...e.dataTransfer.items].forEach((item) => {
+        if (item.kind === 'file') {
+          const file = item.getAsFile();
+          if (typeValidation(file.type)) {
+            showFile(file);
+          }
+        }
+      });
+    } else {
+      [...e.dataTransfer.files].forEach((file) => {
         if (typeValidation(file.type)) {
           showFile(file);
         }
       });
-    };
-
-    // when file is over the drag area
-    dropArea.ondragover = (e) => {
-      e.preventDefault();
-      [...e.dataTransfer.items].forEach((item) => {
-        if (typeValidation(item.type)) {
-          dropArea.classList.add('drag-over-effect');
-        }
-      });
-    };
-
-    // when file leave the drag area
-    dropArea.ondragleave = () => {
-      dropArea.classList.remove('drag-over-effect');
-    };
-
-    // when file drop on the drag area
-    dropArea.ondrop = (e) => {
-      e.preventDefault();
-      dropArea.classList.remove('drag-over-effect');
-      if (e.dataTransfer.items) {
-        [...e.dataTransfer.items].forEach((item) => {
-          if (item.kind === 'file') {
-            const file = item.getAsFile();
-            if (typeValidation(file.type)) {
-              showFile(file);
-            }
-          }
-        });
-      } else {
-        [...e.dataTransfer.files].forEach((file) => {
-          if (typeValidation(file.type)) {
-            showFile(file);
-          }
-        });
-      }
-    };
-
-    // check the file type
-    function typeValidation(type) {
-      var splitType = type.split('/')[0];
-      if (splitType == 'image') {
-        return true;
-      }
-      return false;
     }
+  };
 
-
-    // show file function - show the file name, size, and icon in the list
-    function showFile(file) {
-      fileLst.push(file);
-      list_Section.style.display = 'block';
-      var li = document.createElement('li');
-      li.classList.add('in-prog');
-
-      // สร้าง Object URL สำหรับแสดงภาพ
-      const objectURL = URL.createObjectURL(file);
-
-      li.innerHTML = `
-          <div class="col">
-              <img src="${objectURL}" style="width: 50px; height: 50px; object-fit: cover;"  alt="${file.name}">
-          </div>
-          <div class="col">
-              <div class="file-name">
-                  <div class="name">${file.name}</div>
-                  <div class="file-size">${(file.size / (1024 * 1024)).toFixed(2)}MB</div>
-              </div>
-          </div>
-          <div class="col">
-              <i class="fa-solid fa-xmark cross"></i>
-          </div>
-      `;
-      listContainer.prepend(li);
-
-      // ฟังก์ชันการยกเลิกการแสดงไฟล์
-      li.querySelector('.cross').onclick = () => li.remove();
+  // check the file type
+  function typeValidation(type) {
+    var splitType = type.split('/')[0];
+    if (splitType == 'image') {
+      return true;
     }
+    return false;
   }
 
+  // show file function - show the file name, size, and icon in the list
+  function showFile(file) {
+    fileLst.push(file);
+    list_Section.style.border = '1px dashed #E09030';
+    list_Section.style.display = 'block';
+    var li = document.createElement('li');
+    li.classList.add('in-prog');
+
+    // สร้าง Object URL สำหรับแสดงภาพ
+    const objectURL = URL.createObjectURL(file);
+
+    li.innerHTML = `
+        <div class="col">
+            <img src="${objectURL}" style="width: 50px; height: 50px; object-fit: cover;"  alt="${file.name}">
+        </div>
+        <div class="col">
+            <div class="file-name">
+                <div class="name">${file.name}</div>
+                <div class="file-size">${(file.size / (1024 * 1024)).toFixed(2)}MB</div>
+            </div>
+        </div>
+        <div class="col">
+            <i class="fa-solid fa-xmark cross"></i>
+        </div>
+    `;
+    listContainer.prepend(li);
+
+    // ฟังก์ชันการยกเลิกการแสดงไฟล์
+    li.querySelector('.cross').onclick = () => {
+      li.remove();
+      // เมื่อไฟล์ถูกลบออก ให้เช็คจำนวนไฟล์ใน list ถ้าผ่านไปแล้วไม่มีไฟล์ให้ซ่อนขอบ
+      fileLst = fileLst.filter(f => f !== file);
+      if (fileLst.length === 0) {
+        list_Section.style.display = 'none'; // ซ่อนขอบเมื่อไม่มีไฟล์
+
+      }
+    };
+  }
 }
+
 
 
 
