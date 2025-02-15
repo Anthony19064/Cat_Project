@@ -327,12 +327,12 @@
   width: 100%;
   max-height: 120px;
   border-radius: 6px;
-  border: 2px solid #dfc4a3;
+  border: 3px solid rgba(224, 144, 48, 0.5);
   resize: vertical;
 }
 
 .txtarea:focus {
-  border: 2px solid #E09030;
+  border: 3px solid rgba(224, 144, 48, 1);
   outline: none;
 }
 
