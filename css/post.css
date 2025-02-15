@@ -1,16 +1,15 @@
-.card {
-    opacity: 0;
-    transform: translateY(20px);
-    animation: fadeInUp 3s ease-out forwards;
-}
-
 .cat-card {
+    opacity: 0;
+    padding: 10px;
+    transform: translateY(20px);
+    animation: fadeInUp 1s ease-out forwards;
+    flex-direction: column;
+    justify-content: space-between;
     background-color: #E09030;
     border-radius: 15px;
-    padding: 15px;
     box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.4);
     max-width: 650px;
-    height: 250px;
+    max-height: 250px;
     margin: auto;
     border: 3px solid white;
 }
@@ -55,6 +54,7 @@
 
 .top-right {
     margin-left: 35px;
+    max-width: 413px;
 }
 
 .detail {
@@ -67,11 +67,15 @@
 .bottom-section {
     margin: 0;
     position: relative;
-    top: 10px
+    max-height: 20%;
+
+}
+
+.top-section{
+    max-height: 80%;
 }
 
 .bt-like {
-    position: relative;
     border-radius: 15px;
     max-width: 80px;
     max-height: 40px;
@@ -79,34 +83,30 @@
     color: red;
     text-shadow: 0px 5px 10px rgba(255, 0, 0, 0.7);
     box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.4);
-    left: -13px;
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
 .bt-comment {
-    position: relative;
     border-radius: 15px;
-    width: 70px;
-    height: 40px;
+    max-width: 80px;
+    max-height: 40px;
     border: none;
-    color: #ECB476;
-    text-shadow: 0px 5px 10px rgba(236, 180, 118, 0.7);
+    color: #E09030;
+    text-shadow: 0px 5px 10px rgb(255, 147, 24);
     box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.4);
-    left: -8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .bt-bookmark {
-    position: relative;
     border-radius: 15px;
-    width: 70px;
-    height: 40px;
+    max-width: 60px;
+    max-height: 40px;
     border: none;
-    color: #5686E1;
-    text-shadow: 0px 5px 10px rgba(86, 134, 225, 0.7);
     box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.4);
-    left: -5px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -119,6 +119,7 @@
     background-color: white;
     color: #E09030;
     border-radius: 15px;
+    transform: scale(1) rotate(0deg);
     box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.4);
     transition: transform 0.3s ease-in-out,
         border-color 0.4s ease-in-out,
@@ -126,7 +127,7 @@
         color 0.3s ease-in-out;
 }
 
-.adopt-btn:hover {
+.adopt-btn:hover,.adopt-btn:active {
     color: white;
     background-color: #E09030;
     border: 2px solid white;
@@ -140,41 +141,85 @@
     margin-bottom: 0;
 }
 
-.hicon {
+.cc {
     position: relative;
-    left: -4px;
-    width: 70px;
-    height: 70px;
-    transform: scale(1);
-    transition: transform 0.3s ease-in-out;
+    left: -2px;
+    margin-bottom: 0;
 }
 
-.hicon:hover {
-    position: relative;
-    left: -4px;
-    width: 70px;
-    height: 70px;
-    transform: scale(1.3) rotate(-10deg);
-    transition: transform 0.3s ease-in-out;
-}
 
 .social-button {
+    position: relative;
+    left: -12px;
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
 
+.hicon {
+    width: 70px;
+    height: 70px;
+    transform: scale(1) rotate(0deg);
+    transition: transform 0.3s ease-in-out;
+}
+
+
+
+.cicon{
+    width: 40px;
+    height: 40px;
+    transform: scale(0.8) rotate(0deg);
+    transition: transform 0.3s ease-in-out;
+}
+
+
+
+.canvas{
+    width: 20px;
+    height: 20px;
+}
+
 .bicon {
     width: 50px;
     height: 50px;
-    transform: scale(1);
+    transform: scale(1) rotate(0deg);
     transition: transform 0.3s ease-in-out;
 }
 
-.bicon:hover {
-    width: 50px;
-    height: 50px;
-    transform: scale(1.3) rotate(-10deg);
-    transition: transform 0.3s ease-in-out;
 
-}
+
+
+
+
+@media (max-width: 760px) { /* สำหรับหน้าจอขนาดเล็ก เช่น มือถือ */
+    .bt-like,.bt-comment{
+        width: 60px;
+    }
+    .bt-like p, .bt-comment p{
+        display: none;
+    }
+    .bt-bookmark{
+        display: none;
+    }
+    .cat-card {
+        height: 300px;
+    }
+  }
+
+@media (min-width: 1024px) {
+    .hicon:hover{
+        transform: scale(1.3) rotate(-10deg);
+        transition: transform 0.3s ease-in-out;
+    }
+    .bicon:hover{
+        width: 50px;
+        height: 50px;
+        transform: scale(1.3) rotate(-10deg);
+        transition: transform 0.3s ease-in-out;
+    
+    }
+    .cicon:hover{
+        transform: scale(1) rotate(-10deg);
+        transition: transform 0.3s ease-in-out;
+    }
+  }

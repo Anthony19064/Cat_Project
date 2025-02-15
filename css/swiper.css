@@ -8,7 +8,7 @@
 .swiper {
   opacity: 0;
   transform: translateY(20px);
-  animation: fadeInUp 2s ease-out forwards;
+  animation: fadeInUp 1s ease-out forwards;
 }
 
 
