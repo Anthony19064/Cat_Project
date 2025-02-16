@@ -8,6 +8,9 @@
     <title>Cat Gang</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Barlow&family=Mali:wght@300&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="https://unpkg.com/swiper@8/swiper-bundle.min.css" />
     <link rel="stylesheet" href="../css/index.css">
@@ -163,6 +166,7 @@
         </div>
     </div>
 
+
     <!-- search-popup -->
     <div class="modal fade" id="filterModal1" tabindex="-1" aria-labelledby="filterModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
@@ -243,37 +247,7 @@
 
     <!-- comment-pop-up -->
     <div class="commentpop-container" id="commentpop-popup">
-        <div class="commentpop-box">
-            <span class="commentpop-close" id="commentpop-close">&times;</span>
-            <div class="commentpop-profile">
-                <img src="https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExNzhkaDNqeTJjZDhiZzcwdXJjOHB0ZW05MnVxZG03Zmxyd3JpNTJtNSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/CjmvTCZf2U3p09Cn0h/giphy.gif" alt="Luzy">
-                <h2>Fluffy <i class="fa-solid fa-venus"></i></h2>
-            </div>
-            <div class="commentpop-comments">
-                <div class="commentpop-item">
-                    <img src="https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExNzhkaDNqeTJjZDhiZzcwdXJjOHB0ZW05MnVxZG03Zmxyd3JpNTJtNSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/CjmvTCZf2U3p09Cn0h/giphy.gif" alt="User">
-                    <p>say something to Fluffy</p>
-                </div>
-                <div class="commentpop-item">
-                    <img src="https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExNzhkaDNqeTJjZDhiZzcwdXJjOHB0ZW05MnVxZG03Zmxyd3JpNTJtNSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/CjmvTCZf2U3p09Cn0h/giphy.gif" alt="User">
-                    <p>say something to Fluffy</p>
-                </div>
-                <div class="commentpop-item">
-                    <img src="https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExNzhkaDNqeTJjZDhiZzcwdXJjOHB0ZW05MnVxZG03Zmxyd3JpNTJtNSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/CjmvTCZf2U3p09Cn0h/giphy.gif" alt="User">
-                    <p>say something to Fluffy</p>
-                </div>
-                <div class="commentpop-item">
-                    <img src="https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExNzhkaDNqeTJjZDhiZzcwdXJjOHB0ZW05MnVxZG03Zmxyd3JpNTJtNSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/CjmvTCZf2U3p09Cn0h/giphy.gif" alt="User">
-                    <p>say something to Fluffy</p>
-                </div>
-            </div>
-            <div class="commentpop-input">
-                <img src="https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExNzhkaDNqeTJjZDhiZzcwdXJjOHB0ZW05MnVxZG03Zmxyd3JpNTJtNSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/CjmvTCZf2U3p09Cn0h/giphy.gif" alt="User">
-                <input type="text" placeholder="comment something....">
-                <button><i class="fa-solid fa-paper-plane"></i></button>
-            </div>
-            
-        </div>
+
     </div>
 
 
@@ -281,7 +255,7 @@
     <div class="container" id="catList">
         <!-- ------------------------------------- Mock Up Post ---------------------------------------------------- -->
 
-        <div class="card cat-card mb-3">
+        <!-- <div class="card cat-card mb-3">
 
             <div class="d-flex align-items-center">
                 <img class="cat-img me-3"
@@ -312,7 +286,7 @@
 
                 <button class="btn adopt-btn">ADOPT</button>
             </div>
-        </div>
+        </div> -->
 
         <!-- --------------------------------------- Mock Up Post -------------------------------------------------- -->
     </div>
@@ -320,20 +294,20 @@
 
     <!-----adopt popup-------------------------------->
 
-    <div id="adopt-popup">
+    <div id="adoptPopup">
     </div>
 
 
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script type="module">
-        import { displayPosts } from "../js/db.js";
+        import { displayPosts } from "../js/displayPost.js";
         await displayPosts(); // รอให้ฟังก์ชัน displayCats ทำงานเสร็จ
     </script>
 
 
     <script type="module">
-        import { search_account } from "../js/db.js";
+        import { search_accountByusername } from "../js/db.js";
 
         document.addEventListener("DOMContentLoaded", async function () {
             let right_sec = document.getElementsByClassName('right-section');
@@ -346,7 +320,7 @@
                 right_button.id = 'user-sidebar';
 
                 try {
-                    let account = await search_account(user);
+                    let account = await search_accountByusername(user);
                     user_side.textContent = account.username;
 
                     let content = document.createElement('img');
@@ -403,10 +377,16 @@
             }
 
 
-        });
-        document.getElementById("se-btn").addEventListener("click", function () {
-            let modal = new bootstrap.Modal(document.getElementById("filterModal2"));
-            modal.show();
+            document.getElementById("se-btn").addEventListener("click", function () {
+                let modal = new bootstrap.Modal(document.getElementById("filterModal2"));
+                if (user) {
+                    modal.show();
+                }
+                else {
+                    alert("กรุณา Login ก่อน")
+                }
+
+            });
         });
 
 
@@ -458,11 +438,7 @@
     </script>
 
 
-
-
-    <script src="../js/comment.js"></script>
     <script src="https://unpkg.com/@dotlottie/player-component@2.7.12/dist/dotlottie-player.mjs" type="module"></script>
-
 </body>
 
 </html>
