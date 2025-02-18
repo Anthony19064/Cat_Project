@@ -29,16 +29,30 @@ export async function displayPosts() {
 
       // Create the image
       const img = document.createElement('img');
-      img.classList.add('cat-img', 'me-3');
+      img.classList.add('cat-img', );
       img.src = post.img;
       img.alt = post.catname;
 
       // Create the text container
       const textContainer = document.createElement('div');
       textContainer.classList.add('top-right')
-      const ownerName = document.createElement('p');
-      ownerName.classList.add('location');
-      ownerName.textContent = post.location; // Update as needed
+      const locationContainer = document.createElement('p');
+      locationContainer.classList.add('location');
+
+      const locationValue = document.createElement('span');
+      locationValue.textContent = post.location;
+
+      const catnameValue = document.createElement('span');
+      catnameValue.classList.add('catnameMobile');
+      catnameValue.textContent = ` ${post.catname} ${cat_sex}`;
+
+      const space = document.createElement('p');
+      space.classList.add("space");
+      space.innerHTML = "&nbsp;|&nbsp;";
+
+      locationContainer.appendChild(locationValue);
+      locationContainer.appendChild(space);
+      locationContainer.appendChild(catnameValue);
 
       const time = document.createElement('p');
       time.classList.add('timepost', 'mb-1');
@@ -48,7 +62,7 @@ export async function displayPosts() {
       details.classList.add('detail', 'mb-0');
       details.textContent = post.details;
 
-      textContainer.appendChild(ownerName);
+      textContainer.appendChild(locationContainer);
       textContainer.appendChild(time);
       textContainer.appendChild(details);
 
@@ -70,7 +84,7 @@ export async function displayPosts() {
       heartSpan.classList.add('bt-like', 'me-2');
       heartSpan.addEventListener("click", () => {
         if (!usersession) {
-          alert('กรุณา Login ก่อน');
+          window.location.href = "../html/regis.html";
         }
       })
 
@@ -109,7 +123,7 @@ export async function displayPosts() {
         if (usersession) {
           createCommetPopup(post.id);
         } else {
-          alert('กรุณา Login ก่อน');
+          window.location.href = "../html/regis.html";
         }
       })
 
@@ -143,7 +157,7 @@ export async function displayPosts() {
       bookSpan.classList.add('bt-bookmark', 'me-2');
       bookSpan.addEventListener("click", () => {
         if (!usersession) {
-          alert('กรุณา Login ก่อน');
+          window.location.href = "../html/regis.html";
         }
       })
 
@@ -246,7 +260,7 @@ export async function displayPosts() {
         if (usersession) {
           await crate_popup(post.catname);
         } else {
-          alert('กรุณา Login ก่อน');
+          window.location.href = "../html/regis.html";
         }
       });
 

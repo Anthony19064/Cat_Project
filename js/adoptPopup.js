@@ -15,6 +15,7 @@ export async function crate_popup(catName) {
       popup.style.display = 'none';
       listContainer.innerHTML = '';  // เคลียร์รายการไฟล์
       list_Section.style.display = 'none';  // ซ่อน list section เมื่อไม่มีไฟล์
+      textarea.value = '';
       fileLst = [];
     };
 

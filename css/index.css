@@ -3,6 +3,13 @@
   font-weight: 300;
   font-style: normal;
 }
+body{
+  min-height: 100vh;
+}
+
+#catList{
+  margin-top: 5%;
+}
 
 
 .container {
@@ -58,6 +65,7 @@
 }
 
 
+
 .account-btn:hover .img-user,
 .account-btn:active .img-user {
   border-color: white;
@@ -73,9 +81,42 @@
   border: 3px solid #E09030;
   box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.4);
   transition: transform 0.3s ease-in-out, border-color 0.3s ease-in-out;
+  object-fit: cover;
+}
+@keyframes appear {
+  from {
+      opacity: 0;
+      transform: translateY(20px) scale(0.8);
+  }
+  to {
+      opacity: 1;
+      transform: translateY(0) scale(1); /* ขยายให้ใหญ่ขึ้น */
+  }
 }
 
+.input-group{
+  border: 3px solid #E09030;
+  border-radius: 10px;
+}
 
+#search-btn{
+  color: #E09030;
+}
+
+#filter-btn{
+  color: #E09030;
+}
+#search-input{
+  border: none;
+  font-weight: bold;
+}
+#search-input::placeholder{
+  color: #E09030;
+}
+#search-input:focus{
+  outline: none;
+  box-shadow: none;
+}
 
 
 body {
@@ -83,8 +124,12 @@ body {
 }
 
 .search-container {
+  display: flex;
   max-width: 600px;
   margin: auto;
+  animation: appear 2s ease-out forwards;
+  animation-timeline: view();
+  animation-range: entry 0% cover 40%;
 }
 
 .search-bar {
@@ -493,3 +538,19 @@ textarea.form-control:focus {
   margin-bottom: 10px;
   margin-left: 70px;
 }
+
+
+
+.model{
+  width: 100%;
+  height: 500px;
+  animation: appear 2s ease-out forwards;
+  animation-timeline: view();
+  animation-range: entry 0% cover 40%;
+}
+
+
+
+
+
+
