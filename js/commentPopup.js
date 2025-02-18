@@ -48,9 +48,9 @@ export async function createCommetPopup(PostId) {
       commentList.classList.add('commentpop-comments')
 
       const comments = await search_comment(post.id);
-      comments.sort((a, b) => a.timestamp - b.timestamp);
+      comments.sort((a, b) => Number(a.timestamp) - Number(b.timestamp));
 
-      comments.forEach(async comment => {
+      for (const comment of comments) {
 
         const ownerComment = await search_accountByid(comment.ownerComment);
 
@@ -65,9 +65,8 @@ export async function createCommetPopup(PostId) {
 
         commentItem.appendChild(pictureOwner);
         commentItem.appendChild(text);
-
         commentList.appendChild(commentItem);
-      })
+      }
 
       const commentInput = document.createElement('div');
       commentInput.classList.add('commentpop-input');

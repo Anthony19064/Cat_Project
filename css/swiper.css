@@ -61,7 +61,7 @@
 
 @media (max-width:500px) {
   #tranding .tranding-slider {
-    height: 45rem;
+    height: 35rem;
   }
 }
 
@@ -73,13 +73,13 @@
 
 @media (max-width:500px) {
   .tranding-slide {
-    width: 28rem !important;
-    height: 36rem !important;
+    width: 18rem !important;
+    height: 26rem !important;
   }
 
   .tranding-slide .tranding-slide-img img {
-    width: 28rem !important;
-    height: 36rem !important;
+    width: 18rem !important;
+    height: 26rem !important;
   }
 }
 
