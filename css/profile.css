@@ -1,19 +1,24 @@
 body {
   background-color: #f4f4f4;
 }
-
-.navbar {
-  background: linear-gradient(to right, #cfa457, #d9a85b);
+navbar {
+  background-color: transparent;
+  padding: 10;
+  margin-top: 6px;
 }
-
-.search-container {
-  max-width: 600px;
-  margin: auto;
+.nav-c {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-left: 20px;
+  padding-right: 20px;
+  margin: 0;
+  width: 100%;
 }
-
-.search-bar {
-  border-radius: 25px;
-  padding: 10px 15px;
+.logo {
+  color: #E09030;
+  font-size: 30px;
+  font-weight: bold;
 }
 
 .cat-card {
@@ -373,13 +378,15 @@ body {
   background-color: rgba(0, 0, 0, 0.5);
 }
 
+
+
 .modal-content {
   background: white;
   margin: 10% auto;
   padding: 20px;
   width: 50%;
   border-radius: 8px;
-  text-align: center;
+  text-align: left;
 }
 
 .modal-content input,

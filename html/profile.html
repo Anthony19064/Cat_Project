@@ -16,35 +16,14 @@
   </head>
 
   <body>
-    <nav class="navbar p-3 bg-warning">
-      <div class="container d-flex justify-content-between align-items-center">
-        <a
-          href="../html/index.html"
-          class="text-white fw-bold fs-4 text-decoration-none"
-        >
-          Cat Gang <i class="fa-solid fa-cat"></i>
-        </a>
-
-        <div id="user-info">
-          <button
-            class="btn-if"
-            type="button"
-            id="user-sidebar"
-            data-bs-toggle="dropdown"
-            aria-expanded="false"
-          >
-            <img
-              class="user-img rounded-circle me-2"
-              width="40"
-              height="40"
-              alt="Profile"
-            />
-            <span class="user-name text-user"></span>
-            <!-- Fixed this -->
+    <nav class="navbar">
+      <div class="nav-c">
+      <a href="../html/index.html" style="text-decoration: none;" class="logo">Cat Gang <i
+        class="fa-solid fa-cat"></i></a>
           </button>
-        </div>
       </div>
     </nav>
+
 
     <div class="container mt-4">
       <div class="user-profile">
@@ -93,9 +72,9 @@
       <div class="modal-content">
         <span class="close-btn">&times;</span>
         <h3>Edit Profile</h3>
-
+        <div>
         <label for="profile-pic">Profile Picture:</label>
-        <input type="file" id="profile-pic" accept="image/*" />
+        <input type="file" id="profile-pic" accept="image/*" /></div>
 
         <label for="email">Email:</label>
         <input type="email" id="email" placeholder="Enter your email" />
@@ -144,24 +123,17 @@
       let user = sessionStorage.getItem("user");
       let userInfo = document.getElementById("user-info");
       let userNames = document.querySelectorAll(".user-name"); // Select both username spans
-      let userImgs = document.querySelectorAll(".user-img"); // Select all user images
+      let userImgs = document.querySelector('.user-img'); // Select all user images
       if (user) {
         userNames.forEach((span) => (span.textContent = `${user}`)); // Update all usernames
         const account = await search_account(user);
 
-        userImgs.forEach((img) => {
-          if (account.img) {
-            img.src = account.img;
-          } else {
-            img.style.display = "none";
-          }
-        });
+        userImgs.src = account.img;
 
         userInfo.classList.remove("d-none");
       } else {
-        userNames.forEach((span) => (span.textContent = `Welcome`));
-        userImgs.forEach((img) => (img.style.display = "none"));
-        userInfo.classList.add("d-none");
+        console.log("No user data found, redirecting to index.html.");
+        //window.location.href = "../html/index.html";
       }
     </script>
     <script src="../js/profile.js"></script>
