@@ -5,6 +5,11 @@
 }
 body{
   min-height: 100vh;
+  background-color: #ffffff;
+  opacity: 1;
+  background-image:  radial-gradient(#E09030 2px, transparent 2px), radial-gradient(#E09030 2px, #ffffff 2px);
+  background-size: 100px 100px;
+  background-position: 0 0,40px 40px;
 }
 
 #catList{
