@@ -2,8 +2,10 @@ body,
 html {
     height: 100%;
     margin: 0;
-    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    font-family: 'Barlow', 'Mali', sans-serif;
+    font-style: normal;
 }
+
 
 .container-fluid {
     height: 100vh;

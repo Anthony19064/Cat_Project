@@ -63,7 +63,7 @@ function toggleForms() {
 function updateIcon() {
     const select = document.getElementById("contract-type");
     const iconSpan = document.getElementById("contact-icon");
-    
+
     const icons = {
         facebook: "fa-brands fa-facebook",
         line: "fa-brands fa-line",
@@ -77,10 +77,10 @@ function updateIcon() {
 function previewAvatar() {
     const file = document.getElementById("avatar-input").files[0];
     const preview = document.getElementById("avatar-preview");
-    
+
     if (file) {
         const reader = new FileReader();
-        reader.onload = function(e) {
+        reader.onload = function (e) {
             preview.style.backgroundImage = `url(${e.target.result})`;
             preview.style.backgroundSize = "cover";
             preview.style.backgroundPosition = "center";
