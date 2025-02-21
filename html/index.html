@@ -427,9 +427,9 @@
     <script src="https://unpkg.com/swiper@8/swiper-bundle.min.js"></script>
     <script src="../js/index.js"></script>
     <script type="module">
-        import { displayPosts } from "../js/displayPost.js";
+        import { displayAllposts } from "../js/displayPost.js";
         import { addPostData, search_accountByusername } from "../js/db.js";
-        await displayPosts(); // รอให้ฟังก์ชัน displayCats ทำงานเสร็จ
+        await displayAllposts(); // รอให้ฟังก์ชัน displayCats ทำงานเสร็จ
 
         // search หาแมวจาก location หรือ catname 
         $(document).ready(function () {
