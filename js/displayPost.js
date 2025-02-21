@@ -9,6 +9,7 @@ import { crate_popup } from "./adoptPopup.js";
 export async function displayPosts() {
   let usersession = sessionStorage.getItem("user");
   const catListElement = document.querySelector('#catList');
+  catListElement.innerHTML = "";
   const posts = await getPostData();
 
   posts.sort((a, b) => a.timestamp - b.timestamp);
@@ -18,7 +19,7 @@ export async function displayPosts() {
     if (post.status == true) {
       const timepost = timeAgo(post.time.toDate());
 
-      let cat_sex = post.sex === 'Male' ? '♂' : '♀';
+      let cat_sex = post.sex === 'ชาย' ? '♂' : '♀';
       // Create the card container
       const card = document.createElement('div');
       card.classList.add('card', 'cat-card', 'mb-3');
@@ -255,7 +256,7 @@ export async function displayPosts() {
 
       const adoptButton = document.createElement('button');
       adoptButton.classList.add('btn', 'adopt-btn');
-      adoptButton.textContent = 'ADOPT';
+      adoptButton.textContent = 'รับเลี้ยง';
       adoptButton.addEventListener("click", async () => {
         if (usersession) {
           await crate_popup(post.catname);
@@ -277,4 +278,5 @@ export async function displayPosts() {
     }
 
   });
+
 }

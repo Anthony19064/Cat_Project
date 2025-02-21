@@ -1,0 +1,160 @@
+/* สไตล์ของหัวข้อ modal */
+.modal-title {
+    color: #E09030;
+    font-weight: bold;
+    text-align: center;
+    font-size: 18px;
+}
+
+/* Style for the "More details" label */
+
+.labelPost{
+    color: #E09030;
+    font-weight: bold;
+    font-size: 18px;
+    display: block;
+    margin-left: 15%;
+}
+
+
+textarea.form-control {
+    border-radius: 8px;
+    padding: 12px;
+    font-size: 14px;
+    margin-top: 15px;
+    background-color: white;
+    border: 2px solid #E09030;
+    transition: border 0.3s ease;
+}
+
+/* Focus state for textarea */
+textarea.form-control:focus {
+    border-color: #E09030;
+    outline: none;
+    box-shadow: none;
+    /* Highlight the border color when focused */
+    /* Add shadow for focus effect */
+}
+
+
+.avatar {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    margin: 0 auto 20px;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.4);
+    border: 6px solid #E09030;
+}
+
+/* สีพื้นหลัง popup*/
+.modal-content {
+    background-color: rgb(255, 255, 255);
+    /* สีส้มโทนอุ่น */
+    border-radius: 10px;
+    border: 3px solid #E09030;
+    /* ทำให้ขอบโค้งมน */
+    padding: 20px;
+}
+
+/* ปรับแต่งปุ่มส่ง */
+.modal-footer {
+    border-top: none;
+    display: flex;
+    justify-content: center;
+    /* Centers the button horizontally */
+}
+
+
+
+
+
+.image-icon {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    background-color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    top: 10px;
+    /* ลอยขึ้นไปด้านบน */
+    left: 50%;
+    transform: translateX(-50%);
+    border: 3px solid #E09030;
+}
+
+
+
+.modal-header{
+    border-bottom: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.image-icon i {
+    font-size: 40px;
+    color: #E09030;
+}
+
+.modal-content {
+    width: 100%;
+    /* ให้ขยายเต็ม Modal */
+    max-width: 500px;
+    /* กำหนดขนาดสูงสุดของ Modal */
+    margin: auto;
+    /* จัดให้อยู่ตรงกลาง */
+    min-height: 500px;
+}
+
+.modal-body input,
+.modal-body select,
+.modal-body textarea {
+    width: 100%;
+    max-width: 350px;
+    margin: auto;
+    display: block;
+    border-radius: 15px;
+    border: 3px solid #daae79;
+    margin-bottom: 5%;
+}
+
+.modal-body input:focus,
+.modal-body select:focus,
+.modal-body textarea:focus{
+    outline: none;
+    box-shadow: none;
+    border: 3px solid #E09030;
+}
+
+
+.modal-body{
+    padding: 0;
+}
+
+
+.modal-footer .btn {
+    background-color: #E09030;
+    color: white;
+    font-weight: bold;
+    width: 120px;
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 8px;
+    transition: 0.3s;
+    border: 2px solid #E09030;
+}
+
+.modal-footer .btn:hover {
+    background-color: white;
+    color: #E09030;
+    border: 2px solid #E09030;
+}
+
+.btn-close {
+    color: #E09030;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
