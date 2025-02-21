@@ -1,0 +1,273 @@
+
+
+.custom-search-modal{
+    background-color: #E09030;
+    color: #ffffff;
+
+}
+.radio-tile-group {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  
+  .input-container {
+    position: relative;
+    height: 7rem;
+    width: 7rem;
+    margin: 0.5rem;
+  }
+  
+  .input-container input {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    cursor: pointer;
+    z-index: 2;
+    opacity: 0;
+  }
+  
+  /* แมวสีดำ */
+  input:checked+.radio-black {
+    background-color: rgb(0, 0, 0);
+    box-shadow: 0 0 12px rgb(0, 0, 0);
+    transform: scale(1.1);
+    border: 2px solid #000000;
+  }
+  
+  .input-container .radio-black {
+    background-color: rgb(0, 0, 0);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    border: 2px solid #000000;
+    border-radius: 8px;
+    transition: all 300ms ease;
+  }
+  input:hover+.radio-black {
+    box-shadow: 0 0 12px #000000 ;
+  }
+
+  
+  
+/* แมวสีขาว */
+  input:checked+.radio-white {
+    background-color: rgb(255, 255, 255);
+    box-shadow: 0 0 12px rgb(255, 255, 255);
+    transform: scale(1.1);
+    border: 2px solid #ffffff;
+  }
+ 
+  .input-container .radio-white {
+    background-color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    border: 2px solid #ffffff;
+    border-radius: 8px;
+    transition: all 300ms ease;
+  }
+  input:hover+.radio-white {
+    box-shadow: 0 0 12px #ffffff ;
+  }
+
+
+  /* แมวสีเทา */
+  input:checked+.radio-gray {
+    background-color: rgb(134, 134, 134);
+    box-shadow: 0 0 12px rgb(134, 134, 134);
+    transform: scale(1.1);
+    border: 2px solid rgb(134, 134, 134);
+  }
+ 
+  .input-container .radio-gray {
+    background-color: rgb(134, 134, 134);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    border: 2px solid rgb(134, 134, 134);
+    border-radius: 8px;
+    transition: all 300ms ease;
+  }
+  input:hover+.radio-gray {
+    box-shadow: 0 0 12px rgb(134, 134, 134) ;
+  }
+
+  /* แมวส้ม */
+  input:checked + .radio-orange {
+    background-color: #ff6c17;
+    box-shadow: 0 0 12px #ff6c17;
+    transform: scale(1.1);
+}
+
+  .input-container .radio-orange {
+    background-color: #ff6c17;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    border: 2px solid #ff6c17;
+    border-radius: 8px;
+    transition: all 300ms ease;
+  }
+  input:hover+.radio-orange {
+    box-shadow: 0 0 12px #ff6c17 ;
+  }
+
+
+/* สีสลิด */
+  input:checked+.radio-sisalit {
+    background: linear-gradient(to bottom, #181818, #616161, #2c312b); /* ไล่สีจากสีส้มไปสีพีช */
+    box-shadow: 0 0 12px var(--primary-color);
+    transform: scale(1.1);
+  }
+  .input-container .radio-sisalit {
+    background: linear-gradient(to bottom, #181818, #616161, #2c312b);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    border-radius: 8px;
+    transition: all 300ms ease;
+  }
+ 
+  /* ทรีโทน */
+  input:checked+.radio-threetone {
+    background: linear-gradient(to bottom, #181818, #ff6c17, #ffffff); /* ไล่สีจากสีส้มไปสีพีช */
+    box-shadow: 0 0 12px var(--primary-color);
+    transform: scale(1.1);
+  }
+  .input-container .radio-threetone {
+    background: linear-gradient(to bottom, #181818, #ff6c17, #ffffff);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    border-radius: 8px;
+    transition: all 300ms ease;
+  }
+
+  /* เพศ ชาย*/
+  input:checked+.radio-gender-male {
+    background: #02a8d1; /* ไล่สีจากสีส้มไปสีพีช */
+    box-shadow: 0 0 12px #02a8d1;
+    transform: scale(1.1);
+  }
+  .input-container .radio-gender-male {
+    background-color: #02a8d1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    border: 2px solid #02a8d1;
+    border-radius: 8px;
+    transition: all 300ms ease;
+  }
+  input:hover+.radio-gender-male {
+    box-shadow: 0 0 12px #02a8d1 ;
+  }
+  .input-container .radio-gender-male i {
+    color: #ffffff;
+  }
+  .input-container .radio-gender-male label {
+    color: #ffffff;
+  }
+
+    /* เพศ หญิง*/
+    input:checked+.radio-gender-female {
+        background: #f576ea; /* ไล่สีจากสีส้มไปสีพีช */
+        box-shadow: 0 0 12px #f576ea;
+        transform: scale(1.1);
+      }
+      .input-container .radio-gender-female {
+        background-color: #f576ea;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 100%;
+        border: 2px solid #f576ea;
+        border-radius: 8px;
+        transition: all 300ms ease;
+      }
+      input:hover+.radio-gender-female {
+        box-shadow: 0 0 12px #f576ea ;
+      }
+      .input-container .radio-gender-female i {
+        color: #ffffff;
+      }
+      .input-container .radio-gender-female label {
+        color: #ffffff;
+      }
+
+  /* แมวโต*/
+  input:checked+.radio-cat {
+    background: #ffffff; /* ไล่สีจากสีส้มไปสีพีช */
+    box-shadow: 0 0 12px #ffffff;
+    transform: scale(1.1);
+  }
+  .input-container .radio-cat {
+    background-color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    border: 2px solid #ffffff;
+    border-radius: 8px;
+    transition: all 300ms ease;
+  }
+  input:hover+.radio-cat {
+    box-shadow: 0 0 12px #ffffff ;
+  }
+  .input-container .radio-cat i {
+    color: #000000;
+  }
+  .input-container .radio-cat label {
+    color: #000000;
+  }
+
+    /* แมวเด็ก*/
+    input:checked+.radio-catkid {
+        background: #ffffff; /* ไล่สีจากสีส้มไปสีพีช */
+        box-shadow: 0 0 12px #ffffff;
+        transform: scale(1.1);
+      }
+      .input-container .radio-catkid {
+        background-color: #ffffff;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 100%;
+        border: 2px solid #ffffff;
+        border-radius: 8px;
+        transition: all 300ms ease;
+      }
+      input:hover+.radio-catkid {
+        box-shadow: 0 0 12px #ffffff ;
+      }
+      .input-container .radio-catkid i {
+        color: #000000;
+      }
+      .input-container .radio-catkid label {
+        color: #000000;
+      }
+        
+    
+      
+
+  
+
+  
