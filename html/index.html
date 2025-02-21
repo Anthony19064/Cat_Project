@@ -19,6 +19,7 @@
     <link rel="stylesheet" href="../css/post.css">
     <link rel="stylesheet" href="../css/swiper.css">
     <link rel="stylesheet" href="../css/comment.css">
+    <link rel="stylesheet" href="../css/addPostPopup.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 </head>
@@ -155,7 +156,7 @@
             <span id="search-btn" class="input-group-text bg-white border-0">
                 <i class="fa-solid fa-search"></i>
             </span>
-            <input type="text" id="search-input" class="form-control search-bar" placeholder="Search Location or Catname . . . . ">
+            <input type="text" id="search-input" class="form-control search-bar" placeholder="ค้นหาจังหวัด หรือ ชื่อแมว . . . . . ">
             <span id="filter-btn" class="input-group-text bg-white border-0">
                 <i class="fa-solid fa-sliders"></i>
             </span>
@@ -210,7 +211,7 @@
             </div>
         </div>
     </div>
-
+    
 
 
 
@@ -218,28 +219,133 @@
     <div class="modal fade" id="filterModal2" tabindex="-1" aria-labelledby="filterModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content p-3">
-                <div class="modal-header">
-                    <div class="image-icon">
-                        <i class="bi bi-image"></i>
-                    </div>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <label for="catName" class="text-white">Cat Name:</label>
-                    <input type="text" id="catName" class="form-control mb-2" placeholder="Enter cat name">
-                    <label for="catSex" class="text-white">Sex:</label>
-                    <select id="catSex" class="form-select">
-                        <option value="any">Any</option>
-                        <option value="male">Male</option>
-                        <option value="female">Female</option>
-                    </select>
+                <form id="addPost">
+                    <div class="modal-header">
 
-                    <label class="text-white">Detail and requirement about cat</label>
-                    <textarea class="form-control" id="details" rows="3" placeholder="Enter more details..."></textarea>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-warning" id="applyFilter">Apply</button>
-                </div>
+                        <label for="catImg" class="avatar-label">
+                            <div class="avatar" id="cat-preview"></div>
+                        </label>
+                        <input type="file" id="catImg" accept="image/*" style="display: none" onchange="previewAvatar()">
+    
+                        <i class="close-btn fa-solid fa-xmark" id="closeAddpost"></i>
+    
+                    </div>
+
+                    <div class="modal-body">
+
+                        <label for="catName" class="labelPost">ชื่อแมว</label>
+                        <input type="text" id="catName" class="form-control">
+    
+                        <label for="catSex" class="labelPost">เพศ</label>
+                        <select id="catSex" class="form-select">
+                            <option value="ชาย">ชาย ♂</option>
+                            <option value="หญิง">หญิง ♀</option>
+                        </select>
+    
+                        <label for="catColor" class="labelPost">สี</label>
+                        <select id="catColor" class="form-select">
+                            <option value="ดำ">ดำ</option>
+                            <option value="ขาว">ขาว</option>
+                            <option value="เทา">เทา</option>
+                            <option value="ส้ม">ส้ม</option>
+                            <option value="สลิด">สลิด</option>
+                            <option value="สามสี">สามสี</option>
+                        </select>
+    
+                        <label for="catLocation" class="labelPost">จังหวัด</label>
+                        <input list="provinceList" id="catLocation"  placeholder="จังหวัดที่แมวอยู่. . . ." class="form-control">
+                        <datalist id="provinceList">
+                            <option value="กรุงเทพ">
+                            <option value="กระบี่">
+                            <option value="กาญจนบุรี">
+                            <option value="กาฬสินธุ์">
+                            <option value="กำแพงเพชร">
+                            <option value="ขอนแก่น">
+                            <option value="จันทบุรี">
+                            <option value="ฉะเชิงเทรา">
+                            <option value="ชลบุรี">
+                            <option value="ชัยนาท">
+                            <option value="ชัยภูมิ">
+                            <option value="ชุมพร">
+                            <option value="เชียงราย">
+                            <option value="เชียงใหม่">
+                            <option value="ตรัง">
+                            <option value="ตราด">
+                            <option value="ตาก">
+                            <option value="นครนายก">
+                            <option value="นครปฐม">
+                            <option value="นครพนม">
+                            <option value="นครราชสีมา">
+                            <option value="นครศรีธรรมราช">
+                            <option value="นครสวรรค์">
+                            <option value="นนทบุรี">
+                            <option value="นราธิวาส">
+                            <option value="น่าน">
+                            <option value="บึงกาฬ">
+                            <option value="บุรีรัมย์">
+                            <option value="ปทุมธานี">
+                            <option value="ประจวบคีรีขันธ์">
+                            <option value="ปราจีนบุรี">
+                            <option value="ปัตตานี">
+                            <option value="อยุธยา">
+                            <option value="พังงา">
+                            <option value="พัทลุง">
+                            <option value="พิจิตร">
+                            <option value="พิษณุโลก">
+                            <option value="เพชรบุรี">
+                            <option value="เพชรบูรณ์">
+                            <option value="แพร่">
+                            <option value="พะเยา">
+                            <option value="ภูเก็ต">
+                            <option value="มหาสารคาม">
+                            <option value="มุกดาหาร">
+                            <option value="แม่ฮ่องสอน">
+                            <option value="ยะลา">
+                            <option value="ยโสธร">
+                            <option value="ร้อยเอ็ด">
+                            <option value="ระนอง">
+                            <option value="ระยอง">
+                            <option value="ราชบุรี">
+                            <option value="ลพบุรี">
+                            <option value="ลำปาง">
+                            <option value="ลำพูน">
+                            <option value="เลย">
+                            <option value="ศรีสะเกษ">
+                            <option value="สกลนคร">
+                            <option value="สงขลา">
+                            <option value="สตูล">
+                            <option value="สมุทรปราการ">
+                            <option value="สมุทรสงคราม">
+                            <option value="สมุทรสาคร">
+                            <option value="สระแก้ว">
+                            <option value="สระบุรี">
+                            <option value="สิงห์บุรี">
+                            <option value="สุโขทัย">
+                            <option value="สุพรรณบุรี">
+                            <option value="สุราษฎร์ธานี">
+                            <option value="สุรินทร์">
+                            <option value="หนองคาย">
+                            <option value="หนองบัวลำภู">
+                            <option value="อ่างทอง">
+                            <option value="อุดรธานี">
+                            <option value="อุทัยธานี">
+                            <option value="อุตรดิตถ์">
+                            <option value="อุบลราชธานี">
+                            <option value="อำนาจเจริญ">
+                        </datalist>
+                        
+    
+                        <label class="labelPost" for="catDetails">รายละเอียดอื่นๆ</label>
+                        <textarea class="form-control" id="catDetails" rows="3" placeholder="เช่นต้องการบ้านที่มีพื้นที่ หรือความต้องการอื่นๆ"></textarea>
+
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="submit" class="btn " id="applyFilter">สร้างโพส</button>
+                    </div>
+
+                </form>
+                
             </div>
 
         </div>
@@ -319,13 +425,13 @@
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
     <script src="https://unpkg.com/swiper@8/swiper-bundle.min.js"></script>
+    <script src="../js/index.js"></script>
     <script type="module">
         import { displayPosts } from "../js/displayPost.js";
+        import { addPostData, search_accountByusername } from "../js/db.js";
         await displayPosts(); // รอให้ฟังก์ชัน displayCats ทำงานเสร็จ
-    </script>
 
-    <!-- search หาแมวจาก location หรือ catname -->
-    <script>  
+        // search หาแมวจาก location หรือ catname 
         $(document).ready(function () {
             $('#search-input').on('keyup', function () {
                 let value = $(this).val().toLowerCase();
@@ -336,8 +442,38 @@
                 });
             });
         });
-        </script>
-    <!-- search หาแมวจาก location หรือ catname -->
+
+        //AddPost Function สร้างโพสจาก form id addPost
+        document.getElementById("addPost").addEventListener("submit",async function (event) {
+            event.preventDefault(); // ป้องกันการรีเฟรชหน้า
+
+            const catFile = document.getElementById("catImg");
+            const catImg = catFile.files[0];
+            const catName = document.getElementById("catName").value;
+            const catSex = document.getElementById("catSex").value;
+            const catColor = document.getElementById("catColor").value;
+            const catLocation = document.getElementById("catLocation").value;
+            const catDetails = document.getElementById("catDetails").value;
+
+            let user = sessionStorage.getItem("user");
+            const account = await search_accountByusername(user);
+            const owner = account.id;
+
+            if(catImg && catName && catLocation && catDetails){
+                await addPostData(catImg, catName, catSex, catColor, catLocation, catDetails, owner);
+                await displayPosts();
+                // ปิด Modal โดยใช้ getInstance()
+                const modalElement = document.getElementById("filterModal2");
+                const modal = bootstrap.Modal.getInstance(modalElement);
+                if (modal) {
+                    modal.hide();
+                }
+            }
+            else{
+                alert("กรุณากรอกข้อมูลให้ครบ")
+            }
+        });
+    </script>   
 
     <script type="module">
         import { search_accountByusername } from "../js/db.js";
@@ -409,16 +545,23 @@
             }
 
 
+            // สร้าง instance ของ Modal ครั้งเดียวตอนโหลดหน้าเว็บ
+            const modal = new bootstrap.Modal(document.getElementById("filterModal2"));
+
+            // เปิด Modal เมื่อกดปุ่ม "se-btn"
             document.getElementById("se-btn").addEventListener("click", function () {
-                let modal = new bootstrap.Modal(document.getElementById("filterModal2"));
                 if (user) {
                     modal.show();
-                }
-                else {
+                } else {
                     window.location.href = "../html/regis.html";
                 }
-
             });
+
+            // ปิด Modal เมื่อกดปุ่ม "closeAddpost"
+            document.getElementById("closeAddpost").addEventListener("click", function () {
+                modal.hide();
+            });
+
         });
 
 
@@ -435,6 +578,8 @@
                 this.classList.remove('clicked');
             }, 500); // 500ms คือเวลาอนิเมชั่นที่เราตั้งไว้
         });
+
+        
 
 
     </script>

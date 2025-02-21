@@ -1,10 +1,13 @@
 * {
   font-family: 'Barlow', 'Mali', sans-serif;
-  font-weight: 300;
-  font-style: normal;
 }
 body{
   min-height: 100vh;
+  background-color: #ffffff;
+  opacity: 1;
+  background-image:  radial-gradient(#E09030 2px, transparent 2px), radial-gradient(#E09030 2px, #ffffff 2px);
+  background-size: 100px 100px;
+  background-position: 0 0,40px 40px;
 }
 
 #catList{
@@ -111,7 +114,8 @@ body{
   font-weight: bold;
 }
 #search-input::placeholder{
-  color: #E09030;
+  color: #000000;
+  opacity: 70%;
 }
 #search-input:focus{
   outline: none;
@@ -411,133 +415,7 @@ body {
 }
 
 
-/* สีพื้นหลัง popup*/
-.modal-content {
-  background-color: #E09030;
-  /* สีส้มโทนอุ่น */
-  border-radius: 10px;
-  /* ทำให้ขอบโค้งมน */
-  padding: 20px;
-}
 
-/* สไตล์ของหัวข้อ modal */
-.modal-title {
-  color: white;
-  font-weight: bold;
-  text-align: center;
-  font-size: 18px;
-}
-
-/* Style for the "More details" label */
-label.text-white {
-  font-weight: bold;
-  font-size: 16px;
-  margin-top: 20px;
-}
-
-
-textarea.form-control {
-  border-radius: 8px;
-  padding: 12px;
-  font-size: 14px;
-  margin-top: 15px;
-  background-color: #f8f9fa;
-  border: 2px solid #ced4da;
-  transition: border 0.3s ease;
-}
-
-/* Focus state for textarea */
-textarea.form-control:focus {
-  border-color: #E09030;
-  /* Highlight the border color when focused */
-  box-shadow: 0 0 5px rgba(244, 162, 97, 0.5);
-  /* Add shadow for focus effect */
-}
-
-
-/* ปรับแต่งปุ่มส่ง */
-.modal-footer {
-  display: flex;
-  justify-content: center;
-  /* Centers the button horizontally */
-}
-
-.modal-footer .btn {
-  background-color: white;
-  color: #E09030;
-  font-weight: bold;
-  width: 120px;
-  /* Set the desired width */
-  padding: 10px 20px;
-  font-size: 16px;
-  border-radius: 8px;
-  transition: 0.3s;
-}
-
-
-.modal-footer .btn:hover {
-  background-color: #e76f51;
-  color: white;
-}
-
-.btn-close {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-}
-
-/* กำหนดสไตล์ของปุ่มปิด */
-.modal-header .btn-close {
-  filter: invert(1);
-  /* ทำให้ปุ่มปิดเป็นสีขาว */
-}
-
-.image-icon {
-  width: 80px;
-  height: 80px;
-  border-radius: 50%;
-  background-color: #ffffff;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: relative;
-  top: 10px;
-  /* ลอยขึ้นไปด้านบน */
-  left: 50%;
-  transform: translateX(-50%);
-  border: 3px solid white;
-}
-
-.image-icon i {
-  font-size: 40px;
-  color: #E09030;
-}
-
-.modal-content {
-  width: 100%;
-  /* ให้ขยายเต็ม Modal */
-  max-width: 500px;
-  /* กำหนดขนาดสูงสุดของ Modal */
-  margin: auto;
-  /* จัดให้อยู่ตรงกลาง */
-}
-
-.modal-body input,
-.modal-body select,
-.modal-body textarea {
-  width: 100%;
-  max-width: 300px;
-  margin: auto;
-  display: block;
-}
-
-.modal-body label.text-white {
-  font-size: 18px;
-  display: block;
-  margin-top: 30px;
-  margin-bottom: 10px;
-  margin-left: 70px;
-}
 
 
 

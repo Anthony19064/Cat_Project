@@ -1,6 +1,6 @@
 // Import Firebase SDK from CDN
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.17.2/firebase-app.js";
-import { getFirestore, collection, getDocs, addDoc, where, query, setDoc, serverTimestamp, deleteDoc, doc, updateDoc, increment } from "https://www.gstatic.com/firebasejs/9.17.2/firebase-firestore-lite.js";
+import { getFirestore, collection, getDocs, addDoc, where, query, setDoc, deleteDoc, doc, updateDoc, increment, Timestamp, orderBy } from "https://www.gstatic.com/firebasejs/9.17.2/firebase-firestore-lite.js";
 import { getStorage, ref, uploadBytes, getDownloadURL } from "https://www.gstatic.com/firebasejs/9.17.2/firebase-storage.js";
 
 
@@ -22,9 +22,16 @@ const storage = getStorage(app);
 
 // Fetch cat data from Firestore
 export async function getPostData() {
-  const post = collection(db, 'Post');
-  const postSnapshot = await getDocs(post);
-  return postSnapshot.docs.map(doc => doc.data());
+  const postQuery = query(
+      collection(db, 'Post'),
+      orderBy('time', 'desc') // เรียงลำดับจากใหม่ไปเก่า
+  );
+
+  const postSnapshot = await getDocs(postQuery);
+  return postSnapshot.docs.map(doc => ({
+      id: doc.id, // เพิ่ม id ของเอกสาร
+      ...doc.data()
+  }));
 }
 
 export async function getAccountData() {
@@ -292,19 +299,24 @@ export async function register(username, phone, password, name, mail, contract, 
 }
 
 
-export async function addPostData(catName, catSex, catLocation, catImg, catDetails, ownerPost) {
+export async function addPostData(catImg, catName, catSex, catColor, catLocation,  catDetails, ownerPost) {
   try {
+    const imageUrl = await uploadImage(catImg);
     const docRef = await addDoc(collection(db, "Post"), {}); // สร้าง document เปล่าก่อน เพื่อให้ได้ docRef.id
 
-    await setDoc(docRef, {  // ใช้ setDoc เพื่ออัปเดตข้อมูลพร้อม id
-      id: docRef.id,  // บันทึก document ID ลงไปใน field
-      name: catName,
-      sex: catSex,
-      location: catLocation,
-      img: catImg,
+    await setDoc(docRef, {  
+      catcolor: catColor,
+      catname: catName,
+      countComment: 0,
+      countLike: 0,
       details: catDetails,
+      id: docRef.id,
+      img: imageUrl,
+      location: catLocation,
       owner: ownerPost,
-      time: serverTimestamp(),
+      sex: catSex,
+      status: true,
+      time: Timestamp.now(),
     });
 
     console.log("Cat added with ID: ", docRef.id);
