@@ -87,13 +87,12 @@ body{
 
 .notification-dot {
   position: absolute;
-  top: 5px;
+  top: 3px;
   right: 5px;
-  width: 12px;
-  height: 12px;
+  width: 11px;
+  height: 11px;
   background-color: red;
   border-radius: 50%;
-  border: 2px solid #ffffff;
 }
 .img-user-container {
   position: relative;
