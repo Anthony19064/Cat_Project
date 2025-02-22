@@ -246,7 +246,7 @@ export async function search_comment(postId) {
 
 export async function addComment(username, postId, text) {
   try {
-    const account = await search_accountByusername(username);
+    const account = await search_accountByid(username);
 
     const docRef = await addDoc(collection(db, "Comment"), {
       idPost: postId,

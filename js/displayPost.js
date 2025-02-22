@@ -1,8 +1,9 @@
 import { timeAgo } from "./timeago.js";
-import { getPostData, search_accountByusername, search_statelike, addStateLike, deleteStateLike, search_stateBook, addStateBook, deleteStateBook, search_post } from "./db.js";
+import { getPostData, search_accountByid, search_statelike, addStateLike, deleteStateLike, search_stateBook, addStateBook, deleteStateBook, search_post } from "./db.js";
 import { DotLottie } from "https://cdn.jsdelivr.net/npm/@lottiefiles/dotlottie-web/+esm";
 import { createCommetPopup } from "./commentPopup.js";
 import { crate_popup } from "./adoptPopup.js";
+import { sendNotification } from "./notification.js";
 
 
 // Render data on the page
@@ -80,9 +81,15 @@ export async function displayAllposts() {
 
       const heartSpan = document.createElement('button');
       heartSpan.classList.add('bt-like', 'me-2');
-      heartSpan.addEventListener("click", () => {
+      heartSpan.addEventListener("click",async () => {
         if (!usersession) {
           window.location.href = "../html/regis.html";
+        }
+        else if(usersession != post.owner){
+          await sendNotification(post.id, post.owner, "like", usersession);
+          setTimeout(() => {
+        }, 1000);
+        
         }
       })
 
@@ -117,10 +124,17 @@ export async function displayAllposts() {
       const commentSpan = document.createElement('button');
       commentSpan.classList.add('bt-comment', 'me-2');
       commentSpan.id = 'commentpop-open';
-      commentSpan.addEventListener("click", () => {
+      commentSpan.addEventListener("click",async () => {
         if (usersession) {
-          createCommetPopup(post.id);
-        } else {
+          if(usersession != post.owner){
+            await sendNotification(post.id, post.owner, "comment", usersession);
+            createCommetPopup(post.id);
+          }
+          else{
+            createCommetPopup(post.id);
+          }
+        }
+        else {
           window.location.href = "../html/regis.html";
         }
       })
@@ -153,9 +167,16 @@ export async function displayAllposts() {
 
       const bookSpan = document.createElement('button');
       bookSpan.classList.add('bt-bookmark', 'me-2');
-      bookSpan.addEventListener("click", () => {
+      bookSpan.addEventListener("click",async () => {
         if (!usersession) {
           window.location.href = "../html/regis.html";
+        }
+        else if(usersession){
+          if (usersession != post.owner){
+            await sendNotification(post.id, post.owner, "bookmark", usersession);
+            setTimeout(() => {
+          }, 1000);
+          }
         }
       })
 
@@ -188,7 +209,7 @@ export async function displayAllposts() {
         // เช็คว่ามีการ Login ไหม ถ้ามีค่อยเรียกฟังก์ชั่น ไม่งั้นค่าเป็น null แล้วฟังก์ชั่นแจ้ง error
         let user = sessionStorage.getItem("user");
         if (user) {
-          const account = await search_accountByusername(user);
+          const account = await search_accountByid(user);
           let bs_check = await search_statelike(account.username, post.id); // ตรวจสอบสถานะ like ก่อน
           if (bs_check) {
             lottie_heart.setFrame(lottie_heart.totalFrames - 1);
@@ -283,7 +304,7 @@ export async function displayAllposts() {
 // Render data on the page
 export async function displayMyposts() {
   let usersession = sessionStorage.getItem("user");
-  const account = await search_accountByusername(usersession);
+  const account = await search_accountByid(usersession);
   const catListElement = document.querySelector('#catList');
   catListElement.innerHTML = "";
   const posts = await getPostData();
@@ -465,7 +486,7 @@ export async function displayMyposts() {
           // เช็คว่ามีการ Login ไหม ถ้ามีค่อยเรียกฟังก์ชั่น ไม่งั้นค่าเป็น null แล้วฟังก์ชั่นแจ้ง error
           let user = sessionStorage.getItem("user");
           if (user) {
-            const account = await search_accountByusername(user);
+            const account = await search_accountByid(user);
             let bs_check = await search_statelike(account.username, post.id); // ตรวจสอบสถานะ like ก่อน
             if (bs_check) {
               lottie_heart.setFrame(lottie_heart.totalFrames - 1);
