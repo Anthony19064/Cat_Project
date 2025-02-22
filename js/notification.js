@@ -52,80 +52,88 @@ export async function sendNotification(postId, toUser, type, fromUser) {
 
 
 export async function displayNotification(userId) {
-    const notificationRef = firebase.database().ref(`notifications/${userId}`);
+    const notificationRef = firebase.database().ref(`notifications/${userId}`)
+        .orderByChild('timestamp')
+        .limitToLast(10); // ดึงข้อมูล 100 รายการล่าสุด
 
-    // เมื่อมีการเพิ่ม Notification ใหม่
-    notificationRef.on('child_added', async (snapshot) => {
-        const data = snapshot.val();
+    const notiContainer = document.getElementById("notiContainer");
 
-        if (data) {
-            const notiContainer = document.getElementById("notiContainer");
-            if (notiContainer) {
-                const notification = document.createElement("div");
-                notification.classList.add("noticontainer");
-                notification.setAttribute("data-id", snapshot.key); // เก็บ Key ของ Firebase ไว้ใน DOM
+    // เมื่อมีการเปลี่ยนแปลงข้อมูล (ทั้งเพิ่มและลบ)
+    notificationRef.on('value', async (snapshot) => {
+        const notifications = [];
 
-                const iconNoti = document.createElement("i");
-                const image = document.createElement("img");
-                image.classList.add("notiImg");
-                image.src = data.userImage;
+        snapshot.forEach((childSnapshot) => {
+            const data = childSnapshot.val();
+            notifications.push({ key: childSnapshot.key, ...data });
+        });
 
-                const imgSection = document.createElement('div');
-                imgSection.classList.add('imgSection');
-                imgSection.appendChild(image);
+        // เรียงข้อมูลจาก "ล่าสุดไปเก่าสุด" โดยใช้ timestamp
+        notifications.sort((a, b) => b.timestamp - a.timestamp);
 
-                let valueType = "";
-                let endtext = "";
+        notiContainer.innerHTML = ""; // เคลียร์ UI
 
-                if (data.type == "like") {
-                    iconNoti.classList.add("fa-solid", "fa-heart");
-                    iconNoti.style.color = "#FA3B3B";
-                    notification.style.backgroundColor = "#FA3B3B";
-                    valueType = "like";
-                    endtext = "your post.";
-                }
-                else if (data.type == "comment") {
-                    iconNoti.classList.add("fa-solid", "fa-comment-dots");
-                    iconNoti.style.color = "#E09030";
-                    notification.style.backgroundColor = "#E09030";
-                    valueType = "comment";
-                    endtext = "your post.";
-                }
-                else if (data.type == "bookmark") {
-                    iconNoti.classList.add("fa-solid", "fa-bookmark");
-                    iconNoti.style.color = "#2e7eff";
-                    notification.style.backgroundColor = "#2e7eff";
-                    valueType = "bookmark";
-                    endtext = "your post.";
-                } else {
-                    iconNoti.classList.add("fa-solid", "fa-paw");
-                    iconNoti.style.color = "#27b05b";
-                    notification.style.backgroundColor = "#27b05b";
-                    valueType = "send adopt request";
-                    endtext = "to you.";
-                }
+        for (const data of notifications) {
+            const notification = document.createElement("div");
+            notification.classList.add("noticontainer");
+            notification.setAttribute("data-id", data.key); // เก็บ Key ของ Firebase ไว้ใน DOM
 
-                imgSection.appendChild(iconNoti);
-                notification.appendChild(imgSection);
+            const iconNoti = document.createElement("i");
+            const image = document.createElement("img");
+            image.classList.add("notiImg");
+            image.src = data.userImage;
 
-                const account = await search_accountByid(data.from);
-                const textNode = document.createTextNode(` ${account.username} ${valueType} ${endtext}`);
-                notification.appendChild(textNode);
+            const imgSection = document.createElement('div');
+            imgSection.classList.add('imgSection');
+            imgSection.appendChild(image);
 
-                notiContainer.prepend(notification);
+            let valueType = "";
+            let endtext = "";
+
+            if (data.type === "like") {
+                iconNoti.classList.add("fa-solid", "fa-heart");
+                iconNoti.style.color = "#FA3B3B";
+                notification.style.backgroundColor = "#FA3B3B";
+                valueType = "like";
+                endtext = "your post.";
             }
+            else if (data.type === "comment") {
+                iconNoti.classList.add("fa-solid", "fa-comment-dots");
+                iconNoti.style.color = "#E09030";
+                notification.style.backgroundColor = "#E09030";
+                valueType = "comment";
+                endtext = "your post.";
+            }
+            else if (data.type === "bookmark") {
+                iconNoti.classList.add("fa-solid", "fa-bookmark");
+                iconNoti.style.color = "#2e7eff";
+                notification.style.backgroundColor = "#2e7eff";
+                valueType = "bookmark";
+                endtext = "your post.";
+            } else {
+                iconNoti.classList.add("fa-solid", "fa-paw");
+                iconNoti.style.color = "#27b05b";
+                notification.style.backgroundColor = "#27b05b";
+                valueType = "send adopt request";
+                endtext = "to you.";
+            }
+
+            imgSection.appendChild(iconNoti);
+            notification.appendChild(imgSection);
+
+            const account = await search_accountByid(data.from);
+            const textNode = document.createTextNode(` ${account.username} ${valueType} ${endtext}`);
+            notification.appendChild(textNode);
+
+            notiContainer.appendChild(notification);
         }
     });
 
     // เมื่อมีการลบ Notification ออก
     notificationRef.on('child_removed', (snapshot) => {
-        const notiContainer = document.getElementById("notiContainer");
-        if (notiContainer) {
-            const notification = notiContainer.querySelector(`[data-id="${snapshot.key}"]`);
-            if (notification) {
-                notification.remove(); // ลบ Notification ออกจาก DOM
-                console.log(`🗑️ Notification ${snapshot.key} removed from UI!`);
-            }
+        const notification = notiContainer.querySelector(`[data-id="${snapshot.key}"]`);
+        if (notification) {
+            notification.remove(); // ลบออกจาก DOM
+            console.log(`🗑️ Notification ${snapshot.key} removed from UI!`);
         }
     });
 }
