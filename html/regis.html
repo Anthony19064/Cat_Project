@@ -51,7 +51,7 @@
                     const account = await login(username, password); // ใช้ await แทน .then()
 
                     if (account) {
-                        sessionStorage.setItem("user", account.username);
+                        sessionStorage.setItem("user", account.id);
                         window.location.href = "index.html";
                     } else {
                         alert("Username หรือ Password ไม่ถูกต้อง")

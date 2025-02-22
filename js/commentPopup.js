@@ -1,4 +1,4 @@
-import { search_post, search_comment, search_accountByid, search_accountByusername, addComment } from './db.js';
+import { search_post, search_comment, search_accountByid, addComment } from './db.js';
 
 export async function createCommetPopup(PostId) {
   let usersession = sessionStorage.getItem("user");
@@ -72,7 +72,7 @@ export async function createCommetPopup(PostId) {
       commentInput.classList.add('commentpop-input');
 
       const imgUser = document.createElement('img');
-      const userOwner = await search_accountByusername(usersession);
+      const userOwner = await search_accountByid(usersession);
       imgUser.src = userOwner.img;
 
       const inputText = document.createElement('input');
@@ -93,7 +93,7 @@ export async function createCommetPopup(PostId) {
             console.log(post_now);
             countComment.innerHTML = post_now.countComment;
 
-            const ownerComment = await search_accountByusername(usersession);
+            const ownerComment = await search_accountByid(usersession);
 
             const commentItem = document.createElement('div');
             commentItem.classList.add('commentpop-item');

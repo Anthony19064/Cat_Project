@@ -13,55 +13,73 @@ const firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 const database = firebase.database();
 
-// ฟังก์ชันส่งข้อความแชทไปยัง Firebase
-function sendMessage(username, message) {
-    const chatRef = firebase.database().ref('chat/');
-    chatRef.push({
-        username: username,
+// ฟังก์ชันส่ง Notification ไปยัง User เป้าหมาย
+function sendNotification(toUser, type, message, fromUser = "system") {
+    const notificationRef = firebase.database().ref(`notifications/${toUser}`);
+    notificationRef.push({
+        type: type,
+        from: fromUser,
         message: message,
-        timestamp: new Date().toLocaleString()
+        timestamp: new Date().toLocaleString(),
+        isRead: false
     }).then(() => {
-        console.log('✅ Message sent!');
+        console.log('✅ Notification sent!');
     }).catch((error) => {
-        console.error('❌ Error sending message:', error);
+        console.error('❌ Error sending notification:', error);
     });
 }
 
-// ฟังก์ชันดึงข้อความแชทและอัปเดตแบบ Real-time
-function listenForMessages() {
-    const chatRef = firebase.database().ref('chat/');
-    chatRef.on('child_added', (snapshot) => {
+// ฟังก์ชันรับ Notification แบบเรียลไทม์
+function listenForNotifications(userId) {
+    const notificationRef = firebase.database().ref(`notifications/${userId}`);
+    notificationRef.on('child_added', (snapshot) => {
         const data = snapshot.val();
-        displayMessage(data);
+        displayNotification(data);
     });
 }
 
-// ฟังก์ชันแสดงข้อความแชทบนหน้าเว็บ
-function displayMessage(data) {
-    const chatList = document.getElementById('chatList');
+function displayNotification(data) {
+    const notificationList = document.getElementById('notificationList');
     const listItem = document.createElement('li');
     listItem.className = 'list-group-item';
-    listItem.innerHTML = `<strong>${data.username}:</strong> ${data.message} <span class="text-muted" style="float:right;">${data.timestamp}</span>`;
-    chatList.appendChild(listItem);
+    
+    // ตรวจสอบประเภท Notification และตั้งค่า Background Color
+    if (data.type === 'like') {
+        listItem.style.backgroundColor = '#f8d7da'; // สีแดงอ่อน (Bootstrap Danger)
+        listItem.style.color = '#721c24'; // ตัวหนังสือสีเข้มให้ Contrast กัน
+    } else if (data.type === 'comment') {
+        listItem.style.backgroundColor = '#d1ecf1'; // สีฟ้าอ่อน (Bootstrap Info)
+        listItem.style.color = '#0c5460';
+    } else if (data.type === 'follow') {
+        listItem.style.backgroundColor = '#d4edda'; // สีเขียวอ่อน (Bootstrap Success)
+        listItem.style.color = '#155724';
+    }
+
+    listItem.innerHTML = `
+        <strong>${data.type.toUpperCase()}:</strong> ${data.message} 
+        <span class="text-muted" style="float:right;">${data.timestamp}</span>
+    `;
+    
+    notificationList.appendChild(listItem);
 
     // เลื่อนให้เห็นข้อความล่าสุด
-    chatList.scrollTop = chatList.scrollHeight;
+    notificationList.scrollTop = notificationList.scrollHeight;
 }
 
-// จัดการ Submit Form ส่งข้อความแชท
-document.getElementById('chatForm').addEventListener('submit', (e) => {
-    e.preventDefault(); // ป้องกันการรีเฟรชหน้า
-
-    const username = document.getElementById('username').value;
+// จัดการการส่ง Notification เมื่อกดปุ่ม
+document.getElementById('sendNotiBtn').addEventListener('click', () => {
+    const toUser = document.getElementById('toUser').value;
+    const notiType = document.getElementById('notiType').value;
     const message = document.getElementById('message').value;
 
-    sendMessage(username, message);
-
-    // ล้างช่องกรอกข้อความ
-    document.getElementById('message').value = '';
+    if (toUser && notiType && message) {
+        sendNotification(toUser, notiType, message);
+    } else {
+        alert('กรุณากรอกข้อมูลให้ครบถ้วน!');
+    }
 });
 
-// เริ่มฟังข้อความแชทแบบ Real-time เมื่อโหลดหน้าเสร็จ
+// เริ่มฟัง Notification สำหรับ User ID ที่ต้องการ (แก้ไขตาม UID จริง)
 window.onload = () => {
-    listenForMessages();
+    listenForNotifications('vanessa'); // เปลี่ยน 'user1' เป็น UID ของผู้ใช้ปัจจุบัน
 };
