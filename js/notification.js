@@ -56,10 +56,7 @@ export async function displayNotification(userId) {
     const notificationRef = firebase.database().ref(`notifications/${userId}`)
         .orderByChild('timestamp')
         .limitToLast(10); // ดึงข้อมูล 10 รายการล่าสุด
-
     const notiContainer = document.getElementById("notiContainer");
-
-
     // เมื่อมีการเปลี่ยนแปลงข้อมูล (ทั้งเพิ่มและลบ)
     notificationRef.on('value', async (snapshot) => {
         const notifications = [];
@@ -80,6 +77,8 @@ export async function displayNotification(userId) {
             }
            
 
+
+        for (const data of notifications) {
             const notification = document.createElement("div");
             notification.classList.add("noticontainer");
             notification.setAttribute("data-id", data.key); // เก็บ Key ของ Firebase ไว้ใน DOM
@@ -132,8 +131,6 @@ export async function displayNotification(userId) {
             notification.appendChild(textNode);
 
             notiContainer.appendChild(notification);
-
-
         }
 
     });
