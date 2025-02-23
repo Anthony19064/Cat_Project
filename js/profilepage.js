@@ -71,6 +71,27 @@ const contentData = {
     </div>
 </div>
 
+<div id="request-popup" class="request-popup">
+    <div class="request-popup-content">
+        <span class="request-popup-close">&times;</span>
+        <h2 class="request-popup-title">confirm cat adoption</h2>
+
+        <div class="request-popup-image-container">
+            <button class="request-popup-prev">&lt;</button>
+            <div class="request-popup-image">Image</div>
+            <button class="request-popup-next">&gt;</button>
+        </div>
+
+        <textarea class="request-popup-details" placeholder="Details about user  ex. name, tel., address, social media, more details"></textarea>
+
+        <div class="request-popup-actions">
+            <button class="request-popup-approve">Approve</button>
+            <button class="request-popup-decline">Decline</button>
+        </div>
+    </div>
+</div>
+
+
 `,
     bookmark: `
 <div class="card cat-card mb-3">
@@ -134,3 +155,16 @@ buttons.forEach(button => {
 });
 
 
+document.addEventListener("click", function (event) {
+    let popup = document.getElementById("request-popup");
+
+    // กดปุ่ม "View Detail" เพื่อเปิด popup
+    if (event.target.classList.contains("request-btn")) {
+        popup.style.display = "flex";
+    }
+
+    // กดปุ่มปิด (×) หรือคลิกที่พื้นหลัง popup เพื่อปิด
+    if (event.target.classList.contains("request-popup-close") || event.target.id === "request-popup") {
+        popup.style.display = "none";
+    }
+});
