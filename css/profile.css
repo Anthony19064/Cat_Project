@@ -1,0 +1,96 @@
+.profile-container {
+    background: #E09030;
+    padding: 20px;
+    border-radius: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    position: relative;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
+    width: 1000px;
+    height: 200px;
+    position: absolute;
+    top: 35%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border: 5px solid rgb(255, 255, 255);
+}
+.profile-pic {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 5px solid rgb(255, 255, 255);
+    position: absolute;
+    top: -100px; /* ขยับขึ้น */
+    left: 13%;
+    transform: translateX(-50%);
+}
+.edit-btn {
+    background: none;
+    border: none;
+    font-size: 18px;
+    color: white;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+}
+
+.username {
+    font-size: 50px;
+    color: #ffffff;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    -webkit-text-stroke: 0.1px #E09030; /* ขอบสีส้ม */
+    position: absolute;
+    top: -70px;
+    left: 45%;
+    transform: translateX(-50%);
+    font-weight: bold;
+}
+.nav-post, .nav-request, .nav-book {
+    font-size: 30px;
+    color: #cacacab4;
+    background-color: #E09030;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+.nav-post {
+    border-right: 2px solid #ffffff; /* เพิ่มเส้นขวาระหว่างปุ่ม */
+}
+
+.nav-request {
+    border-right: 2px solid #ffffff; /* เพิ่มเส้นขวาระหว่างปุ่ม */
+}
+
+.nav-book {
+    border-right: none; /* ไม่มีเส้นที่ปุ่มสุดท้าย */
+}
+
+.nav {
+    display: flex;
+    justify-content: flex-start; /* ปรับการจัดตำแหน่งปุ่ม */
+    gap: 10px; /* เว้นระยะห่างระหว่างปุ่ม */
+    margin-left: 170px; /* ขยับปุ่มไปทางขวา */
+}
+
+/* สถานะที่คลิกแล้ว */
+.nav-post.clicked, .nav-request.clicked, .nav-book.clicked {
+    color: #ffffff;
+    text-decoration: underline; /* ขีดเส้นใต้เมื่อ hover */
+}
+
+.nav-post:hover, .nav-request:hover, .nav-book:hover {
+    text-decoration: underline; /* ขีดเส้นใต้เมื่อ hover */
+    color: #ffffff; /* เปลี่ยนสีพื้นหลังเมื่อ hover */
+}
+
+.content-container {
+    margin-top: 20px;
+    font-size: 20px;
+    color: #333;
+}
+
