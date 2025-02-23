@@ -61,9 +61,32 @@ export async function displayAllposts() {
       details.classList.add('detail', 'mb-0');
       details.textContent = post.details;
 
+      const color = document.createElement('input');
+      color.type = "hidden";
+      color.classList.add("Pcatcolor")
+      color.id = "Pcatcolor";
+      color.value = post.catcolor;
+
+      const age = document.createElement('input');
+      age.type = "hidden";
+      age.classList.add("Pcatage")
+      age.id = "Pcatage";
+      age.value = post.catage;
+
+      const sex = document.createElement('input');
+      sex.type = "hidden";
+      sex.classList.add("Pcatsex")
+      sex.id = "Pcatsex";
+      sex.value = post.sex;
+
+
+
       textContainer.appendChild(locationContainer);
       textContainer.appendChild(time);
       textContainer.appendChild(details);
+      textContainer.appendChild(color);
+      textContainer.appendChild(age);
+      textContainer.appendChild(sex);
 
       cardContent.appendChild(img);
       cardContent.appendChild(textContainer);

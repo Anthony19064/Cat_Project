@@ -1,0 +1,186 @@
+/* From Uiverse.io by Pradeepsaranbishnoi */ 
+.container form {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  
+  .container label {
+    display: flex;
+    cursor: pointer;
+    font-weight: 500;
+    position: relative;
+    overflow: hidden;
+    width: 200px;
+    margin-bottom: 10px;
+  }
+  
+  .container  label input {
+    position: absolute;
+    left: -9999px;
+  }
+  
+  .container label input:checked + span {
+    background-color: #e6b06e;
+    color: white;
+  }
+  
+  .container label input:checked + span:before {
+    box-shadow: inset 0 0 0 0.4375em #E09030;
+  }
+  
+  .container label span {
+    display: flex;
+    align-items: center;
+    padding: 0.375em 0.75em 0.375em 0.375em;
+    border-radius: 99em;
+    transition: 0.25s ease;
+    color: black;
+    font-weight: bold;
+  }
+  
+  .container label span:hover {
+    background-color: #e6b06e;
+    color: white;
+  }
+  
+  .container label span:before {
+    display: flex;
+    flex-shrink: 0;
+    content: "";
+    background-color: #fff;
+    width: 1.5em;
+    height: 1.5em;
+    border-radius: 50%;
+    margin-right: 0.375em;
+    transition: 0.25s ease;
+    box-shadow: inset 0 0 0 0.125em #E09030;
+  }
+
+.topic{
+    color: black;
+    font-weight: bold;
+    font-size: 20px;
+    margin: 0;
+    margin-bottom: 15px;
+}
+  
+.filterContainer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 15px;
+    width: 100%;
+    max-width: 550px;
+    min-height: 550px;
+    padding: 15px;
+    background-color: white;
+    border: none;
+}
+
+.modal.fade .modal-dialog {
+    transition: transform 0.3s ease-out, opacity 0.3s ease-out;
+    transform: translateY(-10%);
+    opacity: 0;
+}
+
+.ftout{
+  border: 5px solid #E09030;
+}
+
+/* ตั้งค่า Default State (ตอนปิด) */
+.modal .modal-dialog {
+  transform: translateY(-10%);
+  opacity: 0;
+  transition: transform 0.3s, opacity 0.3s;
+}
+
+/* ตอนเปิด Modal */
+.modal.show .modal-dialog {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+
+.filterPopup{
+    border: none;
+}
+
+.closefilter-btn {
+  position: absolute;
+  top: -10px;
+  right: -7px;
+  font-size: 30px;
+  color: #E09030;
+  cursor: pointer;
+  transform: scale(1);
+  transition: 0.3s ease;
+}
+
+.closefilter-btn:hover {
+  transform: scale(1.4);
+  transition: 0.3s ease;
+}
+
+.imgLable{
+  width: 40px;
+  height: 40px;
+}
+
+.catcolor, .catsex, .catage{
+  padding: 10px;
+  border: 2px solid #E09030;
+  border-radius: 15px;
+  margin-bottom: 20px;
+  box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.4);
+}
+
+.topicform{
+  font-size: 30px;
+  font-weight: bold;
+  color: #E09030;
+  margin-bottom: 20px;
+  text-decoration: underline;
+  text-underline-offset: 10px;
+}
+
+.btn-filter{
+  background-color: #E09030;
+  color: white;
+  font-weight: bold;
+  width: 100px;
+  height: 50px;
+  border-radius: 10px;
+  border: 3px solid white;
+  transform: scale(1);
+  transition: 0.4s ease;
+  box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.4);
+}
+
+.btn-filter:hover{
+  color: #E09030;
+  background-color: white;
+  border: 3px solid #E09030;
+  transform: scale(1.1);
+  transition: 0.4s ease;
+}
+
+.btn-reset{
+  background-color: white;
+  color: #E09030;
+  font-weight: bold;
+  width: 100px;
+  height: 50px;
+  border-radius: 10px;
+  border: 3px solid #E09030;
+  transform: scale(1);
+  transition: 0.4s ease;
+  box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.4);
+}
+
+.btn-reset:hover{
+  color: white;
+  background-color: #E09030;
+  border: 3px solid white;
+  transform: scale(1.1);
+  transition: 0.4s ease;
+}
