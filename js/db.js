@@ -299,7 +299,7 @@ export async function register(username, phone, password, name, mail, contract, 
 }
 
 
-export async function addPostData(catImg, catName, catSex, catColor, catLocation,  catDetails, ownerPost) {
+export async function addPostData(catImg, catName, catSex, catColor, catAge, catLocation,  catDetails, ownerPost) {
   try {
     const imageUrl = await uploadImage(catImg);
     const docRef = await addDoc(collection(db, "Post"), {}); // สร้าง document เปล่าก่อน เพื่อให้ได้ docRef.id
@@ -317,6 +317,7 @@ export async function addPostData(catImg, catName, catSex, catColor, catLocation
       sex: catSex,
       status: true,
       time: Timestamp.now(),
+      catage: catAge,
     });
 
     console.log("Cat added with ID: ", docRef.id);

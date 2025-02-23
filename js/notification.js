@@ -57,6 +57,7 @@ export async function displayNotification(userId) {
         .orderByChild('timestamp')
         .limitToLast(10); // ดึงข้อมูล 10 รายการล่าสุด
     const notiContainer = document.getElementById("notiContainer");
+    notiContainer.innerHTML = "";
     // เมื่อมีการเปลี่ยนแปลงข้อมูล (ทั้งเพิ่มและลบ)
     notificationRef.on('value', async (snapshot) => {
         const notifications = [];
@@ -65,6 +66,7 @@ export async function displayNotification(userId) {
             const data = childSnapshot.val();
             notifications.push({ key: childSnapshot.key, ...data });
         });
+        
 
         // เรียงข้อมูลจาก "ล่าสุดไปเก่าสุด" โดยใช้ timestamp
         notifications.sort((a, b) => b.timestamp - a.timestamp);
@@ -74,9 +76,8 @@ export async function displayNotification(userId) {
             const notiDot = document.getElementById("notification-dot");
             if(data.isRead == false){
                 notiDot.style.opacity = 1;
-            }
-           
-
+            }        
+        }
 
         for (const data of notifications) {
             const notification = document.createElement("div");
@@ -132,7 +133,6 @@ export async function displayNotification(userId) {
 
             notiContainer.appendChild(notification);
         }
-    }
     });
 
     // เมื่อมีการลบ Notification ออก
