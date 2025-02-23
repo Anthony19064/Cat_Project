@@ -21,7 +21,7 @@
     <link rel="stylesheet" href="../css/swiper.css">
     <link rel="stylesheet" href="../css/comment.css">
     <link rel="stylesheet" href="../css/addPostPopup.css">
-    <link rel="stylesheet" href="../css/searchpopup.css">
+    <link rel="stylesheet" href="../css/radio.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 
@@ -170,7 +170,6 @@
             <span id="filter-btn" class="input-group-text bg-white border-0">
                 <i class="fa-solid fa-sliders"></i>
             </span>
-
         </div>
         <span id="se-btn" class="input-group-text">
             <i class="bi-pencil"></i>
@@ -178,95 +177,99 @@
     </div>
 
 
-    <!-- search-popup -->
-    <div class="modal fade" id="filterModal1" tabindex="-1" aria-labelledby="filterModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content custom-search-modal">
-                <div class="search-modal-header">
-                    <h2 class="search-modal-title" id="filterModalLabel">search for cat</h2>
-                    <button type="button" class="search-close-btn" data-bs-dismiss="modal"
-                        aria-label="Close">&times;</button>
-                </div>
+    <div class="modal fade" id="filterPopup" tabindex="-1" aria-labelledby="filterPopup" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered filterContainer ftout">
+            <div class="modal-content filterContainer ">
+                <!-- From Uiverse.io by Pradeepsaranbishnoi --> 
+            <p class="topicform">Filter Panel <img src="https://firebasestorage.googleapis.com/v0/b/catprojectce.firebasestorage.app/o/imageInWeb%2Fpiece%20(1).png?alt=media&token=b4df079d-d89e-4f24-905d-5f21e3b7bf78"></p>
+            <i class="closefilter-btn fa-solid fa-xmark" id="closeFilter"></i>
+            
+            <div class="container catsex">
+                <p class="topic">เพศของแมว</p>
+                <form>
+                    <label>
+                        <input type="radio" name="catsex" value="ชาย">
+                        <span>&nbsp;เพศผู้ &nbsp;<i class="fa-solid fa-mars fa-2xl" style="color: #74C0FC;"></i></span>
+                    </label>
 
-                <h1>เพศ</h1>
-                <div class="radio-tile-group">
-                    <div class="input-container">
-                        <input id="male" type="radio" name="gender">
-                        <div class="radio-tile radio-gender-male">
-                            <i class="fa-solid fa-mars"></i>
-                            <label for="male">เพศชาย</label>
-                        </div>
-                    </div>
-                    <div class="input-container">
-                        <input id="female" type="radio" name="gender">
-                        <div class="radio-tile radio-gender-female">
-                            <i class="fa-solid fa-venus"></i>
-                            <label for="female">เพศหญิง</label>
-                        </div>
-                    </div>
-                </div>
+                    <label>
+                        <input type="radio" name="catsex" value="หญิง">
+                        <span>&nbsp;เพศเมีย &nbsp;<i class="fa-solid fa-venus fa-2xl" style="color: #e66cfe;"></i></span>
+                        
+                    </label>
+                 
+                </form>
+            </div>
 
-                <h1>สี</h1>
-                <div class="radio-tile-group">
-                    <div class="input-container">
-                        <input id="black" type="radio" name="color">
-                        <div class="radio-tile radio-black"></div>
-                    </div>
-                    <div class="input-container">
-                        <input id="bg-white" type="radio" name="color">
-                        <div class="radio-tile radio-white"></div>
-                    </div>
-                    <div class="input-container">
-                        <input id="gray" type="radio" name="color">
-                        <div class="radio-tile radio-gray"></div>
-                    </div>
-                    <div class="input-container">
-                        <input id="orange" type="radio" name="color">
-                        <div class="radio-tile radio-orange"></div>
-                    </div>
-                    <div class="input-container">
-                        <input id="sisalit" type="radio" name="color">
-                        <div class="radio-tile radio-sisalit"></div>
-                    </div>
-                    <div class="input-container">
-                        <input id="threetone" type="radio" name="color">
-                        <div class="radio-tile radio-threetone"></div>
-                    </div>
-                </div>
+            
+            <div class="container catcolor">
+                <p class="topic">สีของแมว</p>
+                <form>
+                    <label>
+                        <input type="radio" name="catcolor" value="ดำ">
+                        <span>&nbsp;ดำ&nbsp;<img class="imgLable" src="https://firebasestorage.googleapis.com/v0/b/catprojectce.firebasestorage.app/o/imageInWeb%2Fblackcat.png?alt=media&token=2b04b4d0-2d83-4ee6-a0cb-0c6cb601de1d" ></span>
+                    </label>
 
-                <h1>อายุ</h1>
-                <div class="radio-tile-group">
-                    <div class="input-container">
-                        <input id="kidcat" type="radio" name="age">
-                        <div class="radio-tile radio-catkid">
-                            <i class="fa-solid fa-cat"></i>
-                            <label for="kidcat">แมวเด็ก</label>
-                        </div>
-                    </div>
-                    <div class="input-container">
-                        <input id="catto" type="radio" name="age">
-                        <div class="radio-tile radio-cat">
-                            <i class="fa-solid fa-cat"></i>
-                            <label for="catto">แมวโต</label>
-                        </div>
-                    </div>
-                </div>
+                    <label>
+                        <input type="radio" name="catcolor" value="ขาว">
+                        <span>&nbsp;ขาว&nbsp;<img class="imgLable" src="https://firebasestorage.googleapis.com/v0/b/catprojectce.firebasestorage.app/o/imageInWeb%2Fwhitecat.png?alt=media&token=21a74505-c852-4374-a757-0d9aa6181834" ></span>
+                    </label>
 
-                <div class="search-modal-footer">
-                    <button class="search-btn">search</button>
-                    <button class="reset-btn" data-bs-dismiss="modal">reset</button>
-                </div>
+                    <label>
+                        <input type="radio" name="catcolor" value="ส้ม">
+                        <span>&nbsp;ส้ม&nbsp;<img class="imgLable" src="https://firebasestorage.googleapis.com/v0/b/catprojectce.firebasestorage.app/o/imageInWeb%2Forangecat.png?alt=media&token=7a6cd7a7-0680-4a3a-a383-8ba0d08f16a0" ></span>
+                    </label>
+                    <label>
+                        <input type="radio" name="catcolor" value="เทา">
+                        <span>&nbsp;เทา&nbsp;<img class="imgLable" src="https://firebasestorage.googleapis.com/v0/b/catprojectce.firebasestorage.app/o/imageInWeb%2Fgraycat.png?alt=media&token=ce3418f3-82e6-41a1-92d8-8c4dd7d35742" ></span>
+                    </label>
+
+                    <label>
+                        <input type="radio" name="catcolor" value="สลิด">
+                        <span>&nbsp;สลิด&nbsp;<img class="imgLable" src="https://firebasestorage.googleapis.com/v0/b/catprojectce.firebasestorage.app/o/imageInWeb%2Fsalidcat.png?alt=media&token=d776c3f3-cc6c-4fde-b807-a0f0713e251a" ></span>
+                    </label>
+
+                    <label>
+                        <input type="radio" name="catcolor" value="สามสี">
+                        <span>&nbsp;สามสี&nbsp;<img class="imgLable" src="https://firebasestorage.googleapis.com/v0/b/catprojectce.firebasestorage.app/o/imageInWeb%2Fsamsicat.png?alt=media&token=fedb834f-d6d4-4873-b3ae-6558880c481a" ></span>
+                    </label>
+                </form>
+            </div>
+
+            
+            <div class="container catage">
+                <p class="topic">ช่วงอายุของแมว</p>
+                <form>
+                    <label>
+                        <input type="radio" name="catage" value="แมวเด็ก">
+                        <span>&nbsp;แมวเด็ก&nbsp;<img class="imgLable" src="https://firebasestorage.googleapis.com/v0/b/catprojectce.firebasestorage.app/o/imageInWeb%2Fcat.png?alt=media&token=2989aa29-0663-4f7d-aba5-eb8d17324ffd"></span>
+                    </label>
+
+                    <label>
+                        <input type="radio" name="catage" value="แมวโต">
+                        <span>&nbsp;แมวโต&nbsp;<img class="imgLable" src="https://firebasestorage.googleapis.com/v0/b/catprojectce.firebasestorage.app/o/imageInWeb%2Fcat%20(1).png?alt=media&token=803ab330-c644-4ff4-960f-7c12e6d5ea51"></span>
+                    </label>
+                    
+                </form>
+            </div>
+            <div class="d-flex gap-3">
+                <button type="button" class="btn-filter" onclick="getSelectedCatSex()">บันทึก</button>
+                <button type="button" class="btn-reset" onclick="resetFilter()">รีเซ็ตค่า</button>
+            </div>
+            
             </div>
         </div>
     </div>
 
+    <!-- search-popup -->
+            
 
 
 
     <!-- Popup -->
     <div class="modal fade" id="filterModal2" tabindex="-1" aria-labelledby="filterModalLabel" aria-hidden="true">
         <div class="modal-dialog">
-            <div class="modal-content p-3">
+            <div class="modal-content addpostPopup p-3">
                 <form id="addPost">
                     <div class="modal-header">
 
@@ -287,8 +290,8 @@
 
                         <label for="catSex" class="labelPost">เพศ</label>
                         <select id="catSex" class="form-select">
-                            <option value="ชาย">ชาย ♂</option>
-                            <option value="หญิง">หญิง ♀</option>
+                            <option value="ชาย">เพศผู้ ♂</option>
+                            <option value="หญิง">เพศเมีย ♀</option>
                         </select>
 
                         <label for="catColor" class="labelPost">สี</label>
@@ -546,18 +549,10 @@
         });
     </script>
 
-    <script type="module" >
-        import { displayNotification, sendNotification } from "../js/notification.js";
-        import { search_accountByid } from "../js/db.js";
-        let user = sessionStorage.getItem("user");
-        const account = await search_accountByid(user);
-        await displayNotification(account.id);
-        
-    </script>
-
 
     <script type="module">
         import { search_accountByid } from "../js/db.js";
+        import { displayNotification, check_stateNoti} from "../js/notification.js";
         document.addEventListener("DOMContentLoaded", async function () {
             let right_button = document.getElementById('rigth-btn');
             let user_side = document.getElementById('user-side');
@@ -585,10 +580,15 @@
                     // เพิ่มจุดสีแดงบนโปรไฟล์
                     let notificationDot = document.createElement("span");
                     notificationDot.classList.add("notification-dot");
+                    notificationDot.id = "notification-dot";
+                    notificationDot.style.opacity = 0;
 
                     imgContainer.appendChild(content);
                     imgContainer.appendChild(notificationDot);
                     right_button.appendChild(imgContainer);
+
+                    await displayNotification(account.id)
+                    
                 } catch (error) {
                     console.error("เกิดข้อผิดพลาดในการดึงข้อมูลผู้ใช้:", error);
                 }
@@ -610,10 +610,12 @@
 
             // ตรวจสอบว่ามีปุ่มเปิด sidebar หรือไม่
             let userSidebarBtn = document.getElementById("user-sidebar");
+            let account = await search_accountByid(user);
             if (userSidebarBtn) {
                 userSidebarBtn.addEventListener("click",async function (event) {
                     event.preventDefault();
                     await toggleSidebar();
+                    await check_stateNoti(account.id)
                 });
             }
 
@@ -657,20 +659,26 @@
 
         });
 
+        // ประกาศตัวแปร filterPopup เป็น Global
+        let filterPopup = null;
 
+        // เปิด Modal เมื่อกดปุ่ม filter-btn
         document.getElementById('filter-btn').addEventListener('click', function () {
-            // เพิ่มคลาส .clicked เมื่อกดปุ่ม
-            this.classList.add('clicked');
-
-            // เปิด modal
-            var filterModal = new bootstrap.Modal(document.getElementById('filterModal1'));
-            filterModal.show();
-
-            // ลบคลาส .clicked หลังจากอนิเมชั่นเสร็จ
-            setTimeout(() => {
-                this.classList.remove('clicked');
-            }, 500); // 500ms คือเวลาอนิเมชั่นที่เราตั้งไว้
+            filterPopup = new bootstrap.Modal(document.getElementById('filterPopup'), {
+                backdrop: 'static', // ปิดการปิด Modal เมื่อคลิกข้างนอก
+                keyboard: false // ปิดการปิด Modal เมื่อกดปุ่ม ESC
+            });
+            filterPopup.show();
         });
+
+        // ปิด Modal เมื่อกดปุ่ม closeFilter
+        document.getElementById("closeFilter").addEventListener("click", function () {
+            if (filterPopup) {
+                filterPopup.hide();
+            }
+        });
+
+
 
     </script>
 

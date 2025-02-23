@@ -47,13 +47,20 @@ textarea.form-control:focus {
 }
 
 /* สีพื้นหลัง popup*/
-.modal-content {
+.addpostPopup {
     background-color: rgb(255, 255, 255);
     /* สีส้มโทนอุ่น */
     border-radius: 10px;
     border: 3px solid #E09030;
     /* ทำให้ขอบโค้งมน */
     padding: 20px;
+    width: 100%;
+    /* ให้ขยายเต็ม Modal */
+    max-width: 500px;
+    /* กำหนดขนาดสูงสุดของ Modal */
+    margin: auto;
+    /* จัดให้อยู่ตรงกลาง */
+    min-height: 500px;
 }
 
 /* ปรับแต่งปุ่มส่ง */
@@ -98,15 +105,6 @@ textarea.form-control:focus {
     color: #E09030;
 }
 
-.modal-content {
-    width: 100%;
-    /* ให้ขยายเต็ม Modal */
-    max-width: 500px;
-    /* กำหนดขนาดสูงสุดของ Modal */
-    margin: auto;
-    /* จัดให้อยู่ตรงกลาง */
-    min-height: 500px;
-}
 
 .modal-body input,
 .modal-body select,

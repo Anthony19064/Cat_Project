@@ -19,7 +19,7 @@ export async function sendNotification(postId, toUser, type, fromUser) {
     const fUser = await search_accountByid(fromUser);
     const notificationRef = firebase.database().ref(`notifications/${toUser}`);
 
-    // ค้นหา Notification อันเดิมที่มาจากผู้ใช้คนเดิมและเป็นประเภท like
+    // ค้นหา Notification อันเดิมที่มาจากผู้ใช้คนเดิม
     const query = notificationRef.orderByChild('postId').equalTo(postId);
     query.once('value', async (snapshot) => {
         let notificationExists = false;
@@ -40,6 +40,7 @@ export async function sendNotification(postId, toUser, type, fromUser) {
                 userImage: fUser.img,
                 type: type,
                 from: fromUser,
+                isRead: false,
                 timestamp: Date.now(),
             }).then(() => {
                 console.log('✅ Notification sent!');
@@ -54,10 +55,8 @@ export async function sendNotification(postId, toUser, type, fromUser) {
 export async function displayNotification(userId) {
     const notificationRef = firebase.database().ref(`notifications/${userId}`)
         .orderByChild('timestamp')
-        .limitToLast(10); // ดึงข้อมูล 100 รายการล่าสุด
-
+        .limitToLast(10); // ดึงข้อมูล 10 รายการล่าสุด
     const notiContainer = document.getElementById("notiContainer");
-
     // เมื่อมีการเปลี่ยนแปลงข้อมูล (ทั้งเพิ่มและลบ)
     notificationRef.on('value', async (snapshot) => {
         const notifications = [];
@@ -71,6 +70,13 @@ export async function displayNotification(userId) {
         notifications.sort((a, b) => b.timestamp - a.timestamp);
 
         notiContainer.innerHTML = ""; // เคลียร์ UI
+        for (const data of notifications) {
+            const notiDot = document.getElementById("notification-dot");
+            if(data.isRead == false){
+                notiDot.style.opacity = 1;
+            }
+           
+
 
         for (const data of notifications) {
             const notification = document.createElement("div");
@@ -126,6 +132,7 @@ export async function displayNotification(userId) {
 
             notiContainer.appendChild(notification);
         }
+
     });
 
     // เมื่อมีการลบ Notification ออก
@@ -134,6 +141,30 @@ export async function displayNotification(userId) {
         if (notification) {
             notification.remove(); // ลบออกจาก DOM
             console.log(`🗑️ Notification ${snapshot.key} removed from UI!`);
+        }
+    });
+
+}
+
+
+export async function check_stateNoti(userId) {
+    const notificationRef = firebase.database().ref(`notifications/${userId}`)
+
+     notificationRef.once('value', async (snapshot) => {
+        const updates = {};
+
+        snapshot.forEach((childSnapshot) => {
+            const key = childSnapshot.key;
+            updates[`${key}/isRead`] = true; // ตั้งค่า isRead ของทุก Notification เป็น true
+        });
+        const notiDot = document.getElementById("notification-dot");
+        notiDot.style.opacity = 0;
+        if (Object.keys(updates).length > 0) {
+
+            await firebase.database().ref(`notifications/${userId}`).update(updates);
+            console.log("อัปเดตข้อมูลเรียบร้อยแล้ว");
+        } else {
+            console.log("ไม่มี Notification ที่จะอัปเดต");
         }
     });
 }
