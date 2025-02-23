@@ -617,9 +617,9 @@
             let account = await search_accountByid(user);
             if (userSidebarBtn) {
                 userSidebarBtn.addEventListener("click",async function (event) {
-                    event.preventDefault();
+                    event.preventDefault();                   
+                    await check_stateNoti(account.id);
                     await toggleSidebar();
-                    await check_stateNoti(account.id)
                 });
             }
 
