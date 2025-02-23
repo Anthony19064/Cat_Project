@@ -1,13 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
-
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cat Gang</title>
-    <link rel="icon" type="image/svg"
-        href="https://firebasestorage.googleapis.com/v0/b/catprojectce.firebasestorage.app/o/profile_images%2Fpaw-solid%20(1).svg?alt=media&token=e2906bff-daca-4c6a-a764-fb9ad8ce0750">
+    <link rel="icon" type="image/svg" href="https://firebasestorage.googleapis.com/v0/b/catprojectce.firebasestorage.app/o/profile_images%2Fpaw-solid%20(1).svg?alt=media&token=e2906bff-daca-4c6a-a764-fb9ad8ce0750">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -304,6 +301,12 @@
                             <option value="สามสี">สามสี</option>
                         </select>
 
+                        <label for="catAge" class="labelPost">ช่วงอายุ</label>
+                        <select id="catAge" class="form-select">
+                            <option value="แมวเด็ก">แมวเด็ก</option>
+                            <option value="แมวโต">แมวโต</option>
+                        </select>
+
                         <label for="catLocation" class="labelPost">จังหวัด</label>
                         <input list="provinceList" id="catLocation" placeholder="จังหวัดที่แมวอยู่. . . ."
                             class="form-control">
@@ -525,6 +528,7 @@
             const catName = document.getElementById("catName").value;
             const catSex = document.getElementById("catSex").value;
             const catColor = document.getElementById("catColor").value;
+            const catAge = document.getElementById("catAge").value;
             const catLocation = document.getElementById("catLocation").value;
             const catDetails = document.getElementById("catDetails").value;
 
@@ -533,7 +537,7 @@
             const owner = account.id;
 
             if (catImg && catName && catLocation && catDetails) {
-                await addPostData(catImg, catName, catSex, catColor, catLocation, catDetails, owner);
+                await addPostData(catImg, catName, catSex, catColor, catAge, catLocation, catDetails, owner);
                 await displayAllposts();
                 // ปิด Modal โดยใช้ getInstance()
                 const modalElement = document.getElementById("filterModal2");
