@@ -133,7 +133,6 @@ export async function displayNotification(userId) {
 
             notiContainer.appendChild(notification);
         }
-    
     });
 
     // เมื่อมีการลบ Notification ออก
