@@ -166,6 +166,16 @@ const contentData = {
 `
 };
 
+// กดหน้าpostเมื่อเริ่ม
+document.addEventListener("DOMContentLoaded", function () {
+    // เลือกปุ่ม nav-post แล้วทำให้มันถูกคลิก
+    const defaultButton = document.querySelector('.nav-post');
+    if (defaultButton) {
+        defaultButton.click();
+    }
+});
+
+
 // เพิ่ม event listener สำหรับการคลิก
 buttons.forEach(button => {
     button.addEventListener('click', () => {
