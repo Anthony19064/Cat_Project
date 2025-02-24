@@ -186,6 +186,18 @@ buttons.forEach(button => {
     });
 });
 
+document.addEventListener("DOMContentLoaded", function () {
+    const params = new URLSearchParams(window.location.search);
+    const tab = params.get("tab");
+
+    if (tab === "bookmark") {
+        const bookmarkButton = document.querySelector('.nav-book');
+        if (bookmarkButton) {
+            bookmarkButton.click(); // คลิกปุ่ม "Bookmark" อัตโนมัติ
+        }
+    }
+});
+
 // request popup
 document.addEventListener("click", function (event) {
     let popup = document.getElementById("request-popup");

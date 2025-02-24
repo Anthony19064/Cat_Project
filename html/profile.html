@@ -65,7 +65,7 @@
             </h5>
             <ul>
                 <li><a href="../html/profile.html"><i class="fas fa-user"></i> Your profile</a></li>
-                <li><a href="#"><i class="fas fa-bookmark"></i> Your bookmark</a></li>
+                <li><a href="../html/profile.html?tab=bookmark"><i class="fas fa-bookmark"></i> Your bookmark</a></li>
                 <li><a href="#"><i class="fas fa-headset"></i> Contact support</a></li>
                 <li><a href="#" id="logout-btn"><i class="fas fa-sign-out-alt"></i> Sign out</a></li>
             </ul>
@@ -100,7 +100,8 @@
         <span class="edit-profile-close">&times;</span>
         <div class="profile-header">
             <label for="avatar-input" class="avatar-label">
-                <img src="https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExNzhkaDNqeTJjZDhiZzcwdXJjOHB0ZW05MnVxZG03Zmxyd3JpNTJtNSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/CjmvTCZf2U3p09Cn0h/giphy.gif" class="avatar-profile" id="avatar-preview">
+                <img src="https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExNzhkaDNqeTJjZDhiZzcwdXJjOHB0ZW05MnVxZG03Zmxyd3JpNTJtNSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/CjmvTCZf2U3p09Cn0h/giphy.gif"
+                    class="avatar-profile" id="avatar-preview">
             </label>
             <input type="file" id="avatar-input" accept="image/*" style="display: none" onchange="previewAvatar()">
             <h2 class="profile-title">username</h2>
@@ -123,7 +124,7 @@
                     <option value="facebook">Facebook</option>
                     <option value="instagram">Instagram</option>
                 </select>
-                <i id="contract-t"class="fa-brands fa-line social-icon"></i>
+                <i id="contract-t" class="fa-brands fa-line social-icon"></i>
                 <input type="text" id="socialMediaInput" placeholder="Enter your social media">
             </div>
             <button type="submit" class="edit-profile-save">Save</button>
@@ -465,21 +466,21 @@
     </script>
     <script>
         function updateSocialIcon() {
-          const select = document.getElementById("contract-type");
-          const icon = document.getElementById("contract-t");
-          const selectedValue = select.value;
-          
-          // กำหนด mapping ไอคอนสำหรับแต่ละแพลตฟอร์ม
-          const iconMapping = {
-            line: "fa-line",
-            facebook: "fa-facebook",
-            instagram: "fa-instagram"
-          };
-          
-          // ตั้งค่า class ใหม่ให้กับไอคอน โดยคงไว้ fa-brands และ class สำหรับขนาด (social-icon)
-          icon.className = "fa-brands " + iconMapping[selectedValue] + " social-icon";
+            const select = document.getElementById("contract-type");
+            const icon = document.getElementById("contract-t");
+            const selectedValue = select.value;
+
+            // กำหนด mapping ไอคอนสำหรับแต่ละแพลตฟอร์ม
+            const iconMapping = {
+                line: "fa-line",
+                facebook: "fa-facebook",
+                instagram: "fa-instagram"
+            };
+
+            // ตั้งค่า class ใหม่ให้กับไอคอน โดยคงไว้ fa-brands และ class สำหรับขนาด (social-icon)
+            icon.className = "fa-brands " + iconMapping[selectedValue] + " social-icon";
         }
-      </script>
+    </script>
 </body>
 
 </html>
