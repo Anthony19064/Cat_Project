@@ -138,6 +138,20 @@
         background-color 0.4s ease-in-out,
         color 0.3s ease-in-out;
 }
+.adopt-btn:disabled {
+    font-weight: bold;
+    width: 100px;
+    height: 40px;
+    background-color: white;
+    color: #E09030;
+    border-radius: 15px;
+    transform: scale(1) rotate(0deg);
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.4);
+    transition: transform 0.3s ease-in-out,
+        border-color 0.4s ease-in-out,
+        background-color 0.4s ease-in-out,
+        color 0.3s ease-in-out;
+}
 
 .adopt-btn:hover,
 .adopt-btn:active {

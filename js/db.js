@@ -34,6 +34,12 @@ export async function getPostData() {
   }));
 }
 
+export async function getBookmarkData() {
+  const Bookmark = collection(db, 'state-bookmark');
+  const bookmarkSnapshot = await getDocs(Bookmark);
+  return bookmarkSnapshot.docs.map(doc => doc.data());
+}
+
 export async function getAccountData() {
   const Account = collection(db, 'Account');
   const accountSnapshot = await getDocs(Account);
