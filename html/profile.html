@@ -16,12 +16,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="https://unpkg.com/swiper@8/swiper-bundle.min.css" />
     <link rel="stylesheet" href="../css/index.css">
-    <link rel="stylesheet" href="../css/adoptPopup.css">
     <link rel="stylesheet" href="../css/postprofile.css">
-
     <link rel="stylesheet" href="../css/comment.css">
-    <link rel="stylesheet" href="../css/addPostPopup.css">
-    <link rel="stylesheet" href="../css/searchpopup.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link rel="stylesheet" href="../css/profile.css">
@@ -77,22 +73,16 @@
 
 
     <div class="profile-container">
-        <img src="https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExNzhkaDNqeTJjZDhiZzcwdXJjOHB0ZW05MnVxZG03Zmxyd3JpNTJtNSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/CjmvTCZf2U3p09Cn0h/giphy.gif"
-            alt="Profile Picture" class="profile-pic">
-        <h1 class="username">User name account</h1>
+        <img src="" alt="Profile Picture" class="profile-pic" id="profileImg">
+        <h1 class="username" id="profileUsername"></h1>
         <div class="nav">
-            <button class="nav-post" data-content="post"><i class="fas fa-newspaper"></i> My post</button>
-            <button class="nav-request" data-content="request"><i class="fas fa-paw"></i> Adopt request</button>
-            <button class="nav-book" data-content="bookmark"><i class="fas fa-bookmark"></i> Bookmark</button>
+            <button class="nav-post" data-content="post" id="mypost"><i class="fas fa-newspaper"></i> My post</button>
+            <button class="nav-request" data-content="request" id="myadopt"><i class="fas fa-paw"></i> Adopt request</button>
+            <button class="nav-book" data-content="bookmark" id="mybookmark"><i class="fas fa-bookmark"></i> Bookmark</button>
         </div>
         <!-- ปรับ class ของปุ่มให้เป็น edit-profile-btn -->
         <button class="fas fa-pen edit-profile-btn"></button>
 
-    </div>
-
-
-    <div class="content-container">
-        <div id="content"></div>
     </div>
 
     <div class="edit-profile-overlay" id="editProfileOverlay"></div>
@@ -131,78 +121,12 @@
         </form>
     </div>
 
-
-
-
-
-
-
-    <!-- ------------------------------------- Mock Up Post ---------------------------------------------------- -->
-
-    <!-- <div class="card cat-card mb-3">
-        <div class="d-flex align-items-center justify-content-between">
-            <div class="d-flex align-items-center">
-                <img class="cat-img me-3"
-                    src="https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExNzhkaDNqeTJjZDhiZzcwdXJjOHB0ZW05MnVxZG03Zmxyd3JpNTJtNSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/CjmvTCZf2U3p09Cn0h/giphy.gif"
-                    alt="Cat Image">
-                <div class="top-right">
-                    <p class="location"><span>Bangkok</span><span class="catnameMobile"> | Fluffy ♂</span></p>
-                    <p class="timepost mb-1">2h ago</p>
-                    <p class="detail mb-0">A cute and friendly cat looking for a new home!</p>
-                </div>
-            </div>
-
-            
-            <div class="menu-container">
-                <div class="menu-icon" onclick="toggleDropdown()">
-                    <i class="fa-solid fa-ellipsis-vertical"></i>
-                </div>
-
-                
-                <div class="dropdown-menu" id="dropdownMenu">
-                    <p onclick="alert('Edit Clicked')">Edit</p>
-                    <p onclick="alert('Delete Clicked')">Delete</p>
-                    <p onclick="alert('Share Clicked')">Share</p>
-                </div>
-            </div>
-        </div>
-
-        <div class="bottom-section d-flex justify-content-between align-items-center mt-3">
-            <p class="catname">Fluffy ♂</p>
-
-            <div class="social-button">
-                <button class="bt-like me-2">
-                    <canvas class="hicon"></canvas>
-                    <p class="cl">2.8k</p>
-                </button>
-                <button class="bt-comment" id="commentpop-open">
-                    <i class="fa-solid fa-comment"></i> 200
-                </button>
-                <button class="bt-bookmark me-2">
-                    <canvas class="canBook bicon"></canvas>
-                </button>
-            </div>
-
-            <button class="btn adopt-btn">ADOPT</button>
-        </div>
-    </div> -->
-
-
     <!-- --------------------------------------- Mock Up Post -------------------------------------------------- -->
-    <!-- <div class="container" id="catList">
-
-    </div> -->
 
 
-    <!-----adopt popup-------------------------------->
-
-    <!-- <div id="adoptPopup">
-    </div> -->
-
-    <!-------------------------------------------------->
-    <!-- <model-viewer src="../img/cat_in_flowers.glb" auto-rotate auto-rotate-speed="10" class="model">
-
-    </model-viewer> -->
+    <div class="container" id="content-container">
+        
+    </div>
 
 
     <!-------------------------------------------------->
@@ -225,68 +149,41 @@
     <script src="../js/index.js"></script>
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
-    <script type="module">
-        import { displayAllposts } from "../js/displayPost.js";
-        import { addPostData, search_accountByid } from "../js/db.js";
-        await displayAllposts(); // รอให้ฟังก์ชัน displayCats ทำงานเสร็จ
-
-        // search หาแมวจาก location หรือ catname 
-        $(document).ready(function () {
-            $('#search-input').on('keyup', function () {
-                let value = $(this).val().toLowerCase();
-                $('.cat-card').filter(function () {
-                    const location = $(this).find('.location').text().toLowerCase();
-                    const catname = $(this).find('.catname').text().toLowerCase();
-                    $(this).toggle(location.includes(value) || catname.includes(value));
-                });
-            });
-        });
-
-        //AddPost Function สร้างโพสจาก form id addPost
-        document.getElementById("addPost").addEventListener("submit", async function (event) {
-            event.preventDefault(); // ป้องกันการรีเฟรชหน้า
-
-            const catFile = document.getElementById("catImg");
-            const catImg = catFile.files[0];
-            const catName = document.getElementById("catName").value;
-            const catSex = document.getElementById("catSex").value;
-            const catColor = document.getElementById("catColor").value;
-            const catLocation = document.getElementById("catLocation").value;
-            const catDetails = document.getElementById("catDetails").value;
-
-            let user = sessionStorage.getItem("user");
-            const account = await search_accountByid(user);
-            const owner = account.id;
-
-            if (catImg && catName && catLocation && catDetails) {
-                await addPostData(catImg, catName, catSex, catColor, catLocation, catDetails, owner);
-                await displayAllposts();
-                // ปิด Modal โดยใช้ getInstance()
-                const modalElement = document.getElementById("filterModal2");
-                const modal = bootstrap.Modal.getInstance(modalElement);
-                if (modal) {
-                    modal.hide();
-                }
-            }
-            else {
-                alert("กรุณากรอกข้อมูลให้ครบ")
-            }
-
-        });
-    </script>
 
     <script type="module">
-        import { displayNotification, sendNotification } from "../js/notification.js";
-        import { search_accountByid } from "../js/db.js";
-        let user = sessionStorage.getItem("user");
-        const account = await search_accountByid(user);
-        await displayNotification(account.id);
+        import { displayMyposts, displayBookmark } from "../js/displayPost.js";
 
+        const containerContent = document.getElementById("content-container");
+        containerContent.innerHTML = "";
+
+            // เรียกใช้ฟังก์ชันทันทีเมื่อโหลดหน้าเว็บ
+        (async function() {
+            await displayMyposts();
+            document.getElementById("mypost").classList.add("clicked");
+        })();
+
+        document.getElementById("mypost").onclick = async function() {
+            document.getElementById("mybookmark").classList.remove("clicked");
+            await displayMyposts()
+            this.classList.add("clicked");
+        }
+
+        document.getElementById("mybookmark").onclick = async function() {
+            document.getElementById("mypost").classList.remove("clicked");
+            await displayBookmark()
+            this.classList.add("clicked");
+        }
+
+
+
+    
     </script>
+
 
 
     <script type="module">
         import { search_accountByid } from "../js/db.js";
+        import { displayNotification, check_stateNoti} from "../js/notification.js";
         document.addEventListener("DOMContentLoaded", async function () {
             let right_button = document.getElementById('rigth-btn');
             let user_side = document.getElementById('user-side');
@@ -301,7 +198,7 @@
                     let account = await search_accountByid(user);
                     user_side.textContent = account.username;
                     userimg_side.src = account.img;
-
+                    
 
                     // สร้าง container ครอบ img-user
                     let imgContainer = document.createElement("div");
@@ -314,10 +211,15 @@
                     // เพิ่มจุดสีแดงบนโปรไฟล์
                     let notificationDot = document.createElement("span");
                     notificationDot.classList.add("notification-dot");
+                    notificationDot.id = "notification-dot";
+                    notificationDot.style.opacity = 0;
 
                     imgContainer.appendChild(content);
                     imgContainer.appendChild(notificationDot);
                     right_button.appendChild(imgContainer);
+
+                    await displayNotification(account.id)
+                    
                 } catch (error) {
                     console.error("เกิดข้อผิดพลาดในการดึงข้อมูลผู้ใช้:", error);
                 }
@@ -339,9 +241,11 @@
 
             // ตรวจสอบว่ามีปุ่มเปิด sidebar หรือไม่
             let userSidebarBtn = document.getElementById("user-sidebar");
+            let account = await search_accountByid(user);
             if (userSidebarBtn) {
-                userSidebarBtn.addEventListener("click", async function (event) {
-                    event.preventDefault();
+                userSidebarBtn.addEventListener("click",async function (event) {
+                    event.preventDefault();                   
+                    await check_stateNoti(account.id);
                     await toggleSidebar();
                 });
             }
@@ -366,69 +270,19 @@
                 });
             }
 
+            const profileimg = document.getElementById("profileImg");
+            const profileusername = document.getElementById("profileUsername");
 
-            // สร้าง instance ของ Modal ครั้งเดียวตอนโหลดหน้าเว็บ
-            const modal = new bootstrap.Modal(document.getElementById("filterModal2"));
-
-            // เปิด Modal เมื่อกดปุ่ม "se-btn"
-            document.getElementById("se-btn").addEventListener("click", function () {
-                if (user) {
-                    modal.show();
-                } else {
-                    window.location.href = "../html/regis.html";
-                }
-            });
-
-            // ปิด Modal เมื่อกดปุ่ม "closeAddpost"
-            document.getElementById("closeAddpost").addEventListener("click", function () {
-                modal.hide();
-            });
+            profileimg.src = account.img;
+            profileusername.textContent = account.username;
 
         });
 
-
-        document.getElementById('filter-btn').addEventListener('click', function () {
-            // เพิ่มคลาส .clicked เมื่อกดปุ่ม
-            this.classList.add('clicked');
-
-            // เปิด modal
-            var filterModal = new bootstrap.Modal(document.getElementById('filterModal1'));
-            filterModal.show();
-
-            // ลบคลาส .clicked หลังจากอนิเมชั่นเสร็จ
-            setTimeout(() => {
-                this.classList.remove('clicked');
-            }, 500); // 500ms คือเวลาอนิเมชั่นที่เราตั้งไว้
-        });
+        
 
     </script>
 
-    <script defer>
-        var TrandingSlider = new Swiper('.tranding-slider', {
-            effect: 'coverflow',
-            grabCursor: true,
-            centeredSlides: true,
-            loop: true,
-            slidesPerView: 'auto',
-            coverflowEffect: {
-                rotate: 0,
-                stretch: 0,
-                depth: 100,
-                modifier: 2.5,
-            },
-            pagination: {
-                el: '.swiper-pagination',
-                clickable: true,
-            },
-            navigation: {
-                nextEl: '.swiper-button-next',
-                prevEl: '.swiper-button-prev',
-            }
-        });
-    </script>
-
-
-    <script>
+    <!-- <script>
         function toggleDropdown() {
             var menu = document.getElementById("dropdownMenu");
             menu.style.display = (menu.style.display === "block") ? "none" : "block";
@@ -443,27 +297,10 @@
                 menu.style.display = "none";
             }
         });
-    </script>
+    </script> -->
     <script src="https://unpkg.com/@dotlottie/player-component@2.7.12/dist/dotlottie-player.mjs" type="module"></script>
     <script src="../js/profilepage.js" type="module"></script>
 
-    <!-- โค้ดเลือก แถบข้อมูล  -->
-    <script>
-        // เลือกปุ่มทั้งหมด
-        const buttons = document.querySelectorAll('.nav-post, .nav-request, .nav-book');
-
-        // เพิ่ม event listener สำหรับการคลิก
-        buttons.forEach(button => {
-            button.addEventListener('click', () => {
-                // ลบคลาส 'clicked' จากปุ่มอื่นๆ
-                buttons.forEach(btn => btn.classList.remove('clicked'));
-
-                // เพิ่มคลาส 'clicked' ให้กับปุ่มที่คลิก
-                button.classList.add('clicked');
-            });
-        });
-
-    </script>
     <script>
         function updateSocialIcon() {
             const select = document.getElementById("contract-type");
