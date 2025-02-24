@@ -327,13 +327,14 @@
 }
 
 .request-img{
-    width: 140px;
-    height: 140px;
+    width: 180px;
+    height: 180px;
     border-radius: 50%;
     object-fit: cover;
     border: 4px solid white;
     box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.4);
     margin-left: 15px;
+    margin-top: 20px;
 }
 
 .request-btn {
@@ -358,7 +359,7 @@
     font-size: 40px;
     font-weight: bold;
     position: relative;
-    top: -10px;
+    top: -40px;
     color: white;
     text-decoration: underline;
     text-decoration-thickness: 2px;
@@ -368,7 +369,7 @@
 .request-time{
     color: white;
     position: relative;
-    top: -30px;
+    top: -60px;
     right: -10px;
     font-size: 15px;
     opacity: 80%;
@@ -377,6 +378,259 @@
 .request-detail{
     color: white;
     position: relative;
-    top: -20px;
+    top: -40px;
     left: 10px
+}
+
+.request-popup {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    justify-content: center;
+    align-items: center;
+}
+
+.request-popup-content {
+    background: linear-gradient(to bottom, #e3a25d, #d68642);
+    padding: 60px; /* Much larger padding */
+    border-radius: 30px; /* Larger border radius */
+    text-align: center;
+    width: 700px; /* Much wider */
+    min-height: 600px; /* ปรับให้ยืดหยุ่น */
+    position: relative;
+    box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.4); /* Bigger shadow */
+    border: 3px solid white; /* Slightly thicker border */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between; /* ทำให้ปุ่มอยู่ด้านล่าง */
+}
+
+.request-popup-title {
+    font-size: 28px; /* Larger title font size */
+    color: white;
+    font-weight: bold;
+    margin-bottom: 25px; /* Increased space below title */
+}
+
+.request-popup-close {
+    position: absolute;
+    top: 20px; /* Adjusted position */
+    right: 25px; /* Adjusted position */
+    font-size: 30px; /* Much larger close button font */
+    cursor: pointer;
+    color: white;
+}
+
+.request-popup-details {
+    width: 90%;
+    height: 180px;
+    border-radius: 15px;
+    padding: 25px;
+    font-size: 18px;
+    border: none;
+    margin-top: 20px;
+    position: relative;
+    box-shadow: inset 3px 3px 8px rgba(0, 0, 0, 0.5);
+}
+
+.request-popup-actions {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    width: 100%;
+    margin-top: auto; /* ดันปุ่มไปด้านล่าง */
+}
+
+.request-popup-approve, .request-popup-decline {
+    border: none;
+    padding: 16px 25px; /* Larger padding */
+    border-radius: 30px; /* Bigger border radius */
+    font-size: 18px; /* Larger font size */
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.request-popup-approve {
+    background: white;
+    color: green;
+    box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.4); /* Bigger shadow */
+    margin-top: 40px;
+}
+
+.request-popup-decline {
+    background: white;
+    color: red;
+    box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.4); /* Bigger shadow */
+    margin-top: 40px;
+}
+.request-popup-approve:hover {
+    background: green;
+    color: white;
+    cursor: pointer;
+}
+
+.request-popup-decline:hover {
+    background: red;
+    color: white;
+    cursor: pointer;
+}
+
+.carousel-inner img {
+    width: 500px;  /* กำหนดความกว้างคงที่ */
+    height: 300px; /* กำหนดความสูงคงที่ */
+    object-fit: cover; /* ป้องกันการบิดเบี้ยวของภาพ */
+    border-radius: 15px;
+}
+
+
+.carousel {
+    width: 500px;  /* กำหนดความกว้างให้เท่ารูป */
+    height: 310px; /* กำหนดความสูงให้เท่ารูป */
+    margin: auto;  /* จัดให้อยู่กึ่งกลาง */
+    border: 5px solid white;
+    border-radius: 20px;
+    box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.4); /* Bigger shadow */
+}
+.edit-profile-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+}
+.edit-profile-popup {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: linear-gradient(to bottom, #d99c4e, #e3a760);
+    width: 550px;
+    padding: 20px;
+    border-radius: 20px;
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.3);
+    border: 4px solid white;
+}
+.edit-profile-close {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 40px;
+    cursor: pointer;
+    color: white;
+}
+.profile-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.profile-header h2 {
+    color: rgb(255, 255, 255);
+    margin-left: 20px;
+    margin-top: 5px;
+    font-size: 50px;
+}
+
+
+
+.edit-profile-form {
+    margin-top: 50px;
+    width: 400px;
+    align-items: center;
+    margin: 0 auto;
+    
+}
+.edit-profile-form label {
+    font-size: 25px;
+    color: white;
+    display: block;
+    margin-top: 10px;
+}
+.edit-profile-form input,
+.edit-profile-form textarea {
+    width: 100%;
+    padding: 10px;
+    border-radius: 15px;
+    border: none;
+    font-size: 14px;
+    outline: none;
+    background: white;
+    box-shadow: inset 0px 2px 5px rgba(0, 0, 0, 0.5);
+
+}
+.edit-profile-save {
+    display: block;
+    margin: 15px auto 0;
+    background: white;
+    color: #d99c4e;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 20px;
+    padding: 10px 20px;
+    border: 2px solid #d99c4e;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+}
+.edit-profile-save:hover {
+    color: white;
+  background-color: #E09030;
+  border: 2px solid white;
+}
+.edit-profile-btn {
+    background: none; /* ลบพื้นหลัง */
+    border: none; /* ลบเส้นขอบ */
+    color: #fff; /* เปลี่ยนสีไอคอนให้มองเห็น */
+    font-size: 16px; /* ปรับขนาดไอคอน */
+    cursor: pointer; /* ทำให้กดแล้วเป็นมือชี้ */
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+
+#editProfilePopup, #editProfileOverlay {
+    display: none;
+}
+.social-media-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+#socialIcon {
+    font-size: 24px;
+}
+
+.avatar-profile {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%; /* ทำให้เป็นวงกลม */
+    border: 3px solid white; /* กำหนดสีขอบเป็นสีขาว */
+}
+
+select {
+    width: 200px; /* ปรับขนาด */
+    padding: 10px;
+    font-size: 16px;
+    border: 2px solid #ddd; /* เส้นขอบสีเทา */
+    border-radius: 15px; /* มุมโค้ง */
+    background-color: white;
+    color: #333;
+    outline: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    
+}
+
+select:hover {
+    border-color: #aaa; /* เปลี่ยนสีขอบเมื่อโฮเวอร์ */
+}
+
+select:focus {
+    border-color: #007bff; /* เปลี่ยนสีขอบเมื่อเลือก */
+    box-shadow: 0px 0px 5px rgba(0, 123, 255, 0.5);
 }

@@ -18,13 +18,14 @@
     <link rel="stylesheet" href="../css/index.css">
     <link rel="stylesheet" href="../css/adoptPopup.css">
     <link rel="stylesheet" href="../css/postprofile.css">
-    <link rel="stylesheet" href="../css/swiper.css">
+
     <link rel="stylesheet" href="../css/comment.css">
     <link rel="stylesheet" href="../css/addPostPopup.css">
     <link rel="stylesheet" href="../css/searchpopup.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link rel="stylesheet" href="../css/profile.css">
+
 
 
 
@@ -56,7 +57,7 @@
 
     <!-- sidebar -->
     <div id="sidebar" class="sidebar">
-        <button class="close-btn"  id="close-btn"><i class="fas fa-times"></i></button>
+        <button class="close-btn" id="close-btn"><i class="fas fa-times"></i></button>
         <div class="sidebar-content">
             <img class="userimg-side" id="userimg-side">
             <h5 class="username-side" id="user-side">
@@ -84,13 +85,53 @@
             <button class="nav-request" data-content="request"><i class="fas fa-paw"></i> Adopt request</button>
             <button class="nav-book" data-content="bookmark"><i class="fas fa-bookmark"></i> Bookmark</button>
         </div>
-        <button class="fas fa-pen edit-btn"></button>
+        <!-- ปรับ class ของปุ่มให้เป็น edit-profile-btn -->
+        <button class="fas fa-pen edit-profile-btn"></button>
+
     </div>
 
 
     <div class="content-container">
         <div id="content"></div>
     </div>
+
+    <div class="edit-profile-overlay" id="editProfileOverlay"></div>
+    <div class="edit-profile-popup" id="editProfilePopup">
+        <span class="edit-profile-close">&times;</span>
+        <div class="profile-header">
+            <label for="avatar-input" class="avatar-label">
+                <img src="https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExNzhkaDNqeTJjZDhiZzcwdXJjOHB0ZW05MnVxZG03Zmxyd3JpNTJtNSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/CjmvTCZf2U3p09Cn0h/giphy.gif" class="avatar-profile" id="avatar-preview">
+            </label>
+            <input type="file" id="avatar-input" accept="image/*" style="display: none" onchange="previewAvatar()">
+            <h2 class="profile-title">username</h2>
+        </div>
+        <form class="edit-profile-form">
+            <label>Email</label>
+            <input type="email" id="mail">
+            <label>Name</label>
+            <input type="text" id="name">
+            <label>Username</label>
+            <input type="text" id="username">
+            <label>Password</label>
+            <input type="text" id="password">
+            <label>Tel.</label>
+            <input type="text" id="phone">
+            <label>Social Media</label>
+            <div class="social-media-container">
+                <select id="contract-type" onchange="updateSocialIcon()">
+                    <option value="line">Line</option>
+                    <option value="facebook">Facebook</option>
+                    <option value="instagram">Instagram</option>
+                </select>
+                <i id="contract-t"class="fa-brands fa-line social-icon"></i>
+                <input type="text" id="socialMediaInput" placeholder="Enter your social media">
+            </div>
+            <button type="submit" class="edit-profile-save">Save</button>
+        </form>
+    </div>
+
+
+
 
 
 
@@ -176,7 +217,7 @@
 
     <script src="https://www.gstatic.com/firebasejs/9.19.1/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.19.1/firebase-database-compat.js"></script>
-    
+
     <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/4.0.0/model-viewer.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://unpkg.com/swiper@8/swiper-bundle.min.js"></script>
@@ -233,13 +274,13 @@
         });
     </script>
 
-    <script type="module" >
+    <script type="module">
         import { displayNotification, sendNotification } from "../js/notification.js";
         import { search_accountByid } from "../js/db.js";
         let user = sessionStorage.getItem("user");
         const account = await search_accountByid(user);
         await displayNotification(account.id);
-        
+
     </script>
 
 
@@ -259,7 +300,7 @@
                     let account = await search_accountByid(user);
                     user_side.textContent = account.username;
                     userimg_side.src = account.img;
-                    
+
 
                     // สร้าง container ครอบ img-user
                     let imgContainer = document.createElement("div");
@@ -298,7 +339,7 @@
             // ตรวจสอบว่ามีปุ่มเปิด sidebar หรือไม่
             let userSidebarBtn = document.getElementById("user-sidebar");
             if (userSidebarBtn) {
-                userSidebarBtn.addEventListener("click",async function (event) {
+                userSidebarBtn.addEventListener("click", async function (event) {
                     event.preventDefault();
                     await toggleSidebar();
                 });
@@ -404,6 +445,8 @@
     </script>
     <script src="https://unpkg.com/@dotlottie/player-component@2.7.12/dist/dotlottie-player.mjs" type="module"></script>
     <script src="../js/profilepage.js" type="module"></script>
+
+    <!-- โค้ดเลือก แถบข้อมูล  -->
     <script>
         // เลือกปุ่มทั้งหมด
         const buttons = document.querySelectorAll('.nav-post, .nav-request, .nav-book');
@@ -420,7 +463,23 @@
         });
 
     </script>
-
+    <script>
+        function updateSocialIcon() {
+          const select = document.getElementById("contract-type");
+          const icon = document.getElementById("contract-t");
+          const selectedValue = select.value;
+          
+          // กำหนด mapping ไอคอนสำหรับแต่ละแพลตฟอร์ม
+          const iconMapping = {
+            line: "fa-line",
+            facebook: "fa-facebook",
+            instagram: "fa-instagram"
+          };
+          
+          // ตั้งค่า class ใหม่ให้กับไอคอน โดยคงไว้ fa-brands และ class สำหรับขนาด (social-icon)
+          icon.className = "fa-brands " + iconMapping[selectedValue] + " social-icon";
+        }
+      </script>
 </body>
 
 </html>
