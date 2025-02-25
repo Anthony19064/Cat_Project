@@ -14,7 +14,7 @@
     min-height: 250px;
     max-height: 300px;
     margin: auto;
-    border: 3px solid white;
+    border: 6px solid white;
 }
 
 .cat-img {
@@ -46,9 +46,9 @@
 .timepost {
     color: white;
     position: relative;
-    top: -30px;
+    top: -37px;
     right: -10px;
-    font-size: 15px;
+    font-size: 17px;
     opacity: 80%;
 }
 

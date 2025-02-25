@@ -1,28 +1,29 @@
-import { uploadImage } from "./db.js"
+import { uploadImage, search_post, search_accountByid, addAdoptrequest } from "./db.js"
+import { sendNotification } from "./notification.js";
 
 let fileLst = [];
 
-export async function crate_popup(catName) {
+export async function crate_popup(postID) {
   const popup = document.getElementById('adoptPopup');
+  popup.innerHTML = '';
   popup.style.display = 'flex';
 
-
+  let usersession = sessionStorage.getItem("user");
+  const account = await search_accountByid(usersession);
+  const post = await search_post(postID)
 
   if (popup.innerHTML.trim() === '') {
     const closeBtn = document.createElement('i');
     closeBtn.classList.add('close-btn', 'fa-solid', 'fa-xmark');
     closeBtn.onclick = () => {
       popup.style.display = 'none';
-      listContainer.innerHTML = '';  // เคลียร์รายการไฟล์
-      list_Section.style.display = 'none';  // ซ่อน list section เมื่อไม่มีไฟล์
-      textarea.value = '';
       fileLst = [];
     };
 
     const headerSection = document.createElement('div');
     headerSection.classList.add('header-section');
     headerSection.innerHTML = `
-        <h1>คุณต้องการรับเลี้ยง ${catName} ?</h1>
+        <h1>คุณต้องการรับเลี้ยง ${post.catname} ?</h1>
         <p>อัปโหลดรูปภาพและรายละเอียดของคุณมาได้เลย :) </p>
     `;
 
@@ -69,24 +70,21 @@ export async function crate_popup(catName) {
     button.classList.add('adopt-button');
     button.textContent = "Send";
     button.onclick = async () => {
-      // ถ้ามีไฟล์ใน fileLst ให้ทำการอัปโหลด
-      if (fileLst.length > 0) {
-        for (let file of fileLst) {
-          try {
-            const imageUrl = await uploadImage(file);  // อัปโหลดรูปและรับ URL
-            console.log(`Uploaded: ${file.name}, URL: ${imageUrl}`);
-            // ลบไฟล์จากรายการหลังอัปโหลดเสร็จ
-            listContainer.innerHTML = '';  // เคลียร์รายการไฟล์
-            list_Section.style.display = 'none';  // ซ่อน list section เมื่อไม่มีไฟล์
-          } catch (error) {
-            console.error(`Error uploading ${file.name}:`, error);
-          }
-        }
+      const details = document.getElementById("textdetails").value;
+      if(fileLst.length == 0 || !details){
+        alert("กรุณากรอกข้อมูลให้ครบถ้วน")
+      }
+      else{
+        // ถ้ามีไฟล์ใน fileLst ให้ทำการอัปโหลด
+        await sendAdopt(post.id, post.owner, account.id, fileLst, details);
+        await sendNotification(post.id, post.owner, "adopt", usersession);
+        listContainer.innerHTML = '';  // เคลียร์รายการไฟล์
+        list_Section.style.display = 'none';  // ซ่อน list section เมื่อไม่มีไฟล์
         fileLst = [];
         popup.style.display = 'none';
-      } else {
-        console.log("No files to upload");
+        document.getElementById("textdetails").value = "";
       }
+
 
     };
 
@@ -99,7 +97,8 @@ export async function crate_popup(catName) {
 
     const textarea = document.createElement('textarea');
     textarea.classList.add('txtarea');
-    textarea.placeholder = 'กรอกรายละเอียดที่ต้องการแจ้งให้เจ้าของแมว';
+    textarea.id = "textdetails";
+    textarea.placeholder = 'กรอกรายละเอียดอื่นๆ ช่องทางติดต่อระบบจะส่งให้อัตโนมัติ';
 
     detail.appendChild(lable);
     detail.appendChild(textarea);
@@ -221,3 +220,18 @@ export async function crate_popup(catName) {
     };
   }
 }
+
+
+export async function sendAdopt(postID, ownerPost, ownerRequest, files, detail) {
+  const lstImg = await Promise.all(files.map(async (file) => {
+      const imageUrl = await uploadImage(file, "adopPicture");
+      return imageUrl;
+  }));
+
+  await addAdoptrequest(postID, ownerPost, ownerRequest, lstImg, detail);
+  
+
+  
+
+}
+

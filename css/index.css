@@ -1,9 +1,6 @@
-html {
-  scroll-behavior: smooth; /* เลื่อนแบบนุ่มนวล */
-}
 
 * {
-  font-family: 'Barlow', 'Mali', sans-serif;
+  font-family: 'Dangrek', 'Mali', sans-serif;
 }
 body{
   min-height: 100vh;
@@ -346,7 +343,6 @@ body {
   padding: 8px;
   border-radius: 10px;
   margin-bottom: 5%;
-  font-weight: bold;
   display: flex;
   align-items: center;
   gap: 10px;

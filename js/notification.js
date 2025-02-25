@@ -100,35 +100,53 @@ export async function displayNotification(userId) {
                 iconNoti.classList.add("fa-solid", "fa-heart");
                 iconNoti.style.color = "#FA3B3B";
                 notification.style.backgroundColor = "#FA3B3B";
-                valueType = "like";
-                endtext = "your post.";
+                valueType = "กดถูกใจ";
+                endtext = "โพสของคุณ";
             }
             else if (data.type === "comment") {
                 iconNoti.classList.add("fa-solid", "fa-comment-dots");
                 iconNoti.style.color = "#E09030";
                 notification.style.backgroundColor = "#E09030";
-                valueType = "comment";
-                endtext = "your post.";
+                valueType = "แสดงความคิดเห็น";
+                endtext = "บนโพสของคุณ";
             }
             else if (data.type === "bookmark") {
                 iconNoti.classList.add("fa-solid", "fa-bookmark");
                 iconNoti.style.color = "#2e7eff";
                 notification.style.backgroundColor = "#2e7eff";
-                valueType = "bookmark";
-                endtext = "your post.";
-            } else {
+                valueType = "บันทึก";
+                endtext = "โพสของคุณ";
+            } else if (data.type === "adopt") {
                 iconNoti.classList.add("fa-solid", "fa-paw");
                 iconNoti.style.color = "#27b05b";
                 notification.style.backgroundColor = "#27b05b";
-                valueType = "send adopt request";
-                endtext = "to you.";
+                valueType = "ส่งคำขอ";
+                endtext = "ถึงคุณ";
+            }else if (data.type === "confirm") {
+                iconNoti.classList.add("fa-solid", "fa-check");
+                iconNoti.style.color = "#0a8f00";
+                notification.style.backgroundColor = "white";
+                notification.style.borderColor = "#0a8f00";
+                notification.style.color = "#0a8f00";
+                image.style.borderColor = "#0a8f00";
+                valueType = "ยอมรับคำขอ";
+                endtext = "ของคุณ";
+            }else if (data.type === "cancel") {
+                iconNoti.classList.add("fa-solid", "fa-xmark");
+                iconNoti.style.color = "#ff0000";
+                notification.style.backgroundColor = "white";
+                notification.style.borderColor = "#ff0000";
+                notification.style.color = "#ff0000";
+                image.style.borderColor = "#ff0000";
+                valueType = "ปฏิเสธคำขอ";
+                endtext = "ของคุณ";
             }
 
             imgSection.appendChild(iconNoti);
             notification.appendChild(imgSection);
 
             const account = await search_accountByid(data.from);
-            const textNode = document.createTextNode(` ${account.username} ${valueType} ${endtext}`);
+            const textNode = document.createTextNode(` ${account.username} ${valueType}${endtext}`);
             notification.appendChild(textNode);
 
             notiContainer.appendChild(notification);

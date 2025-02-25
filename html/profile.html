@@ -12,7 +12,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Barlow&family=Mali:wght@300&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Dangrek&family=Mali:wght@300&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="https://unpkg.com/swiper@8/swiper-bundle.min.css" />
     <link rel="stylesheet" href="../css/index.css">
@@ -73,7 +73,7 @@
 
 
     <div class="profile-container">
-        <img src="" alt="Profile Picture" class="profile-pic" id="profileImg">
+        <img src="" class="profile-pic" id="profileImg">
         <h1 class="username" id="profileUsername"></h1>
         <div class="nav">
             <button class="nav-post" data-content="post" id="mypost"><i class="fas fa-newspaper"></i> My post</button>
@@ -121,12 +121,21 @@
         </form>
     </div>
 
-    <!-- --------------------------------------- Mock Up Post -------------------------------------------------- -->
+    <!-- ---------------------------------------  Post -------------------------------------------------- -->
 
 
     <div class="container" id="content-container">
         
+        
     </div>
+   
+    <!-- --------------------------------------- Request Post -------------------------------------------------- -->
+
+
+    <div id="request-popup" class="request-popup">
+    </div>
+
+    
 
 
     <!-------------------------------------------------->
@@ -139,6 +148,7 @@
         </div> -->
     <!-- Copyright -->
     <!-- </footer> -->
+     
 
     <script src="https://www.gstatic.com/firebasejs/9.19.1/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.19.1/firebase-database-compat.js"></script>
@@ -152,6 +162,7 @@
 
     <script type="module">
         import { displayMyposts, displayBookmark } from "../js/displayPost.js";
+        import { displayMyrequest } from "../js/displayAdopt.js";
 
         const containerContent = document.getElementById("content-container");
         containerContent.innerHTML = "";
@@ -164,13 +175,23 @@
 
         document.getElementById("mypost").onclick = async function() {
             document.getElementById("mybookmark").classList.remove("clicked");
-            await displayMyposts()
+            document.getElementById("myadopt").classList.remove("clicked");
+            await displayMyposts();
             this.classList.add("clicked");
         }
 
+        document.getElementById("myadopt").onclick = async function() {
+            document.getElementById("mybookmark").classList.remove("clicked");
+            document.getElementById("mypost").classList.remove("clicked");
+            await displayMyrequest();
+            this.classList.add("clicked");
+        }
+
+
         document.getElementById("mybookmark").onclick = async function() {
             document.getElementById("mypost").classList.remove("clicked");
-            await displayBookmark()
+            document.getElementById("myadopt").classList.remove("clicked");
+            await displayBookmark();
             this.classList.add("clicked");
         }
 
@@ -179,6 +200,22 @@
     
     </script>
 
+    <script>
+                // request popup
+        document.addEventListener("click", function (event) {
+            let popup = document.getElementById("request-popup");
+
+            // กดปุ่ม "View Detail" เพื่อเปิด popup
+            if (event.target.classList.contains("request-btn")) {
+                popup.style.display = "flex";
+            }
+
+            // กดปุ่มปิด (×) หรือคลิกที่พื้นหลัง popup เพื่อปิด
+            if (event.target.classList.contains("request-popup-close") || event.target.id === "request-popup") {
+                popup.style.display = "none";
+            }
+        });
+    </script>
 
 
     <script type="module">
@@ -266,7 +303,7 @@
                     event.preventDefault();
                     sessionStorage.removeItem("user");
                     await toggleSidebar(); // รอให้ทำงานเสร็จ
-                    location.reload();
+                    window.location.href = "../html/index.html" ;
                 });
             }
 

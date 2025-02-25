@@ -34,6 +34,20 @@ export async function getPostData() {
   }));
 }
 
+// Fetch cat data from Firestore
+export async function getAdoptData() {
+  const adopttQuery = query(
+      collection(db, 'adopt-request'),
+      orderBy('time', 'desc') // เรียงลำดับจากใหม่ไปเก่า
+  );
+
+  const adoptSnapshot = await getDocs(adopttQuery);
+  return adoptSnapshot.docs.map(doc => ({
+      id: doc.id, // เพิ่ม id ของเอกสาร
+      ...doc.data()
+  }));
+}
+
 export async function getBookmarkData() {
   const Bookmark = collection(db, 'state-bookmark');
   const bookmarkSnapshot = await getDocs(Bookmark);
@@ -228,6 +242,39 @@ export async function search_post(postId) {
   }
 }
 
+export async function updateStatusPost(postId) {
+  if(postId){
+
+      const postRef = collection(db, "Post");
+      const q = query(postRef, where("id", "==", postId));
+      let querySnapshot = await getDocs(q);
+
+      if (querySnapshot) {
+        const docRef = querySnapshot.docs[0].ref;
+        await updateDoc(docRef,{
+          status: false
+        })
+        console.log('update Success!')
+      }
+  }
+}
+
+export async function search_request(requestId) {
+  if (requestId) {
+    try {
+      const requestRef = collection(db, "adopt-request");
+      let q = query(requestRef, where("id", "==", requestId));
+      let querySnapshot = await getDocs(q);
+      if (querySnapshot) {
+        const requestData = querySnapshot.docs[0].data();
+        return requestData;
+      }
+    } catch (e) {
+      console.error("Error searching account:", e);
+    }
+  }
+}
+
 export async function search_comment(postId) {
   if (postId) {
     try {
@@ -272,9 +319,9 @@ export async function addComment(username, postId, text) {
 }
 
 // ฟังก์ชันเพื่ออัปโหลดไฟล์รูป
-export async function uploadImage(file) {
+export async function uploadImage(file, folder) {
   const timestamp = Date.now();  // ใช้เวลาปัจจุบันในรูปแบบ millisecond
-  const storageRef = ref(storage, `profile_images/${timestamp}_${file.name}`);
+  const storageRef = ref(storage, `${folder}/${timestamp}_${file.name}`);
   await uploadBytes(storageRef, file);
   const imageUrl = await getDownloadURL(storageRef);
   return imageUrl;
@@ -284,7 +331,7 @@ export async function uploadImage(file) {
 
 export async function register(username, phone, password, name, mail, contract, imageFile) {
   try {
-    const imageUrl = await uploadImage(imageFile);
+    const imageUrl = await uploadImage(imageFile, "pictureProfile");
     const docRef = await addDoc(collection(db, "Account"), {});
 
     await setDoc(docRef, {
@@ -307,7 +354,7 @@ export async function register(username, phone, password, name, mail, contract, 
 
 export async function addPostData(catImg, catName, catSex, catColor, catAge, catLocation,  catDetails, ownerPost) {
   try {
-    const imageUrl = await uploadImage(catImg);
+    const imageUrl = await uploadImage(catImg, "catimgPost");
     const docRef = await addDoc(collection(db, "Post"), {}); // สร้าง document เปล่าก่อน เพื่อให้ได้ docRef.id
 
     await setDoc(docRef, {  
@@ -329,6 +376,26 @@ export async function addPostData(catImg, catName, catSex, catColor, catAge, cat
     console.log("Cat added with ID: ", docRef.id);
   } catch (e) {
     console.error("Error adding cat: ", e);
+  }
+}
+
+export async function addAdoptrequest(postId, ownerPost, ownerRequest, imgLst, details) {
+  try {
+    const docRef = await addDoc(collection(db, "adopt-request"), {}); // สร้าง document เปล่าก่อน เพื่อให้ได้ docRef.id
+
+    await setDoc(docRef, {  
+      id : docRef.id,
+      postid : postId,
+      ownerpost : ownerPost,
+      ownerrequest : ownerRequest,
+      imglst : imgLst,
+      detail : details,
+      time: Timestamp.now(),
+    });
+
+    console.log("adopt added with ID: ", docRef.id);
+  } catch (e) {
+    console.error("Error adding adopt: ", e);
   }
 }
 

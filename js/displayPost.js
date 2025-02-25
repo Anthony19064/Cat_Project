@@ -297,13 +297,15 @@ export async function displayAllposts() {
 
       const adoptButton = document.createElement('button');
       adoptButton.classList.add('btn', 'adopt-btn');
-      if(post.owner == account.id){
-        adoptButton.disabled = true;
+      if(account){
+        if(post.owner == account.id){
+          adoptButton.disabled = true;
+        }
       }
       adoptButton.textContent = 'รับเลี้ยง';
       adoptButton.addEventListener("click", async () => {
         if (usersession) {
-          await crate_popup(post.catname);
+          await crate_popup(post.id);
         } else {
           window.location.href = "../html/regis.html";
         }
@@ -331,13 +333,12 @@ export async function displayAllposts() {
 export async function displayMyposts() {
   let usersession = sessionStorage.getItem("user");
   const account = await search_accountByid(usersession);
-  const catListElement = document.querySelector('#content-container');
-  catListElement.innerHTML = "";
+  const ListElement = document.querySelector('#content-container');
+  ListElement.innerHTML = "";
   const posts = await getPostData();
 
   posts.forEach(async post => {
     if(post.owner == account.id) {
-      if (post.status == true) {
         const timepost = timeAgo(post.time.toDate());
   
         let cat_sex = post.sex === 'ชาย' ? '♂' : '♀';
@@ -581,7 +582,7 @@ export async function displayMyposts() {
         adoptButton.textContent = 'รับเลี้ยง';
         adoptButton.addEventListener("click", async () => {
           if (usersession) {
-            await crate_popup(post.catname);
+            await crate_popup(post.id);
           } else {
             window.location.href = "../html/regis.html";
           }
@@ -596,10 +597,10 @@ export async function displayMyposts() {
         card.appendChild(bottomSection);
   
         // Append the card to the list container
-        catListElement.appendChild(card);
+        ListElement.appendChild(card);
       }
   
-    }
+    
     } 
   );
 
@@ -610,8 +611,8 @@ export async function displayBookmark() {
   const account = await search_accountByid(usersession);
   const posts = await getPostData();
   const bookmarks = await getBookmarkData();
-  const catListElement = document.querySelector('#content-container');
-  catListElement.innerHTML = "";
+  const ListElement = document.querySelector('#content-container');
+  ListElement.innerHTML = "";
 
   bookmarks.forEach(async bookmark =>{
     if(bookmark.user == account.username){
@@ -863,7 +864,7 @@ export async function displayBookmark() {
               adoptButton.textContent = 'รับเลี้ยง';
               adoptButton.addEventListener("click", async () => {
                 if (usersession) {
-                  await crate_popup(post.catname);
+                  await crate_popup(post.id);
                 } else {
                   window.location.href = "../html/regis.html";
                 }
@@ -878,7 +879,7 @@ export async function displayBookmark() {
               card.appendChild(bottomSection);
         
               // Append the card to the list container
-              catListElement.appendChild(card);
+              ListElement.appendChild(card);
             }
           }
       });    
