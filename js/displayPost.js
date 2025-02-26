@@ -234,7 +234,7 @@ export async function displayAllposts() {
         let user = sessionStorage.getItem("user");
         if (user) {
           const account = await search_accountByid(user);
-          let bs_check = await search_statelike(account.username, post.id); // ตรวจสอบสถานะ like ก่อน
+          let bs_check = await search_statelike(account.id, post.id); // ตรวจสอบสถานะ like ก่อน
           if (bs_check) {
             lottie_heart.setFrame(lottie_heart.totalFrames - 1);
           } else {
@@ -250,7 +250,7 @@ export async function displayAllposts() {
             if (!bh_state) {
               lottie_heart.setMode("forward");
               lottie_heart.play();
-              await addStateLike(account.username, post.id);
+              await addStateLike(account.id, post.id);
               const post_now = await search_post(post.id);
               countLike.textContent = post_now.countLike;
               bh_state = true;
@@ -258,7 +258,7 @@ export async function displayAllposts() {
               lottie_heart.setFrame(lottie_heart.totalFrames - 30);
               lottie_heart.setMode("reverse");
               lottie_heart.play();
-              await deleteStateLike(account.username, post.id);
+              await deleteStateLike(account.id, post.id);
               const post_now = await search_post(post.id);
               countLike.textContent = post_now.countLike;
               bh_state = false;
@@ -266,7 +266,7 @@ export async function displayAllposts() {
           });
 
 
-          let bs_check_book = await search_stateBook(account.username, post.id); // ตรวจสอบสถานะ bookmark ก่อน
+          let bs_check_book = await search_stateBook(account.id, post.id); // ตรวจสอบสถานะ bookmark ก่อน
           if (bs_check_book) {
             lottie_book.setFrame(lottie_book.totalFrames - 1);
           } else {
@@ -278,13 +278,13 @@ export async function displayAllposts() {
             if (!bb_state) {
               lottie_book.setMode("forward");
               lottie_book.play();
-              await addStateBook(account.username, post.id);
+              await addStateBook(account.id, post.id);
               bb_state = true;
             } else {
               lottie_book.setFrame(lottie_book.totalFrames - 30);
               lottie_book.setMode("reverse");
               lottie_book.play();
-              await deleteStateBook(account.username, post.id);
+              await deleteStateBook(account.id, post.id);
               bb_state = false;
             }
           });
@@ -514,7 +514,7 @@ export async function displayMyposts() {
           let user = sessionStorage.getItem("user");
           if (user) {
             const account = await search_accountByid(user);
-            let bs_check = await search_statelike(account.username, post.id); // ตรวจสอบสถานะ like ก่อน
+            let bs_check = await search_statelike(account.id, post.id); // ตรวจสอบสถานะ like ก่อน
             if (bs_check) {
               lottie_heart.setFrame(lottie_heart.totalFrames - 1);
             } else {
@@ -546,7 +546,7 @@ export async function displayMyposts() {
             });
   
   
-            let bs_check_book = await search_stateBook(account.username, post.id); // ตรวจสอบสถานะ bookmark ก่อน
+            let bs_check_book = await search_stateBook(account.id, post.id); // ตรวจสอบสถานะ bookmark ก่อน
             if (bs_check_book) {
               lottie_book.setFrame(lottie_book.totalFrames - 1);
             } else {
@@ -615,7 +615,7 @@ export async function displayBookmark() {
   ListElement.innerHTML = "";
 
   bookmarks.forEach(async bookmark =>{
-    if(bookmark.user == account.username){
+    if(bookmark.user == account.id){
       posts.forEach(async post => {
           if(post.id == bookmark.post_id){
             if (post.status == true) {
@@ -794,7 +794,7 @@ export async function displayBookmark() {
                 let user = sessionStorage.getItem("user");
                 if (user) {
                   const account = await search_accountByid(user);
-                  let bs_check = await search_statelike(account.username, post.id); // ตรวจสอบสถานะ like ก่อน
+                  let bs_check = await search_statelike(account.id, post.id); // ตรวจสอบสถานะ like ก่อน
                   if (bs_check) {
                     lottie_heart.setFrame(lottie_heart.totalFrames - 1);
                   } else {
@@ -826,7 +826,7 @@ export async function displayBookmark() {
                   });
         
         
-                  let bs_check_book = await search_stateBook(account.username, post.id); // ตรวจสอบสถานะ bookmark ก่อน
+                  let bs_check_book = await search_stateBook(account.id, post.id); // ตรวจสอบสถานะ bookmark ก่อน
                   if (bs_check_book) {
                     lottie_book.setFrame(lottie_book.totalFrames - 1);
                   } else {

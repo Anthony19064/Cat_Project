@@ -26,9 +26,9 @@ function toggleForms() {
                         <div class="mb-3 position-relative d-flex">
                             <span class="input-group-text" id="contact-icon"><i class="fa-brands fa-facebook"></i></span>
                             <select class="form-select custom-dropdown" id="contract-type" onchange="updateIcon()">
-                                <option value="facebook" selected>Facebook</option>
-                                <option value="line" >Line</option>
-                                <option value="instagram">Instagram</option>
+                                <option value="FB" selected>Facebook</option>
+                                <option value="LINE" >Line</option>
+                                <option value="IG">Instagram</option>
                             </select>
                             <input type="text" class="form-control" placeholder="Social media" id="contract-t">
                         </div>
@@ -65,9 +65,9 @@ function updateIcon() {
     const iconSpan = document.getElementById("contact-icon");
 
     const icons = {
-        facebook: "fa-brands fa-facebook",
-        line: "fa-brands fa-line",
-        instagram: "fa-brands fa-instagram"
+        FB: "fa-brands fa-facebook",
+        LINE: "fa-brands fa-line",
+        IG: "fa-brands fa-instagram"
     };
 
     // อัปเดตไอคอนตามค่าที่เลือก

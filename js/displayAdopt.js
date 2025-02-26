@@ -14,6 +14,7 @@ export async function displayMyrequest() {
   adopts.forEach(async adopt => {
     const post = await search_post(adopt.postid);
     if (adopt.ownerpost == myaccount.id){
+                
         const timeadopt = timeAgo(adopt.time.toDate());
 
         const card = document.createElement('div');
@@ -71,17 +72,13 @@ export async function displayMyrequest() {
         viewbutton.addEventListener("click", async () => {
           await createDetailRequest(adopt.id);
         });
-
-
-
         bottom.appendChild(viewbutton);
 
         card.appendChild(top);
         card.appendChild(bottom);
 
         ListElement.append(card);
-
-    }
+        }
     
   });
 }

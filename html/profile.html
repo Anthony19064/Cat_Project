@@ -21,6 +21,7 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link rel="stylesheet" href="../css/profile.css">
+    <link rel="stylesheet" href="../css/regis.css">
 
 
 
@@ -77,8 +78,10 @@
         <h1 class="username" id="profileUsername"></h1>
         <div class="nav">
             <button class="nav-post" data-content="post" id="mypost"><i class="fas fa-newspaper"></i> My post</button>
-            <button class="nav-request" data-content="request" id="myadopt"><i class="fas fa-paw"></i> Adopt request</button>
-            <button class="nav-book" data-content="bookmark" id="mybookmark"><i class="fas fa-bookmark"></i> Bookmark</button>
+            <button class="nav-request" data-content="request" id="myadopt"><i class="fas fa-paw"></i> Adopt
+                request</button>
+            <button class="nav-book" data-content="bookmark" id="mybookmark"><i class="fas fa-bookmark"></i>
+                Bookmark</button>
         </div>
         <!-- ปรับ class ของปุ่มให้เป็น edit-profile-btn -->
         <button class="fas fa-pen edit-profile-btn"></button>
@@ -87,55 +90,71 @@
 
     <div class="edit-profile-overlay" id="editProfileOverlay"></div>
     <div class="edit-profile-popup" id="editProfilePopup">
-        <span class="edit-profile-close">&times;</span>
-        <div class="profile-header">
+        <span class="edit-profile-close"><i class="fa-solid fa-xmark"></i></span>
+        <div class="register-form">
             <label for="avatar-input" class="avatar-label">
-                <img src="https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExNzhkaDNqeTJjZDhiZzcwdXJjOHB0ZW05MnVxZG03Zmxyd3JpNTJtNSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/CjmvTCZf2U3p09Cn0h/giphy.gif"
-                    class="avatar-profile" id="avatar-preview">
+                <div class="avatar" id="avatar-preview"></div>
             </label>
             <input type="file" id="avatar-input" accept="image/*" style="display: none" onchange="previewAvatar()">
-            <h2 class="profile-title">username</h2>
+            <h3>Edit Profile</h3>
+            <form id="regis-form">
+                <div class="mb-3 position-relative">
+                    <span class="input-group-text"><i class="fas fa-user"></i></span>
+                    <input type="text" class="form-control" placeholder="Name" id="name">
+                </div>
+                <div class="mb-3 position-relative">
+                    <span class="input-group-text"><i class="fas fa-phone"></i></span>
+                    <input type="text" class="form-control" placeholder="Phone number" id="phone">
+                </div>
+                <div class="mb-3 position-relative d-flex">
+                    <span class="input-group-text" id="contact-icon"><i class="fa-brands fa-facebook"></i></span>
+                    <select class="form-select custom-dropdown" id="contract-type" onchange="updateIcon()">
+                        <option value="FB" selected>Facebook</option>
+                        <option value="LINE">Line</option>
+                        <option value="IG">Instagram</option>
+                    </select>
+                    <input type="text" class="form-control" placeholder="Social media" id="contract-t">
+                </div>
+                <div class="mb-3 position-relative">
+                    <span class="input-group-text"><i class="fas fa-envelope"></i></span>
+                    <input type="email" class="form-control" placeholder="Email" id="mail">
+                </div>
+                <div class="mb-3 position-relative">
+                    <span class="input-group-text"><i class="fas fa-id-card"></i></span>
+                    <input type="text" class="form-control" placeholder="Username" id="username">
+                </div>
+                <div class="mb-3 position-relative">
+                    <span class="input-group-text"><i class="fas fa-lock"></i></span>
+                    <input type="password" class="form-control" placeholder="Password" id="password">
+                </div>
+                <div class="mb-3 position-relative">
+                    <span class="input-group-text"><i class="fas fa-lock"></i></span>
+                    <input type="password" class="form-control" placeholder="Retype password" id="retype_password">
+                </div>
+
+                <div class="buttonzone">
+                    <button type="button" class="btn btn-register" id="btn-register">Register</button>
+                    <button type="button" class="btn btn-cancel">Cancel</button>
+                </div>
+            </form>
         </div>
-        <form class="edit-profile-form">
-            <label>Email</label>
-            <input type="email" id="mail">
-            <label>Name</label>
-            <input type="text" id="name">
-            <label>Username</label>
-            <input type="text" id="username">
-            <label>Password</label>
-            <input type="text" id="password">
-            <label>Tel.</label>
-            <input type="text" id="phone">
-            <label>Social Media</label>
-            <div class="social-media-container">
-                <select id="contract-type" onchange="updateSocialIcon()">
-                    <option value="line">Line</option>
-                    <option value="facebook">Facebook</option>
-                    <option value="instagram">Instagram</option>
-                </select>
-                <i id="contract-t" class="fa-brands fa-line social-icon"></i>
-                <input type="text" id="socialMediaInput" placeholder="Enter your social media">
-            </div>
-            <button type="submit" class="edit-profile-save">Save</button>
-        </form>
     </div>
 
     <!-- ---------------------------------------  Post -------------------------------------------------- -->
 
 
     <div class="container" id="content-container">
-        
-        
+
+
     </div>
-   
+
     <!-- --------------------------------------- Request Post -------------------------------------------------- -->
 
 
     <div id="request-popup" class="request-popup">
     </div>
 
-    
+
 
 
     <!-------------------------------------------------->
@@ -148,7 +167,7 @@
         </div> -->
     <!-- Copyright -->
     <!-- </footer> -->
-     
+
 
     <script src="https://www.gstatic.com/firebasejs/9.19.1/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.19.1/firebase-database-compat.js"></script>
@@ -160,6 +179,40 @@
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 
+    <script>
+        function updateIcon() {
+            const select = document.getElementById("contract-type");
+            const iconSpan = document.getElementById("contact-icon");
+
+            const icons = {
+                FB: "fa-brands fa-facebook",
+                LINE: "fa-brands fa-line",
+                IG: "fa-brands fa-instagram"
+            };
+
+            // อัปเดตไอคอนตามค่าที่เลือก
+            iconSpan.innerHTML = `<i class="${icons[select.value]}"></i>`;
+        }
+
+        function previewAvatar() {
+            const file = document.getElementById("avatar-input").files[0];
+            const preview = document.getElementById("avatar-preview");
+
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function (e) {
+                    preview.style.backgroundImage = `url(${e.target.result})`;
+                    preview.style.backgroundSize = "cover";
+                    preview.style.backgroundPosition = "center";
+                    preview.style.border = "none";
+                };
+                reader.readAsDataURL(file);
+            }
+        }
+    </script>
+
+
+
     <script type="module">
         import { displayMyposts, displayBookmark } from "../js/displayPost.js";
         import { displayMyrequest } from "../js/displayAdopt.js";
@@ -167,20 +220,39 @@
         const containerContent = document.getElementById("content-container");
         containerContent.innerHTML = "";
 
-            // เรียกใช้ฟังก์ชันทันทีเมื่อโหลดหน้าเว็บ
-        (async function() {
-            await displayMyposts();
-            document.getElementById("mypost").classList.add("clicked");
-        })();
+        
+        const urlParams = new URLSearchParams(window.location.search);
+        const defaultTab = urlParams.get("tab") || "mypost"; // ถ้าไม่มีค่าใช้ "mypost"
 
-        document.getElementById("mypost").onclick = async function() {
+        // เรียกใช้ฟังก์ชันทันทีเมื่อโหลดหน้าเว็บ
+        async function showTab(tab) {
+            containerContent.innerHTML = ""; 
+            document.getElementById("mypost").classList.remove("clicked");
+            document.getElementById("myadopt").classList.remove("clicked");
+            document.getElementById("mybookmark").classList.remove("clicked");
+
+            if (tab === "myadopt") {
+                await displayMyrequest();
+                document.getElementById("myadopt").classList.add("clicked");
+            } else if (tab === "mybookmark") {
+                await displayBookmark();
+                document.getElementById("mybookmark").classList.add("clicked");
+            } else {
+                await displayMyposts();
+                document.getElementById("mypost").classList.add("clicked");
+            }
+        }
+
+        showTab(defaultTab);
+
+        document.getElementById("mypost").onclick = async function () {
             document.getElementById("mybookmark").classList.remove("clicked");
             document.getElementById("myadopt").classList.remove("clicked");
             await displayMyposts();
             this.classList.add("clicked");
         }
 
-        document.getElementById("myadopt").onclick = async function() {
+        document.getElementById("myadopt").onclick = async function () {
             document.getElementById("mybookmark").classList.remove("clicked");
             document.getElementById("mypost").classList.remove("clicked");
             await displayMyrequest();
@@ -188,20 +260,16 @@
         }
 
 
-        document.getElementById("mybookmark").onclick = async function() {
+        document.getElementById("mybookmark").onclick = async function () {
             document.getElementById("mypost").classList.remove("clicked");
             document.getElementById("myadopt").classList.remove("clicked");
             await displayBookmark();
             this.classList.add("clicked");
         }
-
-
-
-    
     </script>
 
     <script>
-                // request popup
+        // request popup
         document.addEventListener("click", function (event) {
             let popup = document.getElementById("request-popup");
 
@@ -220,7 +288,7 @@
 
     <script type="module">
         import { search_accountByid } from "../js/db.js";
-        import { displayNotification, check_stateNoti} from "../js/notification.js";
+        import { displayNotification, check_stateNoti } from "../js/notification.js";
         document.addEventListener("DOMContentLoaded", async function () {
             let right_button = document.getElementById('rigth-btn');
             let user_side = document.getElementById('user-side');
@@ -235,7 +303,7 @@
                     let account = await search_accountByid(user);
                     user_side.textContent = account.username;
                     userimg_side.src = account.img;
-                    
+
 
                     // สร้าง container ครอบ img-user
                     let imgContainer = document.createElement("div");
@@ -256,7 +324,7 @@
                     right_button.appendChild(imgContainer);
 
                     await displayNotification(account.id)
-                    
+
                 } catch (error) {
                     console.error("เกิดข้อผิดพลาดในการดึงข้อมูลผู้ใช้:", error);
                 }
@@ -280,8 +348,8 @@
             let userSidebarBtn = document.getElementById("user-sidebar");
             let account = await search_accountByid(user);
             if (userSidebarBtn) {
-                userSidebarBtn.addEventListener("click",async function (event) {
-                    event.preventDefault();                   
+                userSidebarBtn.addEventListener("click", async function (event) {
+                    event.preventDefault();
                     await check_stateNoti(account.id);
                     await toggleSidebar();
                 });
@@ -303,7 +371,7 @@
                     event.preventDefault();
                     sessionStorage.removeItem("user");
                     await toggleSidebar(); // รอให้ทำงานเสร็จ
-                    window.location.href = "../html/index.html" ;
+                    window.location.href = "../html/index.html";
                 });
             }
 
@@ -315,9 +383,43 @@
 
         });
 
-        
+
+
+
 
     </script>
+
+    <script type="module">
+        import { search_accountByid, updateProfile } from "../js/db.js";
+        let user = sessionStorage.getItem("user");
+
+        document.getElementById("btn-register").addEventListener("click", update);
+
+
+
+        async function update() {
+            const img = document.getElementById("avatar-input");
+            const avatarFile = img.files[0];
+
+            //ข้้อมูลชุดใหม่ ถ้ามีจะเอา value มาจาก input ถ้าไม่มีจะเป็น null
+            const newData = {
+                name: document.getElementById("name").value || null,
+                phone: document.getElementById("phone").value || null,
+                contract: document.getElementById("contract-t").value || null,
+                mail: document.getElementById("mail").value || null,
+                username: document.getElementById("username").value || null,
+                password: document.getElementById("password").value || null,
+                img: avatarFile || null
+
+            };
+
+            await updateProfile(user, newData);
+        }
+
+
+
+    </script>
+
 
     <!-- <script>
         function toggleDropdown() {

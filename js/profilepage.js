@@ -9,8 +9,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // เปิด Popup
     editBtn.addEventListener("click", function () {
-        popup.style.display = "block";
-        overlay.style.display = "block";
+        popup.style.display = "flex";
+        overlay.style.display = "flex ";
     });
 
     // ปิด Popup

@@ -83,7 +83,7 @@ export async function createCommetPopup(PostId) {
       const buttonSend = document.createElement('button');
       buttonSend.onclick = async () => {
         console.log(PostId);
-        const countComment = document.querySelector("#" + PostId);
+        const countComment = document.getElementById(PostId);
         console.log(countComment)
         const comment = document.getElementById('textComment').value;
         if (usersession) {

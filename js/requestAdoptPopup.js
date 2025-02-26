@@ -1,9 +1,10 @@
-import { search_request, search_accountByid, search_post, updateStatusPost } from "./db.js";
+import { search_request, search_accountByid, search_post, updateStatusPost, deleteRequest } from "./db.js";
 import { sendNotification } from "./notification.js";
 import { updateDoc } from "https://www.gstatic.com/firebasejs/9.17.2/firebase-firestore-lite.js";
 
 export async function createDetailRequest(requestID) {
     const popup = document.getElementById('request-popup');
+    popup.innerHTML= '';
     popup.style.display = 'flex';
 
     let usersession = sessionStorage.getItem("user");
@@ -15,7 +16,6 @@ export async function createDetailRequest(requestID) {
 
     let imgLst = request.imglst;
     
-    if(popup.innerHTML.trim() === ''){
         const content = document.createElement('div');
         content.classList.add('request-popup-content');
 
@@ -149,7 +149,7 @@ export async function createDetailRequest(requestID) {
         buttonOk.classList.add('request-popup-approve');
         buttonOk.textContent = "ยอมรับ";
         buttonOk.onclick = async () => {
-            await confirmAdopt(post.id);
+            await updateStatusPost(post.id);
             await sendNotification(post.id, targetAccount.id, "confirm", usersession);
             popup.style.display = 'none';
         }
@@ -158,8 +158,18 @@ export async function createDetailRequest(requestID) {
         buttonCancel.classList.add('request-popup-decline');
         buttonCancel.textContent = "ปฏิเสธ";
         buttonCancel.onclick = async () => {
+            await deleteRequest(request.id);
             await sendNotification(post.id, targetAccount.id, "cancel", usersession);
             popup.style.display = 'none';
+        }
+        console.log(request.status)
+        if (request.status == false){
+            buttonOk.disabled = true;
+            buttonCancel.disabled = true;
+        }
+        else{
+            buttonOk.disabled = false;
+            buttonCancel.disabled = false;
         }
 
         buttonSection.appendChild(buttonOk);
@@ -175,11 +185,7 @@ export async function createDetailRequest(requestID) {
 
 
         popup.appendChild(content);
-    }
+    
 }
 
 
-async function confirmAdopt(postID) {
-    await updateStatusPost(postID);
-
-}
