@@ -259,6 +259,23 @@ export async function updateStatusPost(postId) {
   }
 }
 
+export async function updateStatusRequest(reqId) {
+  if(reqId){
+
+      const postRef = collection(db, "adopt-request");
+      const q = query(postRef, where("id", "==", reqId));
+      let querySnapshot = await getDocs(q);
+
+      if (querySnapshot) {
+        const docRef = querySnapshot.docs[0].ref;
+        await updateDoc(docRef,{
+          status: false
+        })
+        console.log('update Success!')
+      }
+  }
+}
+
 export async function search_request(requestId) {
   if (requestId) {
     try {
