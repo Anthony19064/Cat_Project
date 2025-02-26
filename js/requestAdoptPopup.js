@@ -1,4 +1,4 @@
-import { search_request, search_accountByid, search_post, updateStatusPost, deleteRequest } from "./db.js";
+import { search_request, search_accountByid, search_post, updateStatusPost, deleteRequest, updateStatusRequest } from "./db.js";
 import { sendNotification } from "./notification.js";
 import { displayMyrequest } from "../js/displayAdopt.js";
 
@@ -151,6 +151,7 @@ export async function createDetailRequest(requestID) {
         buttonOk.textContent = "ยอมรับ";
         buttonOk.onclick = async () => {
             await updateStatusPost(post.id);
+            await updateStatusRequest(request.id);
             await sendNotification(post.id, targetAccount.id, "confirm", usersession);
             popup.style.display = 'none';
             
@@ -164,8 +165,6 @@ export async function createDetailRequest(requestID) {
             await sendNotification(post.id, targetAccount.id, "cancel", usersession);
             await displayMyrequest();
             popup.style.display = 'none';
-
-
         }
 
         if (request.status == false){
