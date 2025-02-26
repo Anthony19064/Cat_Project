@@ -25,12 +25,15 @@ export async function sendNotification(postId, toUser, type, fromUser) {
         let notificationExists = false;
         snapshot.forEach((childSnapshot) => {
             const data = childSnapshot.val();
-            if (data.type === type && data.from == fromUser) {
-                // ถ้าเจอ Notification แบบเดิม ให้ลบออก
-                childSnapshot.ref.remove();
-                console.log('🗑️ Notification removed!');
-                notificationExists = true;
+            if (type == "like" || type == "bookmark"){
+                if (data.type === type && data.from == fromUser) {
+                    // ถ้าเจอ Notification แบบเดิม ให้ลบออก
+                    childSnapshot.ref.remove();
+                    console.log('🗑️ Notification removed!');
+                    notificationExists = true;
+                }
             }
+            
         });
 
         if (!notificationExists) {
@@ -55,7 +58,7 @@ export async function sendNotification(postId, toUser, type, fromUser) {
 export async function displayNotification(userId) {
     const notificationRef = firebase.database().ref(`notifications/${userId}`)
         .orderByChild('timestamp')
-        .limitToLast(10); // ดึงข้อมูล 10 รายการล่าสุด
+        .limitToLast(6); // ดึงข้อมูล 10 รายการล่าสุด
     const notiContainer = document.getElementById("notiContainer");
     notiContainer.innerHTML = "";
     // เมื่อมีการเปลี่ยนแปลงข้อมูล (ทั้งเพิ่มและลบ)

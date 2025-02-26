@@ -462,7 +462,6 @@ export async function deleteRequest(requestID) {
   try {
     const requestRef = doc(db, "adopt-request", requestID);
     await deleteDoc(requestRef);
-    location.reload();
 } catch (error) {
     console.error("Error deleting request: ", error);
 }

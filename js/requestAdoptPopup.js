@@ -1,6 +1,7 @@
 import { search_request, search_accountByid, search_post, updateStatusPost, deleteRequest } from "./db.js";
 import { sendNotification } from "./notification.js";
-import { updateDoc } from "https://www.gstatic.com/firebasejs/9.17.2/firebase-firestore-lite.js";
+import { displayMyrequest } from "../js/displayAdopt.js";
+
 
 export async function createDetailRequest(requestID) {
     const popup = document.getElementById('request-popup');
@@ -152,6 +153,7 @@ export async function createDetailRequest(requestID) {
             await updateStatusPost(post.id);
             await sendNotification(post.id, targetAccount.id, "confirm", usersession);
             popup.style.display = 'none';
+            
         }
 
         const buttonCancel = document.createElement('button');
@@ -160,9 +162,12 @@ export async function createDetailRequest(requestID) {
         buttonCancel.onclick = async () => {
             await deleteRequest(request.id);
             await sendNotification(post.id, targetAccount.id, "cancel", usersession);
+            await displayMyrequest();
             popup.style.display = 'none';
+
+
         }
-        console.log(request.status)
+
         if (request.status == false){
             buttonOk.disabled = true;
             buttonCancel.disabled = true;
