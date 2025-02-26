@@ -1,9 +1,6 @@
-html {
-  scroll-behavior: smooth; /* เลื่อนแบบนุ่มนวล */
-}
 
 * {
-  font-family: 'Barlow', 'Mali', sans-serif;
+  font-family: 'Dangrek', 'Mali', sans-serif;
 }
 body{
   min-height: 100vh;
@@ -175,8 +172,8 @@ body {
 .sidebar {
   position: fixed;
   top: 0;
-  right: -370px;
-  width: 370px;
+  right: -430px;
+  width: 430px;
   height: 100%;
   background: rgb(255, 255, 255);
   box-shadow: -2px 0 10px rgba(0, 0, 0, 0.2);
@@ -326,7 +323,6 @@ body {
 
 /* ราง Scrollbar */
 .notification::-webkit-scrollbar-track {
-  background: #f1f1f1; 
   border-radius: 10px;
 }
 
@@ -346,7 +342,6 @@ body {
   padding: 8px;
   border-radius: 10px;
   margin-bottom: 5%;
-  font-weight: bold;
   display: flex;
   align-items: center;
   gap: 10px;
@@ -386,6 +381,14 @@ body {
   margin-right: 5px;
 }
 
+.noticontent span{
+  font-weight: bold;
+}
+
+.sp1{
+  font-size: 19px;
+  letter-spacing: 1px;
+}
 
 
 /* search-popup */

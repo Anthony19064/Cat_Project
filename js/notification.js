@@ -80,6 +80,8 @@ export async function displayNotification(userId) {
         }
 
         for (const data of notifications) {
+            const fUser = await search_accountByid(data.from);
+
             const notification = document.createElement("div");
             notification.classList.add("noticontainer");
             notification.setAttribute("data-id", data.key); // เก็บ Key ของ Firebase ไว้ใน DOM
@@ -95,40 +97,79 @@ export async function displayNotification(userId) {
 
             let valueType = "";
             let endtext = "";
-
+            let phone = "";
+            let contract = "";
             if (data.type === "like") {
                 iconNoti.classList.add("fa-solid", "fa-heart");
                 iconNoti.style.color = "#FA3B3B";
                 notification.style.backgroundColor = "#FA3B3B";
-                valueType = "like";
-                endtext = "your post.";
+                valueType = "กดถูกใจ";
+                endtext = "โพสของคุณ";
             }
             else if (data.type === "comment") {
                 iconNoti.classList.add("fa-solid", "fa-comment-dots");
                 iconNoti.style.color = "#E09030";
                 notification.style.backgroundColor = "#E09030";
-                valueType = "comment";
-                endtext = "your post.";
+                valueType = "แสดงความคิดเห็น";
+                endtext = "บนโพสของคุณ";
             }
             else if (data.type === "bookmark") {
                 iconNoti.classList.add("fa-solid", "fa-bookmark");
                 iconNoti.style.color = "#2e7eff";
                 notification.style.backgroundColor = "#2e7eff";
-                valueType = "bookmark";
-                endtext = "your post.";
-            } else {
+                valueType = "บันทึก";
+                endtext = "โพสของคุณ";
+            } else if (data.type === "adopt") {
                 iconNoti.classList.add("fa-solid", "fa-paw");
-                iconNoti.style.color = "#27b05b";
-                notification.style.backgroundColor = "#27b05b";
-                valueType = "send adopt request";
-                endtext = "to you.";
+                iconNoti.style.color = "#8bb05b";
+                notification.style.backgroundColor = "#8bb05b";
+                valueType = "ส่งคำขอ";
+                endtext = "ถึงคุณ";
+            }else if (data.type === "confirm") {
+                iconNoti.classList.add("fa-solid", "fa-check");
+                iconNoti.style.color = "#0a8f00";
+                notification.style.backgroundColor = "white";
+                notification.style.borderColor = "#0a8f00";
+                notification.style.color = "#0a8f00";
+                image.style.borderColor = "#0a8f00";
+                valueType = "ยอมรับคำขอ";
+                endtext = "ของคุณ";
+                phone = fUser.phone;
+                contract = fUser.contract;
+
+                
+            }else if (data.type === "cancel") {
+                iconNoti.classList.add("fa-solid", "fa-xmark");
+                iconNoti.style.color = "#ff0000";
+                notification.style.backgroundColor = "white";
+                notification.style.borderColor = "#ff0000";
+                notification.style.color = "#ff0000";
+                image.style.borderColor = "#ff0000";
+                valueType = "ปฏิเสธคำขอ";
+                endtext = "ของคุณ";
             }
 
             imgSection.appendChild(iconNoti);
             notification.appendChild(imgSection);
 
             const account = await search_accountByid(data.from);
-            const textNode = document.createTextNode(` ${account.username} ${valueType} ${endtext}`);
+            const textNode = document.createElement('span');
+            textNode.classList.add('noticontent');
+            
+            const noticontent = document.createElement('p');
+            noticontent.style.margin = "0px";
+            noticontent.innerHTML = ` <span class="sp1">${account.username}</span> <span>${valueType}${endtext}</span>`;
+
+            const noticontent2 = document.createElement('p');
+            noticontent2.style.margin = "0px";
+            noticontent2.style.marginTop = "3px";
+            noticontent2.innerHTML = `<span>ติดต่อกลับที่ช่องทางดังนี้</span> <br>tel. ${phone}<br> <span>${contract}</span>`;
+
+            textNode.appendChild(noticontent);
+            if(phone && contract){
+                textNode.appendChild(noticontent2);
+            }
+
             notification.appendChild(textNode);
 
             notiContainer.appendChild(notification);
