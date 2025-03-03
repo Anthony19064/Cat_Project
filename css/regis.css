@@ -167,3 +167,55 @@ html {
 #contract-t {
     padding-left: 0;
 }
+@media (max-width: 768px) {
+    /* Remove background images from both left-side and right-side */
+    .left-side {
+        background-size: 350% 100%; /* Resize background to fit 150% width and 100% height */
+    }
+
+    .form-container {
+        width: 90%; /* Set width to 90% of the screen width */
+        max-width: none; /* Remove max-width limit */
+        height: auto; /* Let the height be based on content */
+        padding: 20px; /* Add padding for better spacing */
+        margin: 0 auto; /* Center the form */
+    }
+
+    /* Optional: Adjust form fields' size */
+    .form-control,
+    .custom-dropdown {
+        font-size: 18px; /* Make the font larger for easier typing */
+        padding-left: 20px;
+        padding-right: 20px;
+        width: 100%; /* Make the inputs take full width */
+    }
+    .form-control {
+        padding-left: 35px; /* Space for the icon */
+        font-size: 16px; /* Adjust text size if necessary */
+    }
+
+    /* Adjust the icon's position for mobile */
+    .input-group-text {
+        font-size: 18px; /* Adjust icon size */
+        padding-left: 5px; /* Space around the icon */
+    }
+
+    /* Optional: Adjust spacing between the icon and text */
+    .input-group-text i {
+        margin-right: 10px; /* Increase spacing between the icon and text */
+    }
+    .btn-cancel {
+        border: 1px solid #E09030;
+        color: #E09030;
+        padding: 10px 20px;
+        border-radius: 10px;
+        margin-top: 5px;
+    }
+    .avatar {
+        width: 120px; /* Set the width of the avatar */
+        height: 120px; /* Set the height of the avatar */
+        margin-bottom: 20px; /* Add space below the avatar */
+    }
+    
+}
+
