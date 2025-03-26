@@ -145,11 +145,21 @@ export async function search_stateBook(userID, postId) {
 }
 
 export async function addStateBook(userID, postID) {
-  const docRef = await addDoc(collection(db, "state-bookmark"), {
-    user: userID,
-    post_id: postID,
-  });
-  console.log('add success');
+  const stateRef = collection(db, 'state-bookmark');
+    let q = query(stateRef, where("user", "==", userID), where("post_id", "==", postID));
+    let querySnapshot = await getDocs(q);
+
+    if (!querySnapshot.empty) {
+      console.log('Already Bookmark')
+    }else{
+      const docRef = await addDoc(collection(db, "state-bookmark"), {
+        user: userID,
+        post_id: postID,
+      });
+      console.log('add success');
+    }
+
+  
 }
 
 export async function deleteStateBook(userID, postID) {
@@ -383,7 +393,7 @@ export async function updateProfile(userId, newData) {
             const oldData = userSnap.data();
             const accountRef = collection(db, "Account");
 
-            // เช็๕ Email ซ้ำ
+            // เช็ค Email ซ้ำ
             if (newData.mail && newData.mail !== oldData.mail) {
                 const emailQuery = query(accountRef, where("mail", "==", newData.mail));
                 const emailSnap = await getDocs(emailQuery);
@@ -452,6 +462,16 @@ export async function addPostData(catImg, catName, catSex, catColor, catAge, cat
   } catch (e) {
     console.error("Error adding cat: ", e);
   }
+}
+
+export async function deletePost(postID) {
+    try {
+      const requestRef = doc(db, "Post", postID);
+      await deleteDoc(requestRef);
+      console.log('ลบโพสแล้วจ้า');
+    } catch (e) {
+      console.error("Error adding cat: ", e);
+    }
 }
 
 export async function addAdoptrequest(postId, ownerPost, ownerRequest, imgLst, details) {

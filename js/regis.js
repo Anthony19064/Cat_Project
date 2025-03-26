@@ -1,9 +1,10 @@
 function toggleForms() {
     const container = document.querySelector('.container-fluid');
     const formContainer = document.getElementById('form-container');
+    const left = document.getElementById('left');
 
     container.classList.toggle('flipped');
-
+    
     setTimeout(() => {
         if (container.classList.contains('flipped')) {
             // เปลี่ยนเป็น Register Form
@@ -55,8 +56,28 @@ function toggleForms() {
                 </div>
             `;
         } else {
-            location.reload();
+            formContainer.innerHTML = `<div class="login-form">
+                    <div class="closebutton" onclick="window.location.href = '../html/index.html'">
+                        <i class="fa-solid fa-xmark fa-2xl" style="color: #E09030;"></i>
+                    </div>
+                    <img src="https://firebasestorage.googleapis.com/v0/b/catprojectce.firebasestorage.app/o/imageInWeb%2Flogo.jpg?alt=media&token=71cdda40-848e-4cc6-9c7c-a31b2329f07e"
+                        class="avatar"></img>
+                    <h3>Login</h3>
+                    <form id="loginForm">
+                        <div class="mb-3 position-relative">
+                            <span class="input-group-text"><i class="fas fa-user"></i></span>
+                            <input type="text" class="form-control" id="username" placeholder="Username or Email">
+                        </div>
+                        <div class="mb-3 position-relative">
+                            <span class="input-group-text"><i class="fas fa-lock"></i></span>
+                            <input type="password" class="form-control" id="password" placeholder="Password">
+                        </div>
+                        <button type="submit" class="btn btn-login">Login</button>
+                    </form>
+                    <div class="toggle-link" onclick="toggleForms()">Don't have an account? Register</div>
+                </div>`;
         }
+        
     }, 400);
 }
 

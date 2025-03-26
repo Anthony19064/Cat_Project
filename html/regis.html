@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Register/Login Page</title>
+    <link rel="icon" type="image/svg" href="https://firebasestorage.googleapis.com/v0/b/catprojectce.firebasestorage.app/o/imageInWeb%2Fpaw-solid.svg?alt=media&token=79aa15ef-7351-4684-a4f4-94815f3b25e1">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Dangrek&family=Mali:wght@300&display=swap" rel="stylesheet">
@@ -15,13 +16,17 @@
 
 <body>
     <div class="container-fluid">
-        <div class="left-side"></div>
+        <div class="left-side">
+        </div>
 
         <div class="right-side">
             <div id="form-container" class="form-container">
                 <!-- เริ่มต้นที่ Login Form -->
                 <div class="login-form">
-                    <img src="https://firebasestorage.googleapis.com/v0/b/catprojectce.firebasestorage.app/o/profile_images%2Flogo.jpg?alt=media&token=bc10f689-1ff7-437f-907d-562ee3e98a0d"
+                    <div class="closebutton" onclick="window.location.href = '../html/index.html'">
+                        <i class="fa-solid fa-xmark fa-2xl" style="color: #E09030;"></i>
+                    </div>
+                    <img src="https://firebasestorage.googleapis.com/v0/b/catprojectce.firebasestorage.app/o/imageInWeb%2Flogo.jpg?alt=media&token=71cdda40-848e-4cc6-9c7c-a31b2329f07e"
                         class="avatar"></img>
                     <h3>Login</h3>
                     <form id="loginForm">

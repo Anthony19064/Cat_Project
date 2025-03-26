@@ -20,8 +20,7 @@ body{
   cursor: pointer;
   position: absolute;
   top: 10px;
-  right: 10px;
-  color: #ffffff;
+  right: 15px;
 }
 
 .container {
@@ -491,11 +490,8 @@ body {
   font-size: auto;
   border-radius: 50%;
   background-color: white;
-  /* สีทอง (สามารถเปลี่ยนได้) */
   color: #E09030;
-  /* สีไอคอน */
   margin-left: 20px;
-  /* จัดให้อยู่ด้านขวาสุด */
   border: 3px solid #E09030;
   box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.6);
   transition: transform 0.3s ease-in-out, border-color 0.3s ease-in-out;
@@ -530,6 +526,7 @@ body {
   width: 120px;
   padding: 5px 0;
   z-index: 100;
+  border: 2px solid rgb(255, 195, 145);
 }
 
 .dropdown-menu p {
@@ -538,7 +535,8 @@ body {
   font-size: 14px;
   color: #333;
   cursor: pointer;
-  transition: background 0.2s;
+  font-weight: bold;
+
 }
 
 .dropdown-menu p:hover {
@@ -550,5 +548,59 @@ body {
   display: flex;
 }
 
+.DeleteForm {
+  display: none;
+  z-index: 1000;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%); 
+  background: white; 
+  padding: 10px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  border: 3px solid #888888;
+  border-radius: 10px;
+  height: 120px;
+  width: 300px;
+  align-items: center;
+  justify-content: center;
+}
+
+.DeleteForm button{
+  margin: 10px;
+  width: 100px;
+  height: 40px;
+  border-radius: 6px;
+  box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.3);
+  font-weight: bold;
+  transition: transform 0.3s ease-in-out, border-color 0.3s ease-in-out;
+}
+
+#confirmbutton{
+  color: white;
+  background-color: #e03030;
+  border: 2px solid white;
+}
+
+#confirmbutton:hover{
+  color: #e03030;
+  background-color: #ffffff;
+  border: 2px solid #e03030;
+  transform: scale(1.2);
+  transition: transform 0.3s ease-in-out, border-color 0.3s ease-in-out;
+}
+
+#cancelbutton{
+  color: #888888;
+  background-color: #ffffff;
+  border: 2px solid #888888;
+}
+#cancelbutton:hover{
+  color: #ffffff;
+  background-color: #888888;
+  border: 2px solid #ffffff;
+  transform: scale(1.2);
+  transition: transform 0.3s ease-in-out, border-color 0.3s ease-in-out;
+}
 
 

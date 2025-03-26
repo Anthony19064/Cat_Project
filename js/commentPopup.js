@@ -1,4 +1,5 @@
 import { search_post, search_comment, search_accountByid, addComment } from './db.js';
+import { sendNotification } from './notification.js'
 
 export async function createCommetPopup(PostId) {
   let usersession = sessionStorage.getItem("user");
@@ -82,15 +83,17 @@ export async function createCommetPopup(PostId) {
 
       const buttonSend = document.createElement('button');
       buttonSend.onclick = async () => {
-        console.log(PostId);
         const countComment = document.getElementById(PostId);
-        console.log(countComment)
         const comment = document.getElementById('textComment').value;
         if (usersession) {
           if (comment) {
+            
             await addComment(usersession, PostId, comment);
+            if(usersession != post.owner){
+              await sendNotification(post.id, post.owner, "comment", usersession);
+            }
+            
             const post_now = await search_post(PostId);
-            console.log(post_now);
             countComment.innerHTML = post_now.countComment;
 
             const ownerComment = await search_accountByid(usersession);

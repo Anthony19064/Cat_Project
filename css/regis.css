@@ -25,7 +25,7 @@ html {
 }
 
 .left-side {
-    background: url('https://scontent.fbkk5-5.fna.fbcdn.net/v/t1.15752-9/462552370_3777125559170339_6892946973153616770_n.png?_nc_cat=104&ccb=1-7&_nc_sid=9f807c&_nc_ohc=sVJBQZH0WecQ7kNvgGxAenO&_nc_oc=AdgNvYSychczmh5nqbNJtpaajxpwcUl3lwD0c2IUN_0FkOHGzqu72iPSo2kNsnYwqEA&_nc_zt=23&_nc_ht=scontent.fbkk5-5.fna&oh=03_Q7cD1gF_nHGOshJirnlnpruYMuiturZDrJ4kCQDd3Drb847Ixg&oe=67D0906F') no-repeat center center;
+    background: url('https://firebasestorage.googleapis.com/v0/b/catprojectce.firebasestorage.app/o/imageInWeb%2Fcat-2209106_1280.jpg?alt=media&token=8acd0e05-a074-4874-8230-8b057f729430') no-repeat center center;
     background-size: cover;
     left: 0;
 }
@@ -51,6 +51,10 @@ html {
     margin: 0 auto 20px;
     box-shadow: 0 5px 10px rgba(0, 0, 0, 0.4);
     border: 6px solid #E09030;
+}
+
+.avatar:hover{
+    cursor: pointer;
 }
 
 .form-control,
@@ -122,11 +126,16 @@ html {
     border-radius: 10px;
 }
 
+.btn-register{
+    margin: 5px;
+}
+
 .btn-cancel {
     border: 1px solid #E09030;
     color: #E09030;
     padding: 10px 20px;
     border-radius: 10px;
+    margin: 5px;
 }
 
 .btn-cancel:hover {
@@ -150,7 +159,7 @@ html {
 
 .container-fluid.flipped .left-side {
     transform: translateX(100%);
-    background: url('https://scontent.fbkk5-1.fna.fbcdn.net/v/t1.15752-9/475983696_628263012926883_4468125571576131673_n.jpg?_nc_cat=109&ccb=1-7&_nc_sid=9f807c&_nc_ohc=Fmeh5FfHcPUQ7kNvgFcPe_V&_nc_oc=Adi5BRVG7vbAtE9VeWaE-fu32WueC2Vq_yKblFqngcYPySfiyLDDI5eE91ZTnBmz5gI&_nc_zt=23&_nc_ht=scontent.fbkk5-1.fna&oh=03_Q7cD1gGxg-ZKG9qd3ukg5Q4qvVSBEeKH1Ejbd9Za_YMUsiQR4Q&oe=67CB1F41') no-repeat center center;
+    background: url('https://firebasestorage.googleapis.com/v0/b/catprojectce.firebasestorage.app/o/imageInWeb%2Fcat-7184479_1280.jpg?alt=media&token=86197b49-ff08-4c4c-abb3-34fb2fca024c') no-repeat center center;
     background-size: cover;
 }
 
@@ -167,3 +176,18 @@ html {
 #contract-t {
     padding-left: 0;
 }
+
+.closebutton{
+    position: absolute;
+    right: 0px;
+    top: 0px;
+    margin: 15px;
+
+}
+
+.closebutton :hover{
+    cursor: pointer;
+}
+
+
+

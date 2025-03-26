@@ -17,7 +17,7 @@
 }
 
 
-textarea.form-control {
+textarea.Form-control {
     border-radius: 8px;
     padding: 12px;
     font-size: 14px;
@@ -27,8 +27,12 @@ textarea.form-control {
     transition: border 0.3s ease;
 }
 
+.Form-control{
+    padding: 8px;
+}
+
 /* Focus state for textarea */
-textarea.form-control:focus {
+textarea.Form-control:focus {
     border-color: #E09030;
     outline: none;
     box-shadow: none;
@@ -115,7 +119,7 @@ textarea.form-control:focus {
     display: block;
     border-radius: 15px;
     border: 3px solid #daae79;
-    margin-bottom: 5%;
+    margin-bottom: 3%;
 }
 
 .modal-body input:focus,

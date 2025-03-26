@@ -4,6 +4,7 @@ import { DotLottie } from "https://cdn.jsdelivr.net/npm/@lottiefiles/dotlottie-w
 import { createCommetPopup } from "./commentPopup.js";
 import { crate_popup } from "./adoptPopup.js";
 import { sendNotification } from "./notification.js";
+import { toggleDropdown } from "./dropdownPost.js";
 
 
 // Render data on the page
@@ -40,18 +41,15 @@ export async function displayAllposts() {
       locationContainer.classList.add('location');
 
       const locationValue = document.createElement('span');
+      locationValue.classList.add('catlocationMobile');
       locationValue.textContent = post.location;
 
       const catnameValue = document.createElement('span');
       catnameValue.classList.add('catnameMobile');
       catnameValue.textContent = ` ${post.catname} ${cat_sex}`;
 
-      const space = document.createElement('p');
-      space.classList.add("space");
-      space.innerHTML = "&nbsp;|&nbsp;";
 
       locationContainer.appendChild(locationValue);
-      locationContainer.appendChild(space);
       locationContainer.appendChild(catnameValue);
 
       const time = document.createElement('p');
@@ -61,6 +59,31 @@ export async function displayAllposts() {
       const details = document.createElement('p');
       details.classList.add('detail', 'mb-0');
       details.textContent = post.details;
+
+      
+      const menu_container = document.createElement('div')
+      menu_container.classList.add('menu-container');
+
+      const menu_icon = document.createElement('div');
+      menu_icon.classList.add('menu-icon');
+      menu_icon.addEventListener("click", () => {
+         toggleDropdown(post.id);
+      })
+
+      const icon_more = document.createElement('i');
+      icon_more.classList.add('fa-solid', 'fa-ellipsis');
+      icon_more.style.color = "#ffffff";
+
+      menu_icon.appendChild(icon_more)
+
+      const dropdownMenu = document.createElement('div');
+      dropdownMenu.classList.add("dropdown-menu");
+      dropdownMenu.id = `dropdownMenu${post.id}`;
+
+      
+      menu_container.appendChild(menu_icon);
+      menu_container.appendChild(dropdownMenu);
+      
 
       const color = document.createElement('input');
       color.type = "hidden";
@@ -88,7 +111,7 @@ export async function displayAllposts() {
       textContainer.appendChild(color);
       textContainer.appendChild(age);
       textContainer.appendChild(sex);
-
+      textContainer.appendChild(menu_container);
       cardContent.appendChild(img);
       cardContent.appendChild(textContainer);
 
@@ -150,13 +173,7 @@ export async function displayAllposts() {
       commentSpan.id = 'commentpop-open';
       commentSpan.addEventListener("click",async () => {
         if (usersession) {
-          if(usersession != post.owner){
-            await sendNotification(post.id, post.owner, "comment", usersession);
             createCommetPopup(post.id);
-          }
-          else{
-            createCommetPopup(post.id);
-          }
         }
         else {
           window.location.href = "../html/regis.html";
@@ -363,18 +380,15 @@ export async function displayMyposts() {
         locationContainer.classList.add('location');
   
         const locationValue = document.createElement('span');
+        locationValue.classList.add('catlocationMobile');
         locationValue.textContent = post.location;
   
         const catnameValue = document.createElement('span');
         catnameValue.classList.add('catnameMobile');
         catnameValue.textContent = ` ${post.catname} ${cat_sex}`;
   
-        const space = document.createElement('p');
-        space.classList.add("space");
-        space.innerHTML = "&nbsp;|&nbsp;";
   
         locationContainer.appendChild(locationValue);
-        locationContainer.appendChild(space);
         locationContainer.appendChild(catnameValue);
   
         const time = document.createElement('p');
@@ -384,10 +398,36 @@ export async function displayMyposts() {
         const details = document.createElement('p');
         details.classList.add('detail', 'mb-0');
         details.textContent = post.details;
-  
+
+        const menu_container = document.createElement('div')
+        menu_container.classList.add('menu-container');
+
+        const menu_icon = document.createElement('div');
+        menu_icon.classList.add('menu-icon');
+        menu_icon.addEventListener("click", () => {
+           toggleDropdown(post.id);
+        })
+
+        const icon_more = document.createElement('i');
+        icon_more.classList.add('fa-solid', 'fa-ellipsis');
+        icon_more.style.color = "#ffffff";
+
+        menu_icon.appendChild(icon_more)
+
+        const dropdownMenu = document.createElement('div');
+        dropdownMenu.classList.add("dropdown-menu");
+        dropdownMenu.id = `dropdownMenu${post.id}`;
+
+        
+        menu_container.appendChild(menu_icon);
+        menu_container.appendChild(dropdownMenu);
+        
+
+
         textContainer.appendChild(locationContainer);
         textContainer.appendChild(time);
         textContainer.appendChild(details);
+        textContainer.appendChild(menu_container);
   
         cardContent.appendChild(img);
         cardContent.appendChild(textContainer);
@@ -530,7 +570,7 @@ export async function displayMyposts() {
               if (!bh_state) {
                 lottie_heart.setMode("forward");
                 lottie_heart.play();
-                await addStateLike(account.username, post.id);
+                await addStateLike(account.id, post.id);
                 const post_now = await search_post(post.id);
                 countLike.textContent = post_now.countLike;
                 bh_state = true;
@@ -538,7 +578,7 @@ export async function displayMyposts() {
                 lottie_heart.setFrame(lottie_heart.totalFrames - 30);
                 lottie_heart.setMode("reverse");
                 lottie_heart.play();
-                await deleteStateLike(account.username, post.id);
+                await deleteStateLike(account.id, post.id);
                 const post_now = await search_post(post.id);
                 countLike.textContent = post_now.countLike;
                 bh_state = false;
@@ -558,13 +598,13 @@ export async function displayMyposts() {
               if (!bb_state) {
                 lottie_book.setMode("forward");
                 lottie_book.play();
-                await addStateBook(account.username, post.id);
+                await addStateBook(account.id, post.id);
                 bb_state = true;
               } else {
                 lottie_book.setFrame(lottie_book.totalFrames - 30);
                 lottie_book.setMode("reverse");
                 lottie_book.play();
-                await deleteStateBook(account.username, post.id);
+                await deleteStateBook(account.id, post.id);
                 bb_state = false;
               }
             });
@@ -643,18 +683,15 @@ export async function displayBookmark() {
               locationContainer.classList.add('location');
         
               const locationValue = document.createElement('span');
+              locationValue.classList.add('catlocationMobile');
               locationValue.textContent = post.location;
         
               const catnameValue = document.createElement('span');
               catnameValue.classList.add('catnameMobile');
               catnameValue.textContent = ` ${post.catname} ${cat_sex}`;
         
-              const space = document.createElement('p');
-              space.classList.add("space");
-              space.innerHTML = "&nbsp;|&nbsp;";
         
               locationContainer.appendChild(locationValue);
-              locationContainer.appendChild(space);
               locationContainer.appendChild(catnameValue);
         
               const time = document.createElement('p');
@@ -810,7 +847,7 @@ export async function displayBookmark() {
                     if (!bh_state) {
                       lottie_heart.setMode("forward");
                       lottie_heart.play();
-                      await addStateLike(account.username, post.id);
+                      await addStateLike(account.id, post.id);
                       const post_now = await search_post(post.id);
                       countLike.textContent = post_now.countLike;
                       bh_state = true;
@@ -818,7 +855,7 @@ export async function displayBookmark() {
                       lottie_heart.setFrame(lottie_heart.totalFrames - 30);
                       lottie_heart.setMode("reverse");
                       lottie_heart.play();
-                      await deleteStateLike(account.username, post.id);
+                      await deleteStateLike(account.id, post.id);
                       const post_now = await search_post(post.id);
                       countLike.textContent = post_now.countLike;
                       bh_state = false;
@@ -838,13 +875,13 @@ export async function displayBookmark() {
                     if (!bb_state) {
                       lottie_book.setMode("forward");
                       lottie_book.play();
-                      await addStateBook(account.username, post.id);
+                      await addStateBook(account.id, post.id);
                       bb_state = true;
                     } else {
                       lottie_book.setFrame(lottie_book.totalFrames - 30);
                       lottie_book.setMode("reverse");
                       lottie_book.play();
-                      await deleteStateBook(account.username, post.id);
+                      await deleteStateBook(account.id, post.id);
                       bb_state = false;
                     }
                   });
@@ -888,4 +925,3 @@ export async function displayBookmark() {
 
 
 }
-

@@ -53,13 +53,18 @@
 }
 
 .catname {
+    max-width: 160px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
     font-size: 30px;
     font-weight: bold;
-    margin-left: 5%;
+    margin-left: 4%;
     margin-top: 5px;
-    margin-bottom: 10px;
+    margin-bottom:0px;
     color: white;
     text-shadow: 0px 10px 10px rgba(0, 0, 0, 0.4);
+    line-height: 2;
 }
 
 .top-right {
@@ -176,8 +181,8 @@
 
 
 .social-button {
-    position: relative;
-    left: -12px;
+    position: absolute;
+    left: 187px;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -233,11 +238,24 @@
 
 
 @media (max-width: 760px) {
+    .sidebar {
+        right: -300px;
+        width: 300px;
+    }
+
+    .userimg-side{
+        width: 120px;
+        height: 120px;
+    }
 
     /* สำหรับหน้าจอขนาดเล็ก เช่น มือถือ */
     .bt-like,
     .bt-comment {
-        width: 60px;
+        width: 70px;
+    }
+
+    .bt-bookmark{
+        display: none;
     }
 
     .cat-card {
@@ -275,10 +293,19 @@
     }
     .social-button{
         margin-left: 10%;
+        position: relative;
+        left: -12px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
     }
 
     .catnameMobile{
         display: flex;
+        margin-top: 5px;
+    }
+    .catlocationMobile{
+        display: none;
     }
 
     .location{
@@ -288,15 +315,16 @@
     .location span , .location p{
         font-size: 33px;
         font-weight: bold;
-        text-decoration: underline;
     }
-    .space{
-        display: flex;
-    }
+
     .timepost{
         position: relative;
-        top: -45px;
+        top: -35px;
+        right: 0px;
     }
+
+
+      
 }
 
 @media (min-width: 1024px) {

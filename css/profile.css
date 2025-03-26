@@ -8,7 +8,7 @@
     gap: 15px;
     position: relative;
     box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
-    width: 1000px;
+
     height: 200px;
     margin: auto;
     margin-top: 5%;
@@ -25,10 +25,10 @@
     left: 13%;
     transform: translateX(-50%);
 }
+
 .edit-btn {
     background: none;
     border: none;
-    font-size: 18px;
     color: white;
     position: absolute;
     top: 10px;
@@ -45,6 +45,8 @@
     transform: translateX(-50%);
     font-weight: bold;
 }
+
+
 .nav-post, .nav-request, .nav-book {
     font-size: 30px;
     color: #cacacab4;
@@ -89,4 +91,99 @@
     font-size: 20px;
     color: #333;
 }
+
+.edit-profile-btn{
+    margin-top: 15px;
+}
+
+#editProfileOverlay{
+    z-index: 999;
+}
+
+/* 📱 Mobile (ต่ำกว่า 768px) */
+@media (max-width: 767px) {
+    .profile-container {
+        margin-top: 25%;
+        width: 90%; 
+        height: 420px;
+        flex-direction: column;
+        justify-content: end;
+    }
+    .profile-pic {
+        width: 190px;
+        height: 190px;
+        top: -100px;
+        left: 50%;
+    }
+    .username{
+        color: white;
+        top: 95px;
+        left: 50%;
+    }
+
+    .nav{
+        margin: 0px;
+        margin-top: 20%;
+    }
+
+    .nav-post{
+        border: none;
+    }
+
+    .nav-request{
+        border: none;
+    }
+
+    .edit-profile-popup{
+        width: 400px;
+    }
+
+  }
+  
+  /* 📟 iPad / Tablet (768px - 1024px) */
+  @media (min-width: 768px) and (max-width: 1024px) {
+    .profile-container {
+        margin-top: 15%;
+        width: 90%; 
+    }
+    .nav-post, .nav-book, .nav-request {
+        font-size: 25px;
+        padding: 10px;
+    }
+    .nav{
+        gap: 0px;
+        margin-left: 125px;
+    }
+    
+  }
+  
+
+  
+  @media (min-width: 1050px) and (max-width:1700px) {
+    .profile-container {
+        width: 70%;
+    }
+    .nav-post, .nav-book, .nav-request {
+        font-size: 30px;
+        padding: 10px;
+    }
+    .nav{
+        gap: 0px;
+        margin-left: 15%;
+    }
+}
+  @media (min-width: 1700px) and (max-width:1980px) {
+    .profile-container {
+        width: 50%;
+    }
+    .nav-post, .nav-book, .nav-request {
+        font-size: 35px;
+        padding: 10px;
+    }
+    .nav{
+        gap: 0px;
+        margin-left: 15%;
+    }
+}
+
 

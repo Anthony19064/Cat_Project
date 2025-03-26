@@ -82,6 +82,7 @@ export async function displayNotification(userId) {
             }        
         }
 
+        
         for (const data of notifications) {
             const fUser = await search_accountByid(data.from);
 
@@ -92,7 +93,7 @@ export async function displayNotification(userId) {
             const iconNoti = document.createElement("i");
             const image = document.createElement("img");
             image.classList.add("notiImg");
-            image.src = data.userImage;
+            image.src = fUser.img;
 
             const imgSection = document.createElement('div');
             imgSection.classList.add('imgSection');
