@@ -474,6 +474,47 @@ export async function deletePost(postID) {
     }
 }
 
+export async function updatePost(postID, newData) {
+    try {
+      const postRef = doc(db, "Post", postID);
+      const postSnap = await getDoc(postRef);
+      const oldData = postSnap.data();
+
+      if(newData.img != null){
+        const imageUrl = await uploadImage(newData.img, "catimgPost");
+        newData.img = imageUrl
+      }
+
+      const UpdateData = {
+        catage: newData.age,
+        catcolor: newData.color,
+        catname: newData.name,
+        details: newData.details,
+        img: newData.img || oldData.img,
+        location: newData.location,
+        sex: newData.sex,
+      }
+      await updateDoc(postRef, UpdateData);
+
+      console.log('updatepost')
+    } catch (e) {
+      console.log(e)
+    }
+}
+
+export async function closePost(postID) {
+    try {
+      const postRef = doc(db, "Post", postID);
+
+      await updateDoc(postRef, {
+        status: false 
+    });
+    
+    } catch (e) {
+      console.log(e);
+    }
+}
+
 export async function addAdoptrequest(postId, ownerPost, ownerRequest, imgLst, details) {
   try {
     const docRef = await addDoc(collection(db, "adopt-request"), {}); // สร้าง document เปล่าก่อน เพื่อให้ได้ docRef.id

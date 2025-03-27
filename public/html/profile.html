@@ -145,35 +145,35 @@
     </div>
 
     <!-- Popup -->
-    <div class="modal fade" id="filterModal2" tabindex="-1" aria-labelledby="filterModalLabel" aria-hidden="true">
+    <div class="modal fade" id="editpost" tabindex="-1" aria-labelledby="filterModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content addpostPopup p-3">
-                <form id="addPost">
+                <form id="editPost">
                     <div class="modal-header">
 
-                        <label for="catImg" class="avatar-label">
-                            <div class="avatar" id="cat-preview"></div>
+                        <label for="edcatImg" class="avatar-label">
+                            <div class="avatar" id="edcat-preview"></div>
                         </label>
-                        <input type="file" id="catImg" accept="image/*" style="display: none"
+                        <input type="file" id="edcatImg" accept="image/*" style="display: none"
                             onchange="previewCatAvatar()">
 
-                        <i class="close-btn fa-solid fa-xmark" id="closeAddpost"></i>
+                        <i class="close-btn fa-solid fa-xmark" id="edcloseAddpost"></i>
 
                     </div>
 
                     <div class="modal-body">
 
                         <label for="catName" class="labelPost">ชื่อแมว</label>
-                        <input type="text" id="catName" class="Form-control">
+                        <input type="text" id="edcatName" class="Form-control">
 
                         <label for="catSex" class="labelPost">เพศ</label>
-                        <select id="catSex" class="form-select">
+                        <select id="edcatSex" class="form-select">
                             <option value="ชาย">เพศผู้ ♂</option>
                             <option value="หญิง">เพศเมีย ♀</option>
                         </select>
 
                         <label for="catColor" class="labelPost">สี</label>
-                        <select id="catColor" class="form-select">
+                        <select id="edcatColor" class="form-select">
                             <option value="ดำ">ดำ</option>
                             <option value="ขาว">ขาว</option>
                             <option value="เทา">เทา</option>
@@ -183,13 +183,13 @@
                         </select>
 
                         <label for="catAge" class="labelPost">ช่วงอายุ</label>
-                        <select id="catAge" class="form-select">
+                        <select id="edcatAge" class="form-select">
                             <option value="แมวเด็ก">แมวเด็ก</option>
                             <option value="แมวโต">แมวโต</option>
                         </select>
 
                         <label for="catLocation" class="labelPost">จังหวัด</label>
-                        <input list="provinceList" id="catLocation" placeholder="จังหวัดที่แมวอยู่. . . ."
+                        <input list="provinceList" id="edcatLocation" placeholder="จังหวัดที่แมวอยู่. . . ."
                             class="Form-control">
                         <datalist id="provinceList">
                             <option value="กรุงเทพ">
@@ -273,13 +273,13 @@
 
 
                         <label class="labelPost" for="catDetails">รายละเอียดอื่นๆ</label>
-                        <textarea class="Form-control" id="catDetails" rows="3"
+                        <textarea class="Form-control" id="edcatDetails" rows="3"
                             placeholder="เช่นต้องการบ้านที่มีพื้นที่ หรือความต้องการอื่นๆ"></textarea>
 
                     </div>
 
                     <div class="modal-footer">
-                        <button type="submit" class="btn " id="confirmpost">ยืนยัน</button>
+                        <button type="button" class="btn " id="edconfirmpost">ยืนยัน</button>
                     </div>
 
                 </form>
@@ -288,6 +288,8 @@
 
         </div>
     </div>
+
+
 
     <!-- ---------------------------------------  Post -------------------------------------------------- -->
 
@@ -315,14 +317,14 @@
 
     <!-------------------------------------------------->
 
-    <!-- <footer class="text-center mt-5"> -->
+    <footer class="text-center mt-5">
 
-    <!-- Copyright -->
-    <!-- <div class="text-center p-3" style=" color: #E09030; font-weight: bold;">
+        <!-- Copyright -->
+        <div class="text-center p-3" style=" color: #E09030; font-weight: bold;">
             © 2025 Copyright : CEKMITL
-        </div> -->
-    <!-- Copyright -->
-    <!-- </footer> -->
+        </div>
+        <!-- Copyright -->
+    </footer>
 
 
     <script src="https://www.gstatic.com/firebasejs/9.19.1/firebase-app-compat.js"></script>
@@ -367,8 +369,8 @@
         }
 
         function previewCatAvatar() {
-            const file = document.getElementById("catImg").files[0];
-            const preview = document.getElementById("cat-preview");
+            const file = document.getElementById("edcatImg").files[0];
+            const preview = document.getElementById("edcat-preview");
 
             if (file) {
                 const reader = new FileReader();
@@ -605,23 +607,6 @@
 
     </script>
 
-
-    <!-- <script>
-        function toggleDropdown() {
-            var menu = document.getElementById("dropdownMenu");
-            menu.style.display = (menu.style.display === "block") ? "none" : "block";
-        }
-
-        // ปิด dropdown เมื่อคลิกที่อื่น
-        document.addEventListener("click", function (event) {
-            var menu = document.getElementById("dropdownMenu");
-            var icon = document.querySelector(".menu-container");
-
-            if (!icon.contains(event.target)) {
-                menu.style.display = "none";
-            }
-        });
-    </script> -->
     <script src="https://unpkg.com/@dotlottie/player-component@2.7.12/dist/dotlottie-player.mjs" type="module"></script>
     <script src="../js/profilepage.js" type="module"></script>
 

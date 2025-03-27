@@ -48,6 +48,17 @@ textarea.Form-control:focus {
     margin: 0 auto 20px;
     box-shadow: 0 5px 10px rgba(0, 0, 0, 0.4);
     border: 6px solid #E09030;
+    transition: transform 0.2s ease-in-out;
+}
+
+.avatar:hover{
+    transform: scale(1.1) rotate(-5deg);
+    cursor: pointer;
+    transition: transform 0.2s ease-in-out;
+}
+
+#edcat-preview{
+    border: 5px solid #E09030;
 }
 
 /* สีพื้นหลัง popup*/

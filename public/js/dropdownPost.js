@@ -1,4 +1,4 @@
-import { getPostData, getBookmarkData, search_accountByid, search_statelike, addStateLike, deleteStateLike, search_stateBook, addStateBook, deleteStateBook, search_post, deletePost } from "./db.js";
+import { search_accountByid, search_stateBook, addStateBook, deleteStateBook, search_post, deletePost, updatePost, closePost } from "./db.js";
 import { sendNotification } from "./notification.js";
 
 export function toggleDropdown(postId) {
@@ -65,9 +65,18 @@ export async function menupopup(post_id) {
 
         });
 
+        const Menu_item4 = document.createElement('p');
+        Menu_item4.textContent = "ปิดรับเลี้ยง";
+        Menu_item4.addEventListener("click",async () => {
+            dropdownMenu.style.display = "none";
+            await closePost(post.id);
+            location.reload();
+        });
+
         dropdownMenu.appendChild(Menu_item1);
         dropdownMenu.appendChild(Menu_item2);
         dropdownMenu.appendChild(Menu_item3);
+        dropdownMenu.appendChild(Menu_item4);
     }
     else{
         const Menu_item3 = document.createElement('p');
@@ -116,39 +125,79 @@ export async function confirmDelete(postID){
 export async function editPost(postID) {
     const post = await search_post(postID);
 
-    const modal = new bootstrap.Modal(document.getElementById("filterModal2"));
+    const modal = new bootstrap.Modal(document.getElementById("editpost"));
     modal.show();
     
-    document.getElementById("closeAddpost").addEventListener("click", function () {
+    document.getElementById("edcloseAddpost").addEventListener("click", function () {
         modal.hide();
     });
     
-    const catpreview = document.getElementById('cat-preview');
+    const catpreview = document.getElementById('edcat-preview');
     catpreview.style.backgroundImage = `url(${post.img})`;
     catpreview.style.backgroundSize = "cover";
     catpreview.style.backgroundPosition = "center";
     
     
-    const catname = document.getElementById('catName');
+    const catname = document.getElementById('edcatName');
     catname.value = post.catname;
 
-    const catSex = document.getElementById('catSex');
+    const catSex = document.getElementById('edcatSex');
     catSex.value = post.sex;
 
-    const catColor = document.getElementById('catColor');
+    const catColor = document.getElementById('edcatColor');
     catColor.value = post.catcolor;
 
-    const catAge = document.getElementById('catAge');
+    const catAge = document.getElementById('edcatAge');
     catAge.value = post.catage;
 
-    const catLocation = document.getElementById('catLocation');
+    const catLocation = document.getElementById('edcatLocation');
     catLocation.value = post.location;
 
-    const catDetails = document.getElementById('catDetails');
+    const catDetails = document.getElementById('edcatDetails');
     catDetails.value = post.details;
 
-    const confirmButton = document.getElementById('btn-cancel');
-    confirmButton.addEventListener("click", () => {
-        console.log('editPost')
+    //กดปุ่มยืนยัน
+    const confirmButton = document.getElementById('edconfirmpost');
+    confirmButton.addEventListener("click",async () => {
+
+    //ดึงข้อมูล
+    const img = document.getElementById("edcatImg");
+    let avatarFile = null;
+    if (img.files[0] == undefined){
+        avatarFile = null
+    }else{
+        avatarFile = img.files[0];
+    }
+    
+
+    const catname = document.getElementById('edcatName').value;
+
+    const catSex = document.getElementById('edcatSex').value;
+
+    const catColor = document.getElementById('edcatColor').value;
+
+    const catAge = document.getElementById('edcatAge').value;
+
+    const catLocation = document.getElementById('edcatLocation').value;
+
+    const catDetails = document.getElementById('edcatDetails').value;
+
+    const newData = {
+        img: avatarFile,
+        name: catname,
+        sex: catSex,
+        color: catColor,
+        age: catAge,
+        location: catLocation,
+        details: catDetails
+    }
+    await updatePost(post.id, newData);
+    //ปิด Form
+
+    modal.hide();
+    location.reload();
     })
+
+
+
 }

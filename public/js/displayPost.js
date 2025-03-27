@@ -22,7 +22,7 @@ export async function displayAllposts() {
       let cat_sex = post.sex === 'ชาย' ? '♂' : '♀';
       // Create the card container
       const card = document.createElement('div');
-      card.classList.add('card', 'cat-card', 'mb-3');
+      card.classList.add('card', 'cat-card', 'mb-4');
 
       // Create a flex container for image and details
       const cardContent = document.createElement('div');
@@ -67,7 +67,13 @@ export async function displayAllposts() {
       const menu_icon = document.createElement('div');
       menu_icon.classList.add('menu-icon');
       menu_icon.addEventListener("click", () => {
-         toggleDropdown(post.id);
+        if(usersession){
+          
+          toggleDropdown(post.id);
+        }
+        else{
+          window.location.href = "../html/regis.html";
+        }
       })
 
       const icon_more = document.createElement('i');
@@ -361,7 +367,7 @@ export async function displayMyposts() {
         let cat_sex = post.sex === 'ชาย' ? '♂' : '♀';
         // Create the card container
         const card = document.createElement('div');
-        card.classList.add('card', 'cat-card', 'mb-3');
+        card.classList.add('card', 'cat-card', 'mb-4');
   
         // Create a flex container for image and details
         const cardContent = document.createElement('div');
@@ -405,7 +411,12 @@ export async function displayMyposts() {
         const menu_icon = document.createElement('div');
         menu_icon.classList.add('menu-icon');
         menu_icon.addEventListener("click", () => {
-           toggleDropdown(post.id);
+          if (usersession){
+            toggleDropdown(post.id);
+          }
+          else{
+            window.location.href = "../html/regis.html";
+          }
         })
 
         const icon_more = document.createElement('i');
@@ -664,7 +675,7 @@ export async function displayBookmark() {
               let cat_sex = post.sex === 'ชาย' ? '♂' : '♀';
               // Create the card container
               const card = document.createElement('div');
-              card.classList.add('card', 'cat-card', 'mb-3');
+              card.classList.add('card', 'cat-card', 'mb-4');
         
               // Create a flex container for image and details
               const cardContent = document.createElement('div');
@@ -701,10 +712,39 @@ export async function displayBookmark() {
               const details = document.createElement('p');
               details.classList.add('detail', 'mb-0');
               details.textContent = post.details;
+
+              const menu_container = document.createElement('div')
+              menu_container.classList.add('menu-container');
+      
+              const menu_icon = document.createElement('div');
+              menu_icon.classList.add('menu-icon');
+              menu_icon.addEventListener("click", () => {
+                if (usersession){
+                  toggleDropdown(post.id);
+                }
+                else{
+                  window.location.href = "../html/regis.html";
+                }
+              })
+      
+              const icon_more = document.createElement('i');
+              icon_more.classList.add('fa-solid', 'fa-ellipsis');
+              icon_more.style.color = "#ffffff";
+      
+              menu_icon.appendChild(icon_more)
+      
+              const dropdownMenu = document.createElement('div');
+              dropdownMenu.classList.add("dropdown-menu");
+              dropdownMenu.id = `dropdownMenu${post.id}`;
+      
+              
+              menu_container.appendChild(menu_icon);
+              menu_container.appendChild(dropdownMenu);
         
               textContainer.appendChild(locationContainer);
               textContainer.appendChild(time);
               textContainer.appendChild(details);
+              textContainer.appendChild(menu_container);
         
               cardContent.appendChild(img);
               cardContent.appendChild(textContainer);
