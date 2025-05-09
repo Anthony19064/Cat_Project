@@ -1,9 +1,19 @@
 # Cat_Project
-
-## เว็บไซต์ Community ที่ใช้หาบ้านให้น้องแมวจรที่ต้องการความช่วยเหลือ 
-## https://catprojectce.web.app/
-
-## FrontEnd ใช้ Html Css Boostarp5
-## BackEnd ใช้ JavaScript
-## Database ใช้ Firebase Database
+[Link ไปยัง website Cat Gang](https://catprojectce.web.app/)
  
+
+
+## Tools
+
+- FrontEnd: Html, CSS, Bootstrap 5
+- BackEnd: JavaScript
+- Database: Firebase Database
+
+## Features
+
+- Login & Register
+- สร้างโพส ลบโพส แก้ไขโพส
+- ถูกใจ คอมเมนต์ บันทึกโพส
+- แจ้งเตือน Realtime
+- Seach หาแมวตามชื่อ เพศ สี จังหวัด 
+- ระบบส่ง Contract ของผู้ใช้ให้สามารถติดต่อกันได้
